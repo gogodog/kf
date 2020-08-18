@@ -1,0 +1,49 @@
+<view class="page">
+	<view class="page__bd">
+		<wux-search-bar clear maxlength="8" />
+		<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{activeColor}}" style="height:380rpx">
+			<block wx:for="{{imgUrls}}" wx:key="index">
+				<swiper-item>
+					<navigator url="{{item.link}}" hover-class="navigator-hover">
+						<image src="{{item.url}}" class="slide-image" width="355" height="200" />
+						<text class='slide-text'>{{ item.title }}</text>
+					</navigator>
+				</swiper-item>
+			</block>
+		</swiper>
+
+		<wux-grids col="4" style="margin: 0rpx 40rpx 0rpx 0rpx;">
+			<wux-grid thumb="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597143214971&di=6de3f6d6914171bb9047aa4ab909814c&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F35%2F46%2F02573be4fc1fc38.jpg" label="瘦身餐" />
+			<wux-grid thumb="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597143214971&di=6de3f6d6914171bb9047aa4ab909814c&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F35%2F46%2F02573be4fc1fc38.jpg" label="养生餐" />
+			<wux-grid thumb="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597143214971&di=6de3f6d6914171bb9047aa4ab909814c&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F35%2F46%2F02573be4fc1fc38.jpg" label="温饱餐" />
+			<wux-grid thumb="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597143214971&di=6de3f6d6914171bb9047aa4ab909814c&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F35%2F46%2F02573be4fc1fc38.jpg" label="健身餐" />
+			<wux-grid thumb="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597143214971&di=6de3f6d6914171bb9047aa4ab909814c&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F35%2F46%2F02573be4fc1fc38.jpg" label="水果拼盘" />
+			<wux-grid thumb="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597143214971&di=6de3f6d6914171bb9047aa4ab909814c&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F35%2F46%2F02573be4fc1fc38.jpg" label="蔬菜拼盘" />
+			<wux-grid thumb="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597143214971&di=6de3f6d6914171bb9047aa4ab909814c&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F35%2F46%2F02573be4fc1fc38.jpg" label="粤菜" />
+			<wux-grid thumb="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597143214971&di=6de3f6d6914171bb9047aa4ab909814c&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F35%2F46%2F02573be4fc1fc38.jpg" label="川菜" />
+		</wux-grids>
+		<brickLayout style="margin: 0rpx 40rpx 0rpx 0rpx;" dataSet="{{dataSet}}" option="{{brick_option}}" bind:tapCard="tapCard" bind:tapLike="handleLike" bind:tapUser="handleUserEvent" />
+		<wux-tabbar defaultCurrent="0" position="bottom" safeArea bindchange="onBarChange">
+			<wux-tabbar-item title="首页">
+				<wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
+				<wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
+			</wux-tabbar-item>
+			<wux-tabbar-item title="分类">
+				<wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
+				<wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
+			</wux-tabbar-item>
+			<wux-tabbar-item title="新建">
+				<wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
+				<wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
+			</wux-tabbar-item>
+			<wux-tabbar-item title="购物车">
+				<wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
+				<wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
+			</wux-tabbar-item>
+			<wux-tabbar-item title="我的">
+				<wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
+				<wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
+			</wux-tabbar-item>
+		</wux-tabbar>
+	</view>
+</view>

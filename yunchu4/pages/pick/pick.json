@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "wux-cell-group": "../../lib/cell-group/index",
+    "wux-cell": "../../lib/cell/index",
+    "wux-button": "../../lib/button/index",
+    "wux-popup": "../../lib/popup/index",
+    "wux-slider": "../../lib/slider/index",
+    "wux-icon": "../../lib/icon/index",
+    "wux-toptips": "../../lib/toptips/index"
+  },
+  "disableScroll": true,
+  "navigationBarTitleText": "搭配食谱"
+}

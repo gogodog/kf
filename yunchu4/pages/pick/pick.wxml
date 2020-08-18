@@ -1,0 +1,76 @@
+<!--选配页面-->
+<wux-toptips id="wux-toptips" />
+<view>
+  <view class="bar">
+    <view class="bar-title" style="width:40rpx;background: red;height:100rpx">食材</view>
+    <view class="bar-content">
+      <view bindtap="preModifySource" wx:for="{{shiCai}}" wx:key="index" class="bar-content-item" data-vau="g" data-rank="{{item.weight}}" data-type="{{item.type}}" data-id="{{item.id}}">
+        <view class="avatar" style="padding-right:0rpx"><image class="img" src="{{item.img}}"></image></view>
+        <view>{{item.id}}-{{item.weight[0]}}-{{item.weight[1]}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bar">
+    <view class="bar-title" style="width:40rpx;background: red;height:100rpx">调料</view>
+    <view class="bar-content">
+      <view class="bar-content-item">
+        <view class="avatar" style="padding-right:0rpx"><image class="img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596798996678&di=7e8e686b971a13095409d09ddd3f2da8&imgtype=0&src=http%3A%2F%2Fy0.ifengimg.com%2Fnews_spider%2Fdci_2012%2F10%2Fc633cc8eeff358d14eb6ae5a33649fdb.jpg"></image></view>
+        <view>10g</view>
+      </view>
+      <view class="bar-content-item">
+        <view class="avatar" style="padding-right:0rpx"><image class="img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596798996678&di=7e8e686b971a13095409d09ddd3f2da8&imgtype=0&src=http%3A%2F%2Fy0.ifengimg.com%2Fnews_spider%2Fdci_2012%2F10%2Fc633cc8eeff358d14eb6ae5a33649fdb.jpg"></image></view>
+        <view>25g</view>
+      </view>
+      <view class="bar-content-item">
+        <view class="avatar" style="padding-right:0rpx"><image class="img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596798996678&di=7e8e686b971a13095409d09ddd3f2da8&imgtype=0&src=http%3A%2F%2Fy0.ifengimg.com%2Fnews_spider%2Fdci_2012%2F10%2Fc633cc8eeff358d14eb6ae5a33649fdb.jpg"></image></view>
+        <view>20g</view>
+      </view>
+      <view class="bar-content-item">
+        <view class="avatar" style="padding-right:0rpx"><image class="img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596804476764&di=c29e4f33a378c74c85223d922a0b40f1&imgtype=0&src=http%3A%2F%2Fpic.51yuansu.com%2Fpic2%2Fcover%2F00%2F42%2F22%2F5813801c5dd1d_610.jpg"></image></view>
+        <view></view>
+      </view>
+      <view class="bar-content-item">
+        <view class="avatar" style="padding-right:0rpx"><image class="img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596804476764&di=c29e4f33a378c74c85223d922a0b40f1&imgtype=0&src=http%3A%2F%2Fpic.51yuansu.com%2Fpic2%2Fcover%2F00%2F42%2F22%2F5813801c5dd1d_610.jpg"></image></view>
+        <view></view>
+      </view>
+    </view>
+  </view>
+  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+      <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">蔬菜</view>
+      <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">水果</view>
+      <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">海鲜</view>
+      <view class="tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav">肉类</view>
+      <view class="tab-item {{currentTab==4?'active':''}}" data-current="4" bindtap="swichNav">鸡鸭</view>
+      <view class="tab-item {{currentTab==5?'active':''}}" data-current="5" bindtap="swichNav">调料</view>
+  </scroll-view>
+  <swiper class="" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
+        <swiper-item wx:for="{{[0,1,2,3,4,5]}}" wx:key="*this">
+            <scroll-view scroll-y="true" class="scoll-h" >
+                <block wx:for="{{[1,2,3,4,5,6,7,8]}}" wx:key="*this">
+                    <view class="item-ans">
+                        <view class="avatar">
+                            <image class="img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596798996678&di=7e8e686b971a13095409d09ddd3f2da8&imgtype=0&src=http%3A%2F%2Fy0.ifengimg.com%2Fnews_spider%2Fdci_2012%2F10%2Fc633cc8eeff358d14eb6ae5a33649fdb.jpg"></image>
+                        </view>
+                        <view class="expertInfo">
+                            <view class="name">大白菜</view>
+                            <view class="tag">口味脆爽，入口如山</view>
+                            <view class="answerHistory">134个回答，223个食谱采用 </view>
+                        </view>
+                        <view class="addBtn" data-vau="g" data-rank="" data-type="1" data-id="{{index}}" data-img="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596798996678&di=7e8e686b971a13095409d09ddd3f2da8&imgtype=0&src=http%3A%2F%2Fy0.ifengimg.com%2Fnews_spider%2Fdci_2012%2F10%2Fc633cc8eeff358d14eb6ae5a33649fdb.jpg" bindtap="choseSource">+</view> 
+                    </view>
+                </block>
+            </scroll-view>
+        </swiper-item>
+    </swiper>
+</view>
+<wux-popup position="bottom" visible="{{popvisible}}" bind:close="closeSource">
+    <wux-cell-group title="请选择数量(单位：{{silierType}})">
+        <wux-cell hover-class="none">
+          <wux-slider min="1" max="200" defaultValue="{{sliderRank}}" bind:afterChange="afterSliderChange" showValue />
+        </wux-cell>
+        <wux-cell hover-class="none">
+            <wux-button block outline type="energized" bindtap="sourceHandler">确定</wux-button>
+        </wux-cell>
+    </wux-cell-group>
+</wux-popup>

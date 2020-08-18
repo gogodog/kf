@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "wux-row": "../../lib/row/index",
+    "wux-col": "../../lib/col/index",
+    "wux-skeleton": "../../lib/skeleton/index",
+        "wux-skeleton-avatar": "../../lib/skeleton-avatar/index",
+        "wux-skeleton-paragraph": "../../lib/skeleton-paragraph/index",
+        "wux-avatar": "../../lib/avatar/index"
+  },
+  "navigationBarTitleText": "我的"
+}

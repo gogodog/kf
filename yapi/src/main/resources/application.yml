@@ -1,0 +1,49 @@
+server:
+  port: 80
+  servlet:
+    context-path: /yapi
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://rm-2zep3xy7yb8h7h3hzyo.mysql.rds.aliyuncs.com:3306/yapi?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: YunchuApi
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false
+# mybatis配置
+mybatis-plus:
+  # xml文件路径
+  mapper-locations: classpath:mapper/*.xml
+  # 实体类路径
+  type-aliases-package: com.yunchu.yapi.entity
+  configuration:
+    # 驼峰转换
+    map-underscore-to-camel-case: true
+    # 是否开启缓存
+    cache-enabled: false
+    # 打印sql
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  # 全局配置
+  global-config:
+    # 数据库字段驼峰下划线转换
+    db-column-underline: true
+    # id自增类型(数据库id自增)
+    id-type: 0
+    # 删除前
+    logic-not-delete-value: 1
+    # 删除后
+    logic-delete-value: 0
+# 分页配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+# 微信小程序配置
+wxapp:
+  appid: wx4836d3eceda3aeb1
+  secret: ce40b37b617c8f13b9a50664fcae2770

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yunchu.yapi.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yunchu.yapi.entity.User">
+        <id column="id" property="id" />
+        <result column="user_name" property="userName" />
+        <result column="user_password" property="userPassword" />
+        <result column="del_flag" property="delFlag" />
+    </resultMap>
+    
+    <!-- 查找用户信息 -->
+    <select id="findAllUser" resultType="com.yunchu.yapi.entity.User">
+       select * from user
+    </select>
+    
+
+</mapper>

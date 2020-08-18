@@ -1,0 +1,61 @@
+<view class="page">
+	<view class="page__bd">
+		<wux-row>
+			<wux-col span="12">
+				<wux-skeleton active>
+					<wux-row>
+						<wux-col span="4" style="text-align: center;">
+							<wux-avatar src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3379848400,1190658504&fm=15&gp=0.jpg" body-style="background-color: #33cd5f;width: 160rpx;height: 160rpx;line-height: 160rpx;border-radius: 80rpx;" size="large"></wux-avatar>
+						</wux-col>
+						<wux-col span="8">
+							<wux-skeleton-paragraph />
+						</wux-col>
+					</wux-row>
+				</wux-skeleton>
+			</wux-col>
+		</wux-row>
+		<wux-row>
+			<wux-col span="6">
+				<view class="placeholder">wux</view>
+			</wux-col>
+			<wux-col span="6">
+				<view class="placeholder">wux</view>
+			</wux-col>
+		</wux-row>
+		<wux-row>
+			<wux-col span="4">
+				<view class="placeholder">wux</view>
+			</wux-col>
+			<wux-col span="4">
+				<view class="placeholder">wux</view>
+			</wux-col>
+			<wux-col span="4">
+				<view class="placeholder">wux</view>
+			</wux-col>
+		</wux-row>
+		<wux-row>
+			<wux-col span="4">
+				<view class="placeholder">wux</view>
+			</wux-col>
+			<wux-col span="4" offset="4">
+				<view class="placeholder">wux</view>
+			</wux-col>
+		</wux-row>
+		<wux-row>
+			<wux-col span="4">
+				<view class="placeholder">wux</view>
+			</wux-col>
+			<wux-col span="4" push="4">
+				<view class="placeholder">wux</view>
+			</wux-col>
+		</wux-row>
+		<wux-row>
+			<wux-col span="4">
+				<view class="placeholder">wux</view>
+			</wux-col>
+			<wux-col span="4" offset="4" pull="4">
+				<view class="placeholder">wux</view>
+			</wux-col>
+		</wux-row>
+	</view>
+</view>

@@ -1,0 +1,14 @@
+{
+    "navigationBarTitleText": "云厨",
+    "usingComponents": {
+        "wux-icon": "../../lib/icon/index",
+        "wux-badge": "../../lib/badge/index",
+        "wux-tabbar": "../../lib/tabbar/index",
+        "wux-tabbar-item": "../../lib/tabbar-item/index",
+        "wux-search-bar": "../../lib/search-bar/index",
+        "wux-grids": "../../lib/grids/index",
+        "wux-grid": "../../lib/grid/index",
+        "wux-card": "../../lib/card/index",
+        "brickLayout": "../../plugin-wall/components/brickLayout/brickLayout"
+    }
+}
