@@ -53,6 +53,12 @@
                         <view class="addBtn" data-vau="g" data-rank="" data-type="1" data-id="{{index}}" data-img="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596798996678&di=7e8e686b971a13095409d09ddd3f2da8&imgtype=0&src=http%3A%2F%2Fy0.ifengimg.com%2Fnews_spider%2Fdci_2012%2F10%2Fc633cc8eeff358d14eb6ae5a33649fdb.jpg" bindtap="choseSource">+</view> 
                     </view>
                 </block>
+                <wux-divider wx:if="{{1 === item.loadState}}">
+                  <view class="loadmore">
+                      <view class="loading"></view><text class="text">正在加载</text>
+                  </view>
+                </wux-divider>
+                <wux-divider wx:if="{{2 === item.loadState}}" text="已经到底了"></wux-divider>
             </scroll-view>
         </swiper-item>
     </swiper>

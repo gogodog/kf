@@ -6,7 +6,8 @@
     "wux-popup": "../../lib/popup/index",
     "wux-slider": "../../lib/slider/index",
     "wux-icon": "../../lib/icon/index",
-    "wux-toptips": "../../lib/toptips/index"
+    "wux-toptips": "../../lib/toptips/index",
+    "wux-divider":"../../lib/divider/index"
   },
   "disableScroll": true,
   "navigationBarTitleText": "搭配食谱"

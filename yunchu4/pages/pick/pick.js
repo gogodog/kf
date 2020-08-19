@@ -22,13 +22,14 @@ Page({
     currentItem_type: '',
     currentItem_weight: [1,1],
     modifyId: -1,
+    loadState:0,
     category:[
-      {i:1,name:'蔬菜',list:[], page:0},
-      {i:2,name:'水果',list:[], page:0},
-      {i:3,name:'海鲜',list:[], page:0},
-      {i:4,name:'家禽',list:[], page:0},
-      {i:5,name:'面食',list:[], page:0},
-      {i:6,name:'调料',list:[], page:0}
+      {i:1,name:'蔬菜',list:[], page:0, loadState:0},
+      {i:2,name:'水果',list:[], page:0, loadState:0},
+      {i:3,name:'海鲜',list:[], page:0, loadState:0},
+      {i:4,name:'家禽',list:[], page:0, loadState:0},
+      {i:5,name:'面食',list:[], page:0, loadState:0},
+      {i:6,name:'调料',list:[], page:0, loadState:0}
     ]
     
   },
@@ -210,21 +211,30 @@ Page({
     })
   },
   getItems: function (index){
-    let itemInfo = this.data.category[index];
+    let itemInfo = this.data.category;
+    if(itemInfo[index].loadState == 2){
+      return;
+    }
+    itemInfo[index].loadState = 1;
+    this.setData({
+      category:itemInfo
+    })
     request_.foodlist({
-        type:itemInfo.i, 
-        page:itemInfo.page+1
+        type:itemInfo[index].i, 
+        page:itemInfo[index].page+1
       }, 
       (res)=>{
-        if(res.length == 0)
-          return;
-        console.log("RES::", res)
         let category_ = this.data.category;
+        if(res.length == 0){
+          category_[index].loadState = 2;
+          this.setData({category:category_});
+          return;
+        }
         for(let i = 0 ; i<res.length ; i++){
           category_[index].list.push(res[i]);
         }
-        
-        category_[index].page = itemInfo.page+1;
+        category_[index].page = itemInfo[index].page+1;
+        category_[index].page
         this.setData({
           category:category_
         })
