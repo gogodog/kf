@@ -10,15 +10,15 @@ import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
-import com.yunchu.api.comment.localcatch.LocalCatch;
-import com.yunchu.api.comment.wxapp.WxAppCompent;
-import com.yunchu.api.system.handler.exception.AppException;
-import com.yunchu.api.system.handler.result.ResultEnum;
-import com.yunchu.api.vo.WxUserLoginResponseVo;
-import com.yunchu.api.vo.wxapp.Jscode2sessionResponseVo;
+import com.yunchu.yapi.comment.localcatch.LocalCatch;
+import com.yunchu.yapi.comment.wxapp.WxAppCompent;
 import com.yunchu.yapi.entity.YcAppUser;
 import com.yunchu.yapi.mapper.YcAppUserMapper;
 import com.yunchu.yapi.service.wxapp.LoginXcxService;
+import com.yunchu.yapi.system.handler.exception.AppException;
+import com.yunchu.yapi.system.handler.result.ResultEnum;
+import com.yunchu.yapi.vo.WxUserLoginResponseVo;
+import com.yunchu.yapi.vo.wxapp.Jscode2sessionResponseVo;
 
 @Service
 public class LoginXcxServiceImpl implements LoginXcxService{

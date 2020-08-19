@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.yunchu.api.system.handler.exception.AppException;
-import com.yunchu.api.system.handler.result.Result;
 import com.yunchu.yapi.entity.User;
 import com.yunchu.yapi.mapper.UserMapper;
+import com.yunchu.yapi.system.handler.exception.AppException;
+import com.yunchu.yapi.system.handler.result.Result;
 
 @RestController
 @RequestMapping("/test")

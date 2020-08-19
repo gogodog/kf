@@ -1,4 +1,4 @@
-package com.yunchu.api.system.handler.exception;
+package com.yunchu.yapi.system.handler.exception;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

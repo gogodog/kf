@@ -1,4 +1,4 @@
-package com.yunchu.api.comment.wxapp;
+package com.yunchu.yapi.comment.wxapp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import com.yunchu.api.tools.GsonUtil;
-import com.yunchu.api.vo.wxapp.Jscode2sessionResponseVo;
+import com.yunchu.yapi.tools.GsonUtil;
+import com.yunchu.yapi.vo.wxapp.Jscode2sessionResponseVo;
 
 import lombok.extern.log4j.Log4j2;
 

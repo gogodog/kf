@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yunchu.api.system.handler.result.Result;
 import com.yunchu.yapi.service.wxapp.LoginXcxService;
+import com.yunchu.yapi.system.handler.result.Result;
 
 import lombok.extern.log4j.Log4j2;
 

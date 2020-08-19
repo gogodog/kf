@@ -1,6 +1,6 @@
-package com.yunchu.api.system.handler.exception;
+package com.yunchu.yapi.system.handler.exception;
 
-import com.yunchu.api.system.handler.result.ResultEnum;
+import com.yunchu.yapi.system.handler.result.ResultEnum;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -2,7 +2,7 @@ package com.yunchu.yapi.service.wxapp;
 
 import org.springframework.stereotype.Service;
 
-import com.yunchu.api.vo.WxUserLoginResponseVo;
+import com.yunchu.yapi.vo.WxUserLoginResponseVo;
 
 @Service
 public interface LoginXcxService {

@@ -1,6 +1,6 @@
-package com.yunchu.api.vo.wxapp;
+package com.yunchu.yapi.vo.wxapp;
 
-import com.yunchu.api.system.handler.result.WxResult;
+import com.yunchu.yapi.system.handler.result.WxResult;
 
 import lombok.Data;
 

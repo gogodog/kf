@@ -1,4 +1,4 @@
-package com.yunchu.api.vo;
+package com.yunchu.yapi.vo;
 
 import java.util.Date;
 

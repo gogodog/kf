@@ -1,11 +1,11 @@
-package com.yunchu.api.comment.localcatch;
+package com.yunchu.yapi.comment.localcatch;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import com.yunchu.api.vo.wxapp.Jscode2sessionResponseVo;
+import com.yunchu.yapi.vo.wxapp.Jscode2sessionResponseVo;
 
 @Component
 public class LocalCatch {//后期优化可替换为redis等组件，现在坐本地化缓存

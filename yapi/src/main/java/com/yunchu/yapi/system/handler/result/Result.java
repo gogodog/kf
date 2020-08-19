@@ -1,4 +1,4 @@
-package com.yunchu.api.system.handler.result;
+package com.yunchu.yapi.system.handler.result;
 import java.util.Date;
 
 import lombok.Data;
