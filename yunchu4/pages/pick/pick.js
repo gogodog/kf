@@ -1,6 +1,6 @@
-import {
-  $wuxToptips
-} from '../../lib/index';
+import {$wuxToptips} from '../../lib/index';
+import {HttpModel} from '../../api/httpModel';
+let request_ = new HttpModel();
 
 Page({
   /**
@@ -21,7 +21,19 @@ Page({
     currentItem_img: '',
     currentItem_type: '',
     currentItem_weight: [1,1],
-    modifyId: -1
+    modifyId: -1,
+    category:[
+      {i:1,name:'蔬菜',list:[], page:0},
+      {i:2,name:'水果',list:[], page:0},
+      {i:3,name:'海鲜',list:[], page:0},
+      {i:4,name:'家禽',list:[], page:0},
+      {i:5,name:'面食',list:[], page:0},
+      {i:6,name:'调料',list:[], page:0}
+    ]
+    
+  },
+  onShow: function(){
+    this.getItems(this.data.currentTab);
   },
   choseSource: function (e) {
     this.setData({
@@ -41,8 +53,6 @@ Page({
       modifyId: e.currentTarget.dataset.id,
       sliderRank: e.currentTarget.dataset.rank
     })
-  },
-  onSliderChange(e) {
   },
   afterSliderChange(e) {
     this.setData({
@@ -150,6 +160,9 @@ Page({
   },
   // 滚动切换标签样式
   switchTab: function (e) {
+    if(this.data.currentTab === e.detail.current)
+      return;
+    this.getItems(e.detail.current);
     this.setData({
       currentTab: e.detail.current
     });
@@ -161,6 +174,7 @@ Page({
     if (this.data.currentTab == cur) {
       return false;
     } else {
+      this.getItems(cur);
       this.setData({
         currentTab: cur
       })
@@ -172,7 +186,7 @@ Page({
       let clientHeight = res.windowHeight;
       let clientWidth = res.windowWidth;
       let rpxR = 750 / clientWidth;
-      let calc = clientHeight * rpxR - 256;
+      let calc = clientHeight * rpxR - 406;
       that.setData({
         winHeight: calc
       });
@@ -194,5 +208,32 @@ Page({
       duration: 3000,
       success() {},
     })
+  },
+  getItems: function (index){
+    let itemInfo = this.data.category[index];
+    request_.foodlist({
+        type:itemInfo.i, 
+        page:itemInfo.page+1
+      }, 
+      (res)=>{
+        if(res.length == 0)
+          return;
+        console.log("RES::", res)
+        let category_ = this.data.category;
+        for(let i = 0 ; i<res.length ; i++){
+          category_[index].list.push(res[i]);
+        }
+        
+        category_[index].page = itemInfo.page+1;
+        this.setData({
+          category:category_
+        })
+        console.log("R::", this.data.category[index])
+    })
+  },
+  itemScrolltolower:function(e){
+    console.log(e.target.dataset)
+    this.getItems(e.target.dataset.index)
   }
+
 })

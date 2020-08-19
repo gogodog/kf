@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -77,6 +79,7 @@ public class YcAppUser extends Model<YcAppUser> {
 
     @ApiModelProperty(value = "是否删除 0 未删除 1删除")
     @TableField("delete_flag")
+    @TableLogic
     private Boolean deleteFlag;
 
 

@@ -14,9 +14,8 @@ class HTTP{
       },
       success:(res) => {
         let statusCode = res.statusCode;
-        console.log("RES::", res);
         if(statusCode === 200){
-          params.success && params.success(res.data.data);
+          params.success && params.success(res.data);
         }else{
           this.show_error(res.errMsg);
         }
@@ -29,9 +28,7 @@ class HTTP{
       return;
     }
     wx.showToast({
-      title: ecode,
-      icon:'none',
-      duration:200
+      title: ecode
     })
   }
 }

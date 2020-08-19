@@ -133,7 +133,7 @@ public class CodeGenerator {
         // 使用lombok
         strategy.setEntityLombokModel(true);
         // 设置逻辑删除键
-        strategy.setLogicDeleteFieldName("del_flag");
+        strategy.setLogicDeleteFieldName("delete_flag");
         // TODO 指定生成的bean的数据库表名
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         // 驼峰转连字符
