@@ -28,11 +28,11 @@
 				<wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
 				<wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
 			</wux-tabbar-item>
-			<wux-tabbar-item title="分类">
+			<wux-tabbar-item title="食街">
 				<wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
 				<wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
 			</wux-tabbar-item>
-			<wux-tabbar-item title="新建">
+			<wux-tabbar-item title="作坊">
 				<wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
 				<wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
 			</wux-tabbar-item>

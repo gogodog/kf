@@ -105,6 +105,11 @@ Page({
     duration: 1000, //滑动时间
   },
   onBarChange(e) {
+    if(e.detail.key == 1){
+      wx.navigateTo({
+        url: '../street/street',
+      })
+    }
     if(e.detail.key == 2){
       wx.navigateTo({
         url: '../pick/pick',

@@ -1,0 +1,17 @@
+<!--pages/street/street.wxml-->
+<card
+    headerImg='{{userInfo.avatarUrl}}'
+    title='诺夏梦陇'
+    time='September 25, 2019'
+    img='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597918800769&di=48ce4c79962ed7df630d79a27e3b6d56&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D2150777454%2C3130959978%26fm%3D214%26gp%3D0.jpg'
+    context='清香软糯的糯米，bai裹着沙甜的豆馅，吃上一口棉软不粘牙，du沙甜而不腻口。糯米又叫江米，zhi是家常经常食用的粮食之一。因其香黏滑，常被用以制成风味小吃'
+    moreText="可丽饼bai有咸、甜两种口味，如果你du到传统的zhi可丽饼摊点餐，主餐就是咸可丽饼dao，甜点就是甜可丽饼。饼皮是面粉、水、鸡蛋、奶油再加入少许啤酒酵母做成的，看上去和北方人常吃的“煎饼果子”差不多。但是，可丽饼的馅料却比“煎饼果子”要丰富许多。咸味可丽饼的内馅是各种家常食材，包括鸡蛋、奶酪、蘑菇、西红柿、吞拿鱼、火腿等，可以任意组合；最受欢迎的甜味可丽饼则可以涂巧克力酱、各种果酱，再放入香蕉、草莓等各种新鲜水果，让人看一眼就会食欲大增。"
+    tag="海鲜"
+    tagColor='blue'
+    isShowLike="{{true}}"
+    isLiked="{{false}}"
+    likeNumber='{{10}}'
+    isShowUnlike="{{true}}"
+    isUnLiked="{{false}}"
+    unlikeNumber='{{2}}'
+    isShowDelete='{{true}}'></card>

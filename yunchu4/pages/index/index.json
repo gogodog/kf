@@ -1,5 +1,5 @@
 {
-    "navigationBarTitleText": "云厨",
+    "navigationBarTitleText": "【DOIT】",
     "usingComponents": {
         "wux-icon": "../../lib/icon/index",
         "wux-badge": "../../lib/badge/index",

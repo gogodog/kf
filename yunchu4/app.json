@@ -4,6 +4,7 @@
     "pages/newCookBook/newCookBook",
     "pages/pick/pick",
     "pages/logs/logs",
+    "pages/street/street",
     "pages/me/me"
   ],
   "window":{
