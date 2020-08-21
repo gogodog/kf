@@ -1,72 +1,61 @@
 <!--选配页面-->
-<wux-toptips id="wux-toptips" />
 <view>
-  <view class="bar">
-    <view class="bar-title" style="width:40rpx;background: red;height:100rpx">食材</view>
-    <view class="bar-content">
-      <view bindtap="preModifySource" wx:for="{{shiCai}}" wx:key="index" class="bar-content-item" data-vau="g" data-rank="{{item.weight}}" data-type="{{item.type}}" data-id="{{item.id}}">
-        <view class="avatar" style="padding-right:0rpx"><image class="img" src="{{item.img}}"></image></view>
-        <view>{{item.id}}-{{item.weight[0]}}-{{item.weight[1]}}-{{}}</view>
-      </view>
-    </view>
-  </view>
-
-  <view class="bar">
-    <view class="bar-title" style="width:40rpx;background: red;height:100rpx">调料</view>
-    <view class="bar-content">
-      <view class="bar-content-item">
-        <view class="avatar" style="padding-right:0rpx"><image class="img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596798996678&di=7e8e686b971a13095409d09ddd3f2da8&imgtype=0&src=http%3A%2F%2Fy0.ifengimg.com%2Fnews_spider%2Fdci_2012%2F10%2Fc633cc8eeff358d14eb6ae5a33649fdb.jpg"></image></view>
-        <view>10g</view>
-      </view>
-      <view class="bar-content-item">
-        <view class="avatar" style="padding-right:0rpx"><image class="img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596798996678&di=7e8e686b971a13095409d09ddd3f2da8&imgtype=0&src=http%3A%2F%2Fy0.ifengimg.com%2Fnews_spider%2Fdci_2012%2F10%2Fc633cc8eeff358d14eb6ae5a33649fdb.jpg"></image></view>
-        <view>25g</view>
-      </view>
-      <view class="bar-content-item">
-        <view class="avatar" style="padding-right:0rpx"><image class="img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596798996678&di=7e8e686b971a13095409d09ddd3f2da8&imgtype=0&src=http%3A%2F%2Fy0.ifengimg.com%2Fnews_spider%2Fdci_2012%2F10%2Fc633cc8eeff358d14eb6ae5a33649fdb.jpg"></image></view>
-        <view>20g</view>
-      </view>
-      <view class="bar-content-item">
-        <view class="avatar" style="padding-right:0rpx"><image class="img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596804476764&di=c29e4f33a378c74c85223d922a0b40f1&imgtype=0&src=http%3A%2F%2Fpic.51yuansu.com%2Fpic2%2Fcover%2F00%2F42%2F22%2F5813801c5dd1d_610.jpg"></image></view>
-        <view></view>
-      </view>
-      <view class="bar-content-item">
-        <view class="avatar" style="padding-right:0rpx"><image class="img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596804476764&di=c29e4f33a378c74c85223d922a0b40f1&imgtype=0&src=http%3A%2F%2Fpic.51yuansu.com%2Fpic2%2Fcover%2F00%2F42%2F22%2F5813801c5dd1d_610.jpg"></image></view>
-        <view></view>
-      </view>
-    </view>
-  </view>
-  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
-      <view  wx:for="{{category}}" wx:key="index" class="tab-item {{currentTab==index?'active':''}}" data-current="{{index}}" bindtap="swichNav">{{item.name}}</view>
-  </scroll-view>
-  <swiper current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
-        <swiper-item wx:for="{{category}}" wx:key="index">
-            <scroll-view scroll-y="true" class="scoll-h" bindscrolltolower="itemScrolltolower" data-index="{{index}}" lower-threshold="50">
-                <block wx:for="{{item.list}}" wx:key="index" wx:for-item="row">
-                    <view class="item-ans">
-                        <view class="avatar"><image class="img" src="{{row.avatar}}">{{index}}</image></view>
-                        <view class="expertInfo">
-                            <view class="name">{{row.id}}-{{row.cnname}}</view>
-                            <view class="tag">{{row.infoc.desc}}</view>
-                            <view wx:if="{{index === item.list.length-1}}" class="answerHistory">134个回答，223个食谱采用</view>
-                        </view>
-                        <view class="addBtn" data-row="{{row}}" bindtap="addPick">+</view> 
-                    </view>
-                </block>
-                <wux-divider wx:if="{{1 === item.loadState}}">
-                  <view class="loadmore">
-                      <view class="loading"></view><text class="text">正在加载</text>
-                  </view>
-                </wux-divider>
-                <wux-divider wx:if="{{2 === item.loadState}}" text="已经到底了"></wux-divider>
-            </scroll-view>
-        </swiper-item>
-    </swiper>
+  <wux-steps direction="vertical">
+            <wux-step status="finish" title="食材">
+            <view  slot="content" style="margin-top:60rpx" >
+              <wux-cell-group>
+                <wux-swipe-action autoClose right="{{ right }}">
+                    <wux-cell title="番茄(西红柿)" hover-class="none">
+                      <wux-input-number default-value="30" min="{{ 1 }}" max="{{ 200 }}" longpress disabled="{{ false }}" slot="footer" />
+                    </wux-cell>
+                </wux-swipe-action>
+                <wux-swipe-action autoClose right="{{ right }}">
+                    <wux-cell title="番茄(西红柿)" hover-class="none">
+                      <wux-input-number default-value="30" min="{{ 1 }}" max="{{ 200 }}" longpress disabled="{{ false }}" slot="footer" />
+                    </wux-cell>
+                </wux-swipe-action>
+                <wux-swipe-action autoClose right="{{ right }}">
+                    <wux-cell title="番茄(西红柿)" hover-class="none">
+                      <wux-input-number default-value="30" min="{{ 1 }}" max="{{ 200 }}" longpress disabled="{{ false }}" slot="footer" />
+                    </wux-cell>
+                </wux-swipe-action>
+                <wux-swipe-action autoClose right="{{ right }}">
+                    <wux-cell title="番茄(西红柿)" hover-class="none">
+                      <wux-input-number default-value="30" min="{{ 1 }}" max="{{ 200 }}" longpress disabled="{{ false }}" slot="footer" />
+                    </wux-cell>
+                </wux-swipe-action>
+                <wux-swipe-action autoClose right="{{ right }}">
+                    <wux-cell title="番茄(西红柿)" hover-class="none">
+                      <wux-input-number default-value="30" min="{{ 1 }}" max="{{ 200 }}" longpress disabled="{{ false }}" slot="footer" />
+                    </wux-cell>
+                </wux-swipe-action>
+              </wux-cell-group>
+            </view>
+            </wux-step>
+            <wux-step status="finish" title="调料">
+            <view  slot="content" style="margin-top:60rpx" >
+              <wux-cell-group>
+              <wux-swipe-action autoClose right="{{ right }}">
+                    <wux-cell title="盐">
+                      <wux-input-number default-value="5" min="{{ 1 }}" max="{{ 30 }}" longpress disabled="{{ false }}" slot="footer" />
+                    </wux-cell>
+                </wux-swipe-action>
+                <wux-swipe-action autoClose right="{{ right }}">
+                    <wux-cell title="香油">
+                      <wux-input-number default-value="5" min="{{ 1 }}" max="{{ 30 }}" longpress disabled="{{ false }}" slot="footer" />
+                    </wux-cell>
+                </wux-swipe-action>
+            </wux-cell-group>
+            </view>
+            </wux-step>
+            <wux-step status="finish" title="做法">
+              <view  slot="content" style="margin-top:60rpx" >
+                <wux-cell-group>
+                  <wux-cell hover-class="none"><wux-textarea autoHeight placeholder="请点击这里输入制作方法（建议每步使用换行隔开）"/></wux-cell>
+                </wux-cell-group>
+              </view>
+            </wux-step>
+            <wux-step status="finish" title="需要注意" content="This is description"></wux-step>
+        </wux-steps>
 </view>
-<wux-popup position="bottom" visible="{{popvisible}}" bind:close="">
-    <wux-cell-group title="请选择数量">
-        <wux-cell hover-class="none">
-            <wux-button block outline type="energized" bindtap="">确定</wux-button>
-        </wux-cell>
-    </wux-cell-group>
-</wux-popup>
+<wux-fab-button position="bottomLeft" theme="{{ colors[colorIndex] }}" direction="{{ dirs[dirIndex] }}" reverse="{{ reverse }}" spaceBetween="{{ spaceBetween }}" sAngle="{{ sAngle }}" eAngle="{{ eAngle }}" buttons="{{ buttons }}" bind:change="onChange" bind:click="onClick" bind:contact="onContact" bind:getuserinfo="onGotUserInfo" />

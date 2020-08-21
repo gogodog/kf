@@ -7,8 +7,20 @@
     "wux-slider": "../../lib/slider/index",
     "wux-icon": "../../lib/icon/index",
     "wux-toptips": "../../lib/toptips/index",
-    "wux-divider":"../../lib/divider/index"
+    "wux-divider":"../../lib/divider/index",
+    "wux-input-number": "../../lib/input-number/index",
+    "wux-row": "../../lib/row/index",
+    "wux-col": "../../lib/col/index",
+    "wux-search-bar": "../../lib/search-bar/index",
+    "wux-fab-button": "../../lib/fab-button/index",
+    "wux-steps": "../../lib/steps/index",
+    "wux-step": "../../lib/step/index",
+    "wux-tag": "../../lib/tag/index",
+    "wux-card": "../../comment/item/index",
+    "wux-swipe-action-group": "../../lib/swipe-action-group/index",
+    "wux-swipe-action": "../../lib/swipe-action/index",
+    "wux-textarea": "../../lib/textarea/index"
   },
-  "disableScroll": true,
+  "disableScroll": false,
   "navigationBarTitleText": "搭配食谱"
 }

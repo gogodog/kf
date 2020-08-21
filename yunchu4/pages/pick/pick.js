@@ -1,13 +1,18 @@
 import {$wuxToptips} from '../../lib/index';
 import {HttpModel} from '../../api/httpModel';
 const app = getApp();
+const listBtnConfig = [{
+  text: '删除',
+  style: 'background-color: #108ee9; color: white',
+}];
 let request_ = new HttpModel();
 
 Page({
   data: {
-    winHeight: app.globalData.winHeight, //窗口高度
-    currentTab: '0', //预设当前项的值
-    scrollLeft: 0, //tab标题的滚动条位置
+    right: listBtnConfig,
+    winHeight: app.globalData.winHeight,
+    currentTab: '0',
+    scrollLeft: 0,
     popvisible: false,
     shiCai: [],
     category: [
@@ -18,6 +23,9 @@ Page({
       {i: 5, name: '面食', list: [], page: 0, loadState: 0},
       {i: 6, name: '调料', list: [], page: 0, loadState: 0},
     ],
+  },
+  clickStep: function(){
+    console.log("step:1")
   },
   onShow: function () {
     this.getItems(this.data.currentTab);

@@ -1,0 +1,10 @@
+<view class="wux-card wux-card-bordered">
+    <view class="wux-card__hd">
+        <view class="wux-card__content">
+            <image class="wux-card__thumb" src="{{ thumb }}" mode="aspectFit"/>
+            <text>{{ title }}</text>
+        </view>
+        <view class="wux-card__extra" wx:if="{{ extra }}">{{ extra }}</view>
+        <slot name="extra" wx:else></slot>
+    </view>
+</view>
