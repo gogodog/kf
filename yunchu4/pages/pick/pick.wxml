@@ -35,7 +35,27 @@
             <wux-step status="finish" title="调料">
             <view  slot="content" style="margin-top:60rpx" >
               <wux-cell-group>
-              <wux-swipe-action autoClose right="{{ right }}">
+                <wux-swipe-action autoClose right="{{ right }}">
+                    <wux-cell title="盐">
+                      <wux-input-number default-value="5" min="{{ 1 }}" max="{{ 30 }}" longpress disabled="{{ false }}" slot="footer" />
+                    </wux-cell>
+                </wux-swipe-action>
+                <wux-swipe-action autoClose right="{{ right }}">
+                    <wux-cell title="香油">
+                      <wux-input-number default-value="5" min="{{ 1 }}" max="{{ 30 }}" longpress disabled="{{ false }}" slot="footer" />
+                    </wux-cell>
+                </wux-swipe-action>
+                <wux-swipe-action autoClose right="{{ right }}">
+                    <wux-cell title="盐">
+                      <wux-input-number default-value="5" min="{{ 1 }}" max="{{ 30 }}" longpress disabled="{{ false }}" slot="footer" />
+                    </wux-cell>
+                </wux-swipe-action>
+                <wux-swipe-action autoClose right="{{ right }}">
+                    <wux-cell title="香油">
+                      <wux-input-number default-value="5" min="{{ 1 }}" max="{{ 30 }}" longpress disabled="{{ false }}" slot="footer" />
+                    </wux-cell>
+                </wux-swipe-action>
+                <wux-swipe-action autoClose right="{{ right }}">
                     <wux-cell title="盐">
                       <wux-input-number default-value="5" min="{{ 1 }}" max="{{ 30 }}" longpress disabled="{{ false }}" slot="footer" />
                     </wux-cell>
@@ -55,7 +75,20 @@
                 </wux-cell-group>
               </view>
             </wux-step>
-            <wux-step status="finish" title="需要注意" content="This is description"></wux-step>
+            <wux-step status="finish" title="需要注意">
+              <view  slot="content" style="margin-top:60rpx" >
+                <wux-cell-group>
+                  <wux-cell hover-class="none"><wux-textarea autoHeight placeholder="请点击这里输入需要注意的事项"/></wux-cell>
+                </wux-cell-group>
+              </view>
+            </wux-step>
         </wux-steps>
+        <wux-wing-blank size="large" body-style="margin-left: 50rpx; margin-right: 50rpx">
+            <wux-button block outline type="positive" bind:click="submitPick">确认提交</wux-button>
+        </wux-wing-blank>
+        <wux-white-space body-style="height: 100rpx" />
+        
 </view>
-<wux-fab-button position="bottomLeft" theme="{{ colors[colorIndex] }}" direction="{{ dirs[dirIndex] }}" reverse="{{ reverse }}" spaceBetween="{{ spaceBetween }}" sAngle="{{ sAngle }}" eAngle="{{ eAngle }}" buttons="{{ buttons }}" bind:change="onChange" bind:click="onClick" bind:contact="onContact" bind:getuserinfo="onGotUserInfo" />
+<wux-fab-button position="bottomRight" theme="{{ colors[3] }}" direction="vertical" reverse="{{ reverse }}" spaceBetween="{{ spaceBetween }}" sAngle="{{ sAngle }}" eAngle="{{ eAngle }}" buttons="{{ buttons }}" bind:change="operateChange" bind:click="operateClick" bind:contact="operateContact"/>
+<wux-dialog id="wux-dialog" />
+<wux-dialog id="wux-dialog--alert" />

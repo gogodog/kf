@@ -19,7 +19,10 @@
     "wux-card": "../../comment/item/index",
     "wux-swipe-action-group": "../../lib/swipe-action-group/index",
     "wux-swipe-action": "../../lib/swipe-action/index",
-    "wux-textarea": "../../lib/textarea/index"
+    "wux-textarea": "../../lib/textarea/index",
+    "wux-wing-blank": "../../lib/wing-blank/index",
+    "wux-white-space": "../../lib/white-space/index",
+    "wux-dialog": "../../lib/dialog/index"
   },
   "disableScroll": false,
   "navigationBarTitleText": "搭配食谱"
