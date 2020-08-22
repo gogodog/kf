@@ -1,8 +1,8 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/newCookBook/newCookBook",
     "pages/pick/pick",
+    "pages/newCookBook/newCookBook",
     "pages/logs/logs",
     "pages/street/street",
     "pages/me/me"
