@@ -36,10 +36,8 @@
 			<wux-cell thumb="http://cdn.skyvow.cn/logo.png" title="首页" is-link url="/pages/index/index"></wux-cell>
 			<wux-cell thumb="http://cdn.skyvow.cn/logo.png" title="首页" is-link url="/pages/index/index"></wux-cell>
         </wux-cell-group>
-		<wux-row>
-            <wux-col span="1" offset="6">
-                <img src=""></img>
-            </wux-col>
-        </wux-row>
+		<wux-white-space body-style="margin-top: 100rpx" />
+		<wux-divider prefixCls="wux-divider-bottom" text="云厨" />
+		<wux-white-space body-style="margin-top: 100rpx" />
 	</view>
 </view>

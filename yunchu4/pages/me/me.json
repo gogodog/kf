@@ -14,7 +14,8 @@
     "wux-card": "../../lib/card/index",
     "wux-tag": "../../lib/tag/index",
     "wux-cell-group": "../../lib/cell-group/index",
-    "wux-cell": "../../lib/cell/index"
+    "wux-cell": "../../lib/cell/index",
+    "wux-divider": "../../lib/divider/index"
   },
   "navigationBarTitleText": "我的"
 }
