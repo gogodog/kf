@@ -26,22 +26,62 @@ const swipeBut = [
     text: '取消',
   },
 ];
+const sseasoning_tag=[
+  {
+    key:"海盐",
+    istype:false
+  },
+  {
+    key:"白醋",
+    istype:false
+  },
+  {
+    key:"陈醋",
+    istype:false
+  },
+  {
+    key:"盐",
+    istype:true
+  }
+];
+const sfood_tag=[
+  {
+    key:"苹果",
+    istype:false
+  },
+  {
+    key:"青笋",
+    istype:false
+  },
+  {
+    key:"龙虾",
+    istype:false
+  },
+  {
+    key:"鸡",
+    istype:true
+  }
+];
+
+
 Page({
   data: {
     buttons: buttons,
     swipeBut: swipeBut,
-
+    
     //search-food
     sfood_visible: false,
     sfood_key: '',
     sfood_list: [],
     sfood_placeholder: '搜索食材',
+    sfood_tag,
 
     //search-seasoning
     sseasoning_visible: false,
     sseasoning_key: '',
     sseasoning_list: [],
     sseasoning_placeholder: '搜索调料',
+    sseasoning_tag,
 
     //pick content
     content_food: [],
@@ -50,6 +90,18 @@ Page({
     content_method: '',
     content_attion_catch: '',
     content_method_catch: '',
+  },
+  setSseasoningKey: function(v){
+    this.setData({
+      sseasoning_key: v
+    })
+    this.getSeasoningList(v);
+  },
+  setSfoodKey: function(v){
+    this.setData({
+      sfood_key: v
+    })
+    this.getFoodList(v);
   },
   setContentAttion: function (e){
     this.setData({
@@ -94,6 +146,12 @@ Page({
       sfood_visible: foodVisible,
       sseasoning_visible: seasoningVisible,
     });
+  },
+  operateClickTag: function(e){
+    console.log("tag:", e);
+    let s = e.currentTarget.dataset.s;
+    let skey = e.currentTarget.dataset.skey;
+    s == 1 ? this.setSfoodKey(skey) : s == 2 ? this.setSseasoningKey(skey) : "";
   },
   operateDelFood: function(e){
     console.log("delFood:", e);

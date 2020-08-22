@@ -56,10 +56,9 @@
   catchtouchmove="return"
 >
             <wux-cell-group>
-                <wux-search-bar placeholder="{{sfood_placeholder}}" clear focus="{{sfood_visible}}" bind:change="searchFoodChange" defaultValue="{{sfood_key}}"/>
+                <wux-search-bar placeholder="{{sfood_placeholder}}" clear bind:change="searchFoodChange" controlled value="{{sfood_key}}"/>
                 <wux-cell hover-class="none">
-                  <wux-tag color="red">蔬菜</wux-tag><wux-tag color="volcano">海鲜</wux-tag><wux-tag color="orange">水果</wux-tag>
-                  <wux-tag color="orange">水仙花</wux-tag><wux-tag color="orange">菠萝</wux-tag><wux-tag color="red">海蛎子</wux-tag>
+                  <wux-tag wx:for="{{sfood_tag}}" wx:index="{{index}}" color="red" data-s="1" data-skey="{{item.key}}" bind:click="operateClickTag" >{{item.key}}</wux-tag>
                 </wux-cell>
                 <block wx:if="{{sfood_list.length>0}}" >
                 <wux-cell bind:click="sfoodTap" data-row="{{item}}" wx:for="{{sfood_list}}" wx:key="{{index}}" prefixCls="wux-cell-large" thumb="{{item.avatar}}" title="{{item.cnname}}" label="{{item.infoc.desc}}"></wux-cell>
@@ -73,10 +72,9 @@
   catchtouchmove="return"
 >
             <wux-cell-group>
-                <wux-search-bar placeholder="{{sseasoning_placeholder}}" clear focus="{{sseasoning_visible}}" bind:change="searchSeasoningChange" defaultValue="{{sseasoning_key}}"/>
+                <wux-search-bar placeholder="{{sseasoning_placeholder}}" clear bind:change="searchSeasoningChange" controlled value="{{sseasoning_key}}"/>
                 <wux-cell hover-class="none">
-                  <wux-tag color="red">盐</wux-tag><wux-tag color="volcano">醋</wux-tag><wux-tag color="orange">辣椒</wux-tag>
-                  <wux-tag color="orange">麻酱</wux-tag><wux-tag color="orange">料酒</wux-tag><wux-tag color="red">纳豆</wux-tag>
+                  <wux-tag wx:for="{{sseasoning_tag}}" wx:index="{{index}}" color="red" data-s="2" data-skey="{{item.key}}" bind:click="operateClickTag">{{item.key}}</wux-tag>
                 </wux-cell>
                 <block wx:if="{{sseasoning_list.length>0}}" >
                 <wux-cell bind:click="sseasoningTap" data-row="{{item}}" wx:for="{{sseasoning_list}}" wx:key="{{index}}" hover-class="none" title="{{item.cnname}}"></wux-cell>
@@ -91,7 +89,6 @@
   sAngle="180"
   eAngle="180"
   buttons="{{ buttons }}"
-  bind:change="operateChange"
   bind:click="operateClick"
 />
 <wux-dialog id="wux-dialog" />
