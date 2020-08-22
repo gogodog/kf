@@ -1,61 +1,45 @@
 <view class="page">
 	<view class="page__bd">
+		<wux-white-space body-style="height: 80rpx" />
 		<wux-row>
 			<wux-col span="12">
 				<wux-skeleton active>
 					<wux-row>
-						<wux-col span="4" style="text-align: center;">
+						<wux-col span="12" style="text-align: center;">
 							<wux-avatar src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3379848400,1190658504&fm=15&gp=0.jpg" body-style="background-color: #33cd5f;width: 160rpx;height: 160rpx;line-height: 160rpx;border-radius: 80rpx;" size="large"></wux-avatar>
 						</wux-col>
-						<wux-col span="8">
-							<wux-skeleton-paragraph />
+						<wux-col span="12" style="text-align: center;">
+							<wux-tag color="gold">vip</wux-tag><text>00029012019</text>
 						</wux-col>
 					</wux-row>
 				</wux-skeleton>
 			</wux-col>
 		</wux-row>
+		<wux-white-space size="cardtop" body-style="margin-top: 80rpx" />
+		<wux-card>
+                <view slot="body">
+					<wux-grids bordered="{{ false }}" col="4">
+						<wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="订单" />
+						<wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="菜谱" />
+						<wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="收藏价" />
+						<wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="待付款" />
+					</wux-grids>
+				</view>
+            </wux-card>
+		<wux-cell-group>
+            <wux-cell thumb="http://cdn.skyvow.cn/logo.png" title="首页" is-link url="/pages/index/index"></wux-cell>
+            <wux-cell thumb="http://cdn.skyvow.cn/logo.png" title="首页" is-link url="/pages/index/index"></wux-cell>
+            <wux-cell thumb="http://cdn.skyvow.cn/logo.png" title="首页" is-link url="/pages/index/index"></wux-cell>
+            <wux-cell thumb="http://cdn.skyvow.cn/logo.png" title="首页" is-link url="/pages/index/index"></wux-cell>
+			<wux-cell thumb="http://cdn.skyvow.cn/logo.png" title="首页" is-link url="/pages/index/index"></wux-cell>
+			<wux-cell thumb="http://cdn.skyvow.cn/logo.png" title="首页" is-link url="/pages/index/index"></wux-cell>
+			<wux-cell thumb="http://cdn.skyvow.cn/logo.png" title="首页" is-link url="/pages/index/index"></wux-cell>
+			<wux-cell thumb="http://cdn.skyvow.cn/logo.png" title="首页" is-link url="/pages/index/index"></wux-cell>
+        </wux-cell-group>
 		<wux-row>
-			<wux-col span="6">
-				<view class="placeholder">wux</view>
-			</wux-col>
-			<wux-col span="6">
-				<view class="placeholder">wux</view>
-			</wux-col>
-		</wux-row>
-		<wux-row>
-			<wux-col span="4">
-				<view class="placeholder">wux</view>
-			</wux-col>
-			<wux-col span="4">
-				<view class="placeholder">wux</view>
-			</wux-col>
-			<wux-col span="4">
-				<view class="placeholder">wux</view>
-			</wux-col>
-		</wux-row>
-		<wux-row>
-			<wux-col span="4">
-				<view class="placeholder">wux</view>
-			</wux-col>
-			<wux-col span="4" offset="4">
-				<view class="placeholder">wux</view>
-			</wux-col>
-		</wux-row>
-		<wux-row>
-			<wux-col span="4">
-				<view class="placeholder">wux</view>
-			</wux-col>
-			<wux-col span="4" push="4">
-				<view class="placeholder">wux</view>
-			</wux-col>
-		</wux-row>
-		<wux-row>
-			<wux-col span="4">
-				<view class="placeholder">wux</view>
-			</wux-col>
-			<wux-col span="4" offset="4" pull="4">
-				<view class="placeholder">wux</view>
-			</wux-col>
-		</wux-row>
+            <wux-col span="1" offset="6">
+                <img src=""></img>
+            </wux-col>
+        </wux-row>
 	</view>
 </view>

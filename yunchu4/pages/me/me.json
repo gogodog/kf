@@ -3,9 +3,18 @@
     "wux-row": "../../lib/row/index",
     "wux-col": "../../lib/col/index",
     "wux-skeleton": "../../lib/skeleton/index",
-        "wux-skeleton-avatar": "../../lib/skeleton-avatar/index",
-        "wux-skeleton-paragraph": "../../lib/skeleton-paragraph/index",
-        "wux-avatar": "../../lib/avatar/index"
+    "wux-skeleton-avatar": "../../lib/skeleton-avatar/index",
+    "wux-skeleton-paragraph": "../../lib/skeleton-paragraph/index",
+    "wux-avatar": "../../lib/avatar/index",
+    "wux-badge": "../../lib/badge/index",
+    "wux-icon": "../../lib/icon/index",
+    "wux-grids": "../../lib/grids/index",
+    "wux-grid": "../../lib/grid/index",
+    "wux-white-space": "../../lib/white-space/index",
+    "wux-card": "../../lib/card/index",
+    "wux-tag": "../../lib/tag/index",
+    "wux-cell-group": "../../lib/cell-group/index",
+    "wux-cell": "../../lib/cell/index"
   },
   "navigationBarTitleText": "我的"
 }
