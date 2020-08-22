@@ -9,15 +9,20 @@ import com.yunchu.yapi.service.YcFoodService;
 import com.yunchu.yapi.system.handler.result.Result;
 
 @RestController
-@RequestMapping("/new/cbook")
-public class NewCookBookPage {
+@RequestMapping("/yc-food")
+public class YcFoodController {
 	
 	@Autowired
 	YcFoodService ycFoodSevice;
 	
-	@GetMapping("/foodlist")
-	public Result foodList(Integer type, Integer page, Integer size){
+	@GetMapping("/list/bytype")
+	public Result foodListByType(Integer type, Integer page, Integer size){
 		return Result.ok(ycFoodSevice.getFoodListByType(type, page, size));
+	}
+	
+	@GetMapping("/list/bycnname")
+	public Result foodListByName(String cnname, Integer page, Integer size){
+		return Result.ok(ycFoodSevice.getFoodListByCnName(cnname, page, size));
 	}
 
 }

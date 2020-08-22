@@ -8,7 +8,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,6 +30,20 @@ public class YcFoodServiceImpl extends ServiceImpl<YcFoodMapper, YcFood> impleme
 		IPage<YcFood> food = new Page<>(page, size);
 		super.baseMapper.selectPage(food, new QueryWrapper<YcFood>().eq("type", type));
 		return food.getRecords();
+	}
+
+	@Override
+	public List<YcFood> getFoodListByCnName(String cnname, Integer page, Integer size) {
+		if(page == null || size == null){
+			page = 1;
+			size = 5;
+		}
+		if(StringUtils.isNotBlank(cnname)){
+			IPage<YcFood> food = new Page<>(page, size);
+			super.baseMapper.selectPage(food, new QueryWrapper<YcFood>().like("cnname", cnname.trim()));
+			return food.getRecords();
+		}
+		return new ArrayList<>();
 	}
 
 }

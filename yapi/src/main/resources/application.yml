@@ -12,7 +12,8 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-    serialization:
+    property-naming-strategy:  CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES
+    serialization:  
       write-dates-as-timestamps: false
 # mybatis配置
 mybatis-plus:

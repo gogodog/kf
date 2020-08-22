@@ -23,7 +23,8 @@
     "wux-wing-blank": "../../lib/wing-blank/index",
     "wux-white-space": "../../lib/white-space/index",
     "wux-dialog": "../../lib/dialog/index",
-    "wux-image": "../../lib/image/index"
+    "wux-image": "../../lib/image/index",
+    "wux-notification": "../../lib/notification/index"
   },
   "disableScroll": false,
   "navigationBarTitleText": "搭配食谱"

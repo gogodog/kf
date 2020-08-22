@@ -38,6 +38,20 @@ public class GsonUtil {
 		}
 		return gsonString;
 	}
+	
+	/**
+	 * 将对象转成json格式
+	 * 
+	 * @param object
+	 * @return String
+	 */
+	public static String GsonStringReturnEmpty(Object object) {
+		String gsonString = null;
+		if (gson != null) {
+			gsonString = gson.toJson(object);
+		}
+		return gsonString == null ? "" : gsonString;
+	}
 
 	/**
 	 * 将json转成特定的cls的对象

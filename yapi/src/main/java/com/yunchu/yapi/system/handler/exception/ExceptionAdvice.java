@@ -1,5 +1,7 @@
 package com.yunchu.yapi.system.handler.exception;
 
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,6 +38,12 @@ public class ExceptionAdvice {
 		}
 		log.info("服务异常",e);
 		return Result.fail(code, msg);
+	}
+	
+	@ExceptionHandler(value = MethodArgumentNotValidException.class)
+	public Result methodArgumentNotValidException(HttpServletRequest request, MethodArgumentNotValidException e) {
+		FieldError fieldError = e.getBindingResult().getFieldError();
+		return Result.fail(ResultEnum.ARGUMENTVALID.getCode(), fieldError.getDefaultMessage());
 	}
 	
 	@ExceptionHandler(value = Exception.class)

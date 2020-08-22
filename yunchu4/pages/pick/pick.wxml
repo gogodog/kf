@@ -1,69 +1,45 @@
 <!--选配页面-->
-<view style="{{visible1 | visible2 ?'position: fixed' : ''}}">
+<view style="{{sfood_visible | sseasoning_visible ?'position: fixed' : ''}}">
   <wux-steps direction="vertical">
             <wux-step status="finish" title="食材">
             <view  slot="content" style="margin-top:60rpx" >
-              <wux-cell-group>
-                <wux-swipe-action autoClose right="{{ right }}">
-                    <wux-cell title="番茄(西红柿)" hover-class="none">
-                      <wux-input-number default-value="30" min="{{ 1 }}" max="{{ 200 }}" longpress disabled="{{ false }}" slot="footer" />
-                    </wux-cell>
-                </wux-swipe-action>
-                <wux-swipe-action autoClose right="{{ right }}">
-                    <wux-cell title="番茄(西红柿)" hover-class="none">
-                      <wux-input-number default-value="30" min="{{ 1 }}" max="{{ 200 }}" longpress disabled="{{ false }}" slot="footer" />
-                    </wux-cell>
-                </wux-swipe-action>
-                <wux-swipe-action autoClose right="{{ right }}">
-                    <wux-cell title="番茄(西红柿)" hover-class="none">
-                      <wux-input-number default-value="30" min="{{ 1 }}" max="{{ 200 }}" longpress disabled="{{ false }}" slot="footer" />
-                    </wux-cell>
-                </wux-swipe-action>
-                <wux-swipe-action autoClose right="{{ right }}">
-                    <wux-cell title="番茄(西红柿)" hover-class="none">
-                      <wux-input-number default-value="30" min="{{ 1 }}" max="{{ 200 }}" longpress disabled="{{ false }}" slot="footer" />
-                    </wux-cell>
-                </wux-swipe-action>
-                <wux-swipe-action autoClose right="{{ right }}">
-                    <wux-cell title="番茄(西红柿)" hover-class="none">
-                      <wux-input-number default-value="30" min="{{ 1 }}" max="{{ 200 }}" longpress disabled="{{ false }}" slot="footer" />
+              <wux-cell-group wx:if="{{content_food.length > 0}}" >
+                <wux-swipe-action wx:for="{{content_food}}" wx:index="{{index}}" autoClose right="{{swipeBut}}" data-id="{{item.id}}" bind:click="operateDelFood">
+                    <wux-cell title="{{item.cnname}}" hover-class="none">
+                      <wux-input-number default-value="{{item.weightval}}" min="1" max="200" longpress disabled="{{ false }}" slot="footer" />
                     </wux-cell>
                 </wux-swipe-action>
               </wux-cell-group>
+              <view class="page__hd" wx:if="{{content_food.length == 0}}">
+                    <view class="page__title">点击下方操作按钮添加菜单</view>
+              </view>
             </view>
             </wux-step>
             <wux-step status="finish" title="调料">
             <view  slot="content" style="margin-top:60rpx" >
-              <wux-cell-group>
-                <wux-swipe-action autoClose right="{{ right }}">
-                    <wux-cell title="盐" hover-class="none">
-                      <wux-input-number default-value="30" min="{{ 1 }}" max="{{ 30 }}" longpress disabled="{{ false }}" slot="footer" />
-                    </wux-cell>
-                </wux-swipe-action>
-                <wux-swipe-action autoClose right="{{ right }}">
-                    <wux-cell title="番茄酱" hover-class="none">
-                      <wux-input-number default-value="30" min="{{ 1 }}" max="{{ 30 }}" longpress disabled="{{ false }}" slot="footer" />
-                    </wux-cell>
-                </wux-swipe-action>
-                <wux-swipe-action autoClose right="{{ right }}">
-                    <wux-cell title="淀粉" hover-class="none">
-                      <wux-input-number default-value="30" min="{{ 1 }}" max="{{ 30 }}" longpress disabled="{{ false }}" slot="footer" />
+              <wux-cell-group wx:if="{{content_seasoning.length > 0}}">
+                <wux-swipe-action wx:for="{{content_seasoning}}" wx:index="{{index}}" autoClose right="{{swipeBut}}"  data-id="{{item.id}}" bind:click="operateDelSeasoning">
+                    <wux-cell title="{{item.cnname}}" hover-class="none">
+                      <wux-input-number default-value="{{item.weightval}}" min="1" max="200" longpress disabled="{{ false }}" slot="footer" />
                     </wux-cell>
                 </wux-swipe-action>
               </wux-cell-group>
+              <view class="page__hd" wx:if="{{content_seasoning.length == 0}}">
+                    <view class="page__title">点击下方操作按钮添加菜单</view>
+              </view>
             </view>
             </wux-step>
             <wux-step status="finish" title="做法">
               <view  slot="content" style="margin-top:60rpx" >
                 <wux-cell-group>
-                  <wux-cell hover-class="none"><wux-textarea autoHeight placeholder="请点击这里输入制作方法（建议每步使用换行隔开）"/></wux-cell>
+                  <wux-cell hover-class="none"><wux-textarea bind:change="setContentMethod" autoHeight defaultValue="{{content_method_catch}}" placeholder="请点击这里输入制作方法（建议每步使用换行隔开）"/></wux-cell>
                 </wux-cell-group>
               </view>
             </wux-step>
             <wux-step status="finish" title="需要注意">
               <view  slot="content" style="margin-top:60rpx" >
                 <wux-cell-group>
-                  <wux-cell hover-class="none"><wux-textarea autoHeight placeholder="请点击这里输入需要注意的事项"/></wux-cell>
+                  <wux-cell hover-class="none"><wux-textarea bind:change="setContentAttion" autoHeight defaultValue="{{content_attion_catch}}" placeholder="请点击这里输入需要注意的事项"/></wux-cell>
                 </wux-cell-group>
               </view>
             </wux-step>
@@ -75,36 +51,36 @@
 </view>
 <wux-popup
   position="bottom"
-  visible="{{ visible2 }}"
-  bind:close="shicaiSearchClose"
+  visible="{{ sfood_visible }}"
+  bind:close="searchClose"
   catchtouchmove="return"
 >
             <wux-cell-group>
-                <wux-search-bar clear/>
+                <wux-search-bar placeholder="{{sfood_placeholder}}" clear focus="{{sfood_visible}}" bind:change="searchFoodChange" defaultValue="{{sfood_key}}"/>
                 <wux-cell hover-class="none">
                   <wux-tag color="red">蔬菜</wux-tag><wux-tag color="volcano">海鲜</wux-tag><wux-tag color="orange">水果</wux-tag>
                   <wux-tag color="orange">水仙花</wux-tag><wux-tag color="orange">菠萝</wux-tag><wux-tag color="red">海蛎子</wux-tag>
                 </wux-cell>
-                <wux-cell prefixCls="wux-cell-large" thumb="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598035247561&di=7d527c7822cd61d5bf370f8270da5157&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D3549841604%2C337684586%26fm%3D214%26gp%3D0.jpg" title="苹果" label="富含矿物质和维生素，含钙量丰富，有助于代谢掉体内多余盐分，苹果酸可代谢热量，防止下半身肥胖"></wux-cell>
-                <wux-cell prefixCls="wux-cell-large" thumb="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598035195051&di=dc4ebedc29e8beead8da2d9227ecfbca&imgtype=0&src=http%3A%2F%2Fimg1.gtimg.com%2Fcq%2Fpics%2Fhv1%2F105%2F76%2F2159%2F140408460.jpg" title="菠菜" label="富含类胡萝卜素、维生素C、维生素K、矿物质（钙质、铁质等）、辅酶Q10等多种营养素"></wux-cell>
-                <wux-cell hover-class="none"><wux-button block type="balanced" bindtap="close2">选择</wux-button></wux-cell>
+                <block wx:if="{{sfood_list.length>0}}" >
+                <wux-cell bind:click="sfoodTap" data-row="{{item}}" wx:for="{{sfood_list}}" wx:key="{{index}}" prefixCls="wux-cell-large" thumb="{{item.avatar}}" title="{{item.cnname}}" label="{{item.infoc.desc}}"></wux-cell>
+                </block>
             </wux-cell-group>
         </wux-popup>
 <wux-popup
   position="bottom"
-  visible="{{ visible1 }}"
-  bind:close="shicaiSearchClose"
+  visible="{{ sseasoning_visible }}"
+  bind:close="searchClose"
   catchtouchmove="return"
 >
             <wux-cell-group>
-                <wux-search-bar clear/>
+                <wux-search-bar placeholder="{{sseasoning_placeholder}}" clear focus="{{sseasoning_visible}}" bind:change="searchSeasoningChange" defaultValue="{{sseasoning_key}}"/>
                 <wux-cell hover-class="none">
-                  <wux-tag color="red">蔬菜</wux-tag><wux-tag color="volcano">海鲜</wux-tag><wux-tag color="orange">水果</wux-tag>
-                  <wux-tag color="orange">水仙花</wux-tag><wux-tag color="orange">菠萝</wux-tag><wux-tag color="red">海蛎子</wux-tag>
+                  <wux-tag color="red">盐</wux-tag><wux-tag color="volcano">醋</wux-tag><wux-tag color="orange">辣椒</wux-tag>
+                  <wux-tag color="orange">麻酱</wux-tag><wux-tag color="orange">料酒</wux-tag><wux-tag color="red">纳豆</wux-tag>
                 </wux-cell>
-                <wux-cell hover-class="none" title="Jack Ma"></wux-cell>
-                <wux-cell hover-class="none" title="Pony"></wux-cell>
-                <wux-cell hover-class="none"><wux-button block type="balanced" bindtap="close2">Yes</wux-button></wux-cell>
+                <block wx:if="{{sseasoning_list.length>0}}" >
+                <wux-cell bind:click="sseasoningTap" data-row="{{item}}" wx:for="{{sseasoning_list}}" wx:key="{{index}}" hover-class="none" title="{{item.cnname}}"></wux-cell>
+                </block>
             </wux-cell-group>
         </wux-popup>
 <wux-fab-button
@@ -120,3 +96,4 @@
 />
 <wux-dialog id="wux-dialog" />
 <wux-dialog id="wux-dialog--alert" />
+<wux-notification id="wux-notification" />

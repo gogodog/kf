@@ -18,4 +18,6 @@ public interface YcFoodService extends IService<YcFood> {
 
 	List<YcFood> getFoodListByType(int type, int page, int size);
 
+	List<YcFood> getFoodListByCnName(String cnname, Integer page, Integer size);
+
 }
