@@ -59,7 +59,7 @@ class ServerApi extends HTTP{
   }
   deleteCookBookById(id, callBack){
     this.request({
-      url:"/yapi/yc-cookbook//delete/id?id="+id,
+      url:"/yapi/yc-cookbook/delete/id?id="+id,
       success:(res)=>{
         callBack(res);
       }

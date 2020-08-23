@@ -1,96 +1,89 @@
-<!--选配页面-->
-<view style="{{sfood_visible | sseasoning_visible ?'position: fixed' : ''}}">
-  <wux-steps direction="vertical">
-            <wux-step status="finish" title="食材">
-            <view  slot="content" style="margin-top:60rpx" >
-              <wux-cell-group wx:if="{{content_food.length > 0}}" >
-                <wux-swipe-action wx:for="{{content_food}}" wx:index="{{index}}" autoClose right="{{swipeBut}}" data-id="{{item.id}}" bind:click="operateDelFood">
-                    <wux-cell title="{{item.cnname}}" hover-class="none">
-                      <wux-input-number default-value="{{item.weightval}}" min="1" max="200" longpress disabled="{{ false }}" slot="footer" />
-                    </wux-cell>
-                </wux-swipe-action>
-              </wux-cell-group>
-              <view class="page__hd" wx:if="{{content_food.length == 0}}">
-                    <view class="page__title">点击下方操作按钮添加菜单</view>
-              </view>
-            </view>
-            </wux-step>
-            <wux-step status="finish" title="调料">
-            <view  slot="content" style="margin-top:60rpx" >
-              <wux-cell-group wx:if="{{content_seasoning.length > 0}}">
-                <wux-swipe-action wx:for="{{content_seasoning}}" wx:index="{{index}}" autoClose right="{{swipeBut}}"  data-id="{{item.id}}" bind:click="operateDelSeasoning">
-                    <wux-cell title="{{item.cnname}}" hover-class="none">
-                      <wux-input-number default-value="{{item.weightval}}" min="1" max="200" longpress disabled="{{ false }}" slot="footer" />
-                    </wux-cell>
-                </wux-swipe-action>
-              </wux-cell-group>
-              <view class="page__hd" wx:if="{{content_seasoning.length == 0}}">
-                    <view class="page__title">点击下方操作按钮添加菜单</view>
-              </view>
-            </view>
-            </wux-step>
-            <wux-step status="finish" title="做法">
-              <view  slot="content" style="margin-top:60rpx" >
-                <wux-cell-group>
-                  <wux-cell hover-class="none"><wux-textarea bind:change="setContentMethod" autoHeight defaultValue="{{content_method_catch}}" placeholder="请点击这里输入制作方法（建议每步使用换行隔开）"/></wux-cell>
-                </wux-cell-group>
-              </view>
-            </wux-step>
-            <wux-step status="finish" title="需要注意">
-              <view  slot="content" style="margin-top:60rpx" >
-                <wux-cell-group>
-                  <wux-cell hover-class="none"><wux-textarea bind:change="setContentAttion" autoHeight defaultValue="{{content_attion_catch}}" placeholder="请点击这里输入需要注意的事项"/></wux-cell>
-                </wux-cell-group>
-              </view>
-            </wux-step>
-        </wux-steps>
-        <wux-wing-blank size="large" body-style="margin-left: 50rpx; margin-right: 50rpx">
-            <wux-button block outline type="positive" bind:click="submitPick">确认提交</wux-button>
-        </wux-wing-blank>
-        <wux-white-space body-style="height: 100rpx" />
-</view>
-<wux-popup
-  position="bottom"
-  visible="{{ sfood_visible }}"
-  bind:close="searchClose"
-  catchtouchmove="return"
->
-            <wux-cell-group>
-                <wux-search-bar placeholder="{{sfood_placeholder}}" clear bind:change="searchFoodChange" controlled value="{{sfood_key}}"/>
-                <wux-cell hover-class="none">
-                  <wux-tag wx:for="{{sfood_tag}}" wx:key="index" color="red" data-s="1" data-skey="{{item.key}}" bind:click="operateClickTag" >{{item.key}}</wux-tag>
-                </wux-cell>
-                <block wx:if="{{sfood_list.length>0}}" >
-                <wux-cell bind:click="sfoodTap" data-row="{{item}}" wx:for="{{sfood_list}}" wx:key="{{index}}" prefixCls="wux-cell-large" thumb="{{item.avatar}}" title="{{item.cnname}}" label="{{item.infoc.desc}}"></wux-cell>
-                </block>
-            </wux-cell-group>
-        </wux-popup>
-<wux-popup
-  position="bottom"
-  visible="{{ sseasoning_visible }}"
-  bind:close="searchClose"
-  catchtouchmove="return"
->
-            <wux-cell-group>
-                <wux-search-bar placeholder="{{sseasoning_placeholder}}" clear bind:change="searchSeasoningChange" controlled value="{{sseasoning_key}}"/>
-                <wux-cell hover-class="none">
-                  <wux-tag wx:for="{{sseasoning_tag}}" wx:key="index" color="red" data-s="2" data-skey="{{item.key}}" bind:click="operateClickTag">{{item.key}}</wux-tag>
-                </wux-cell>
-                <block wx:if="{{sseasoning_list.length>0}}" >
-                <wux-cell bind:click="sseasoningTap" data-row="{{item}}" wx:for="{{sseasoning_list}}" wx:key="{{index}}" hover-class="none" title="{{item.cnname}}"></wux-cell>
-                </block>
-            </wux-cell-group>
-        </wux-popup>
-<wux-fab-button
-  position="bottomRight"
-  theme="balanced"
-  direction="vertical"
-  spaceBetween="30"
-  sAngle="180"
-  eAngle="180"
-  buttons="{{ buttons }}"
-  bind:click="operateClick"
-/>
+<!-- 选配页面 -->
+<wux-notice-bar loop>{{"👋&nbsp ==> "+noticecontent}}</wux-notice-bar>
+<wux-white-space body-style="height: 40rpx"/>
+  <view style="{{sfood_visible | sseasoning_visible ?'position: fixed' : ''}}">
+    <wux-steps direction="vertical">
+      <wux-step status="finish" title="食材">
+        <view slot="content" style="margin-top:60rpx">
+          <wux-cell-group wx:if="{{content_food.length > 0}}">
+            <wux-swipe-action wx:for="{{content_food}}" wx:index="{{index}}" autoClose right="{{swipeBut}}" data-id="{{item.id}}" bind:click="operateDelFood">
+              <wux-cell title="{{item.cnname}}" hover-class="none">
+                <wux-input-number default-value="{{item.weightval}}" min="0" max="200" longpress disabled="{{ false }}" slot="footer" data-rowid="{{item.id}}" bind:change="changeFoodWeightval" />
+              </wux-cell>
+            </wux-swipe-action>
+          </wux-cell-group>
+          <view class="page__hd" wx:if="{{content_food.length == 0}}">
+            <view class="page__title">点击下方操作按钮添加菜单</view>
+          </view>
+        </view>
+      </wux-step>
+      <wux-step status="finish" title="调料">
+        <view slot="content" style="margin-top:60rpx">
+          <wux-cell-group wx:if="{{content_seasoning.length > 0}}">
+            <wux-swipe-action wx:for="{{content_seasoning}}" wx:index="{{index}}" autoClose right="{{swipeBut}}" data-id="{{item.id}}" bind:click="operateDelSeasoning">
+              <wux-cell title="{{item.cnname}}" hover-class="none">
+                <wux-input-number default-value="{{item.weightval}}" min="0" max="200" longpress disabled="{{ false }}" slot="footer" data-rowid="{{item.id}}" bind:change="changeSeasoningWeightval" />
+              </wux-cell>
+            </wux-swipe-action>
+          </wux-cell-group>
+          <view class="page__hd" wx:if="{{content_seasoning.length == 0}}">
+            <view class="page__title">点击下方操作按钮添加菜单</view>
+          </view>
+        </view>
+      </wux-step>
+      <wux-step status="finish" title="做法">
+        <view slot="content" style="margin-top:60rpx">
+          <wux-cell-group>
+            <wux-cell hover-class="none">
+              <wux-textarea bind:change="setContentMethod" autoHeight defaultValue="{{content_method_catch}}" placeholder="请点击这里输入制作方法（建议每步使用换行隔开）" />
+            </wux-cell>
+          </wux-cell-group>
+        </view>
+      </wux-step>
+      <wux-step status="finish" title="需要注意">
+        <view slot="content" style="margin-top:60rpx">
+          <wux-cell-group>
+            <wux-cell hover-class="none">
+              <wux-textarea bind:change="setContentAttion" autoHeight defaultValue="{{content_attion_catch}}" placeholder="请点击这里输入需要注意的事项" />
+            </wux-cell>
+          </wux-cell-group>
+        </view>
+      </wux-step>
+    </wux-steps>
+    <wux-wing-blank size="large" body-style="margin-left: 50rpx; margin-right: 50rpx">
+      <wux-button block outline type="positive" bind:click="submitPick">确认提交</wux-button>
+    </wux-wing-blank>
+    <wux-white-space body-style="height: 100rpx" />
+  </view>
+
+<wux-popup position="bottom" visible="{{ sfood_visible }}" bind:close="searchClose" catchtouchmove="return">
+  <wux-cell-group>
+    <wux-search-bar placeholder="{{sfood_placeholder}}" clear bind:change="searchFoodChange" controlled value="{{sfood_key}}" />
+    <wux-cell hover-class="none">
+      <wux-tag wx:for="{{sfood_tag}}" wx:key="index" color="red" data-s="1" data-skey="{{item.key}}" bind:click="operateClickTag">
+        {{item.key}}
+      </wux-tag>
+    </wux-cell>
+    <block wx:if="{{sfood_list.length>0}}">
+      <wux-cell bind:click="sfoodTap" data-row="{{item}}" wx:for="{{sfood_list}}" wx:key="{{index}}" prefixCls="wux-cell-large" thumb="{{item.avatar}}" title="{{item.cnname}}" label="{{item.infoc.desc}}"></wux-cell>
+    </block>
+  </wux-cell-group>
+</wux-popup>
+<wux-popup position="bottom" visible="{{ sseasoning_visible }}" bind:close="searchClose" catchtouchmove="return">
+  <wux-cell-group>
+    <wux-search-bar placeholder="{{sseasoning_placeholder}}" clear bind:change="searchSeasoningChange" controlled value="{{sseasoning_key}}" />
+    <wux-cell hover-class="none">
+      <wux-tag wx:for="{{sseasoning_tag}}" wx:key="index" color="red" data-s="2" data-skey="{{item.key}}" bind:click="operateClickTag">
+        {{item.key}}
+      </wux-tag>
+    </wux-cell>
+    <block wx:if="{{sseasoning_list.length>0}}">
+      <wux-cell bind:click="sseasoningTap" data-row="{{item}}" wx:for="{{sseasoning_list}}" wx:key="{{index}}" hover-class="none" title="{{item.cnname}}"></wux-cell>
+    </block>
+  </wux-cell-group>
+</wux-popup>
+<wux-fab-button position="bottomRight" theme="balanced" direction="vertical" spaceBetween="30" sAngle="180" eAngle="180" buttons="{{ buttons }}" bind:click="operateClick" />
 <wux-dialog id="wux-dialog" />
 <wux-dialog id="wux-dialog--alert" />
 <wux-notification id="wux-notification" />
+<wux-toptips id="wux-toptips" />

@@ -24,9 +24,9 @@
     "wux-white-space": "../../lib/white-space/index",
     "wux-dialog": "../../lib/dialog/index",
     "wux-image": "../../lib/image/index",
-    "wux-notification": "../../lib/notification/index"
+    "wux-notification": "../../lib/notification/index",
+    "wux-notice-bar": "../../lib/notice-bar/index"
   },
-  "disableScroll": false,
   "navigationBarTitleText": "搭配食谱",
   "navigationBarBackgroundColor": "#FFCC00"
 }

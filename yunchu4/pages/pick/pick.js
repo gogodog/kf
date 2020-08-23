@@ -1,11 +1,19 @@
-import {$wuxDialog, $wuxToptips} from '../../lib/index';
-import {isEmptyStr,isEmptyCollection,removeOne} from '../../utils/util'
-import {ServerApi} from '../../api/serverapi'
+import {
+  $wuxDialog,
+  $wuxToptips
+} from '../../lib/index';
+import {
+  isEmptyStr,
+  isEmptyCollection,
+  removeOne
+} from '../../utils/util'
+import {
+  ServerApi
+} from '../../api/serverapi'
 let sapi = new ServerApi();
 
 const icon = 'data:image/png;base64,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';
-const buttons = [
-  {
+const buttons = [{
     label: '食材',
     icon,
   },
@@ -14,45 +22,41 @@ const buttons = [
     icon,
   },
 ];
-const swipeBut = [
-  {
-    text: '取消',
-  },
-];
-const sseasoning_tag=[
-  {
-    key:"海盐",
-    istype:false
+const swipeBut = [{
+  text: '取消',
+}, ];
+const sseasoning_tag = [{
+    key: "海盐",
+    istype: false
   },
   {
-    key:"白醋",
-    istype:false
+    key: "白醋",
+    istype: false
   },
   {
-    key:"陈醋",
-    istype:false
+    key: "陈醋",
+    istype: false
   },
   {
-    key:"盐",
-    istype:true
+    key: "盐",
+    istype: true
   }
 ];
-const sfood_tag=[
-  {
-    key:"苹果",
-    istype:false
+const sfood_tag = [{
+    key: "苹果",
+    istype: false
   },
   {
-    key:"青笋",
-    istype:false
+    key: "青笋",
+    istype: false
   },
   {
-    key:"龙虾",
-    istype:false
+    key: "龙虾",
+    istype: false
   },
   {
-    key:"鸡",
-    istype:true
+    key: "鸡",
+    istype: true
   }
 ];
 
@@ -60,7 +64,8 @@ Page({
   data: {
     buttons: buttons,
     swipeBut: swipeBut,
-    
+    noticecontent:"制作食谱并且发布食谱到食街，可获取点赞。如若食谱被使用，则创作者每次可获取1-2元的贡献收益礼金（可提现）",
+
     //search-food
     sfood_visible: false,
     sfood_key: '',
@@ -83,73 +88,71 @@ Page({
     content_attion_catch: '',
     content_method_catch: '',
   },
-  setSseasoningKey: function(v){
+  setSseasoningKey: function (v) {
     this.setData({
       sseasoning_key: v
     })
     this.getSeasoningList(v);
   },
-  setSfoodKey: function(v){
+  setSfoodKey: function (v) {
     this.setData({
       sfood_key: v
     })
     this.getFoodList(v);
   },
-  setContentAttion: function (e){
+  setContentAttion: function (e) {
     this.setData({
       content_attion: e.detail.value
     })
   },
-  setContentMethod: function (e){
+  setContentMethod: function (e) {
     this.setData({
       content_method: e.detail.value
     })
   },
-  setContentFood: function(row){
+  setContentFood: function (row) {
     let list = this.data.content_food;
-    row.weightval = 10;//设置默认重量
     list.push(row);
     this.setData({
       content_food: list,
     });
   },
-  setContentSeasoning: function(row){
+  setContentSeasoning: function (row) {
     let list = this.data.content_seasoning;
-    row.weightval = 5;//设置默认重量
     list.push(row);
     this.setData({
       content_seasoning: list,
     });
   },
-  removeContentFood: function(id, col){
+  removeContentFood: function (id, col) {
     let list = this.data.content_food;
     this.setData({
       content_food: removeOne(list, id, col),
     });
   },
-  removeContentSeasoning: function(id, col){
+  removeContentSeasoning: function (id, col) {
     let list = this.data.content_seasoning;
     this.setData({
       content_seasoning: removeOne(list, id, col),
     });
   },
-  setSearchVisible: function(foodVisible, seasoningVisible){
+  setSearchVisible: function (foodVisible, seasoningVisible) {
     this.setData({
       sfood_visible: foodVisible,
       sseasoning_visible: seasoningVisible,
     });
   },
-  operateClickTag: function(e){
+  operateClickTag: function (e) {
     console.log("tag:", e);
     let s = e.currentTarget.dataset.s;
     let skey = e.currentTarget.dataset.skey;
     s == 1 ? this.setSfoodKey(skey) : s == 2 ? this.setSseasoningKey(skey) : "";
   },
-  operateDelFood: function(e){
+  operateDelFood: function (e) {
     console.log("delFood:", e);
     this.removeContentFood(e.currentTarget.dataset.id, "id")
   },
-  operateDelSeasoning: function(e){
+  operateDelSeasoning: function (e) {
     console.log("delFood:", e);
     this.removeContentSeasoning(e.currentTarget.dataset.id, "id")
   },
@@ -166,30 +169,55 @@ Page({
     params.content_food = this.data.content_food;
     params.content_seasoning = this.data.content_seasoning;
     console.log("请求数据：", params)
-    this.checkSubmitPick(params)? this.inPickName((name)=>{
+    this.checkSubmitPick(params) ? this.inPickName((name) => {
       params.name = name;
-      sapi.savePick(params,(res)=>{
+      sapi.savePick(params, (res) => {
         wx.redirectTo({
           url: '../index/index',
         })
       })
     }) : false;
   },
-  checkSubmitPick: function(params){
-    if(isEmptyCollection(params.content_food)){
-      this.showToptips("请添加食材");
+  checkSubmitPick: function (params) {
+    if (isEmptyCollection(params.content_food)) {
+      this.showToptipsWarn("请添加食材");
+      return false;
+    } else {
+      let erroritem = this.checkWeightval(params.content_food);
+      console.log("error::", erroritem)
+      if (erroritem) {
+        this.showToptipsWarn("食材【" + erroritem.cnname + "】的重量必须大于0");
+        return false;
+      }
+    }
+    if (isEmptyCollection(params.content_seasoning)) {
+      this.showToptipsWarn("请添加调料");
+      return false;
+    } else {
+      let erroritem = this.checkWeightval(params.content_seasoning);
+      console.log("error::", erroritem)
+      if (erroritem) {
+        this.showToptipsWarn("食材【" + erroritem.cnname + "】的重量必须大于0");
+        return false;
+      }
+    }
+    if (isEmptyStr(params.content_method)) {
+      this.showToptipsWarn("请输入制作方法");
       return false;
     }
-    if(isEmptyCollection(params.content_seasoning)){
-      this.showToptips("请添加调料");
-      return false;
-    }
-    if(isEmptyStr(params.content_method)){
-      this.showToptips("请输入制作方法");
-      return false;
-    }
+
     console.log("校验请求数据：", params)
     return true;
+  },
+  checkWeightval: function (colectionc) {
+    let errorItem = null;
+    colectionc.map((item) => {
+      if (!item.weightval || item.weightval <= 0) {
+        errorItem = item;
+        return;
+      }
+    })
+    return errorItem;
   },
   inPickName: function (ck) {
     let that = this;
@@ -215,15 +243,43 @@ Page({
   sfoodTap: function (e) {
     let row = e.currentTarget.dataset.row;
     let list = this.data.content_food;
-    return this.isReapt(row, list)?this.showToptips("已经添加此食材"):this.setContentFood(row);
+    return this.isReapt(row, list) ? this.showToptipsWarn("已经添加此食材") : this.setContentFood(row);
   },
-  sseasoningTap:function (e) {
+  sseasoningTap: function (e) {
     let row = e.currentTarget.dataset.row;
     let list = this.data.content_seasoning;
-    return this.isReapt(row, list)?this.showToptips("已经添加此调料"):this.setContentSeasoning(row);
+    return this.isReapt(row, list) ? this.showToptipsWarn("已经添加此调料") : this.setContentSeasoning(row);
   },
   searchFoodChange: function (e) {
-    isEmptyStr(e.detail.value)?!1:this.getFoodList(e.detail.value);
+    isEmptyStr(e.detail.value) ? !1 : this.getFoodList(e.detail.value);
+  },
+  changeSeasoningWeightval: function (e) {
+    let id = e.currentTarget.dataset.rowid;
+    let weightval = e.detail.value;
+    let seasoning = this.data.content_seasoning;
+    seasoning.map((item) => {
+      if (item.id == id) {
+        item.weightval = weightval;
+        return;
+      }
+    })
+    this.setData({
+      content_seasoning: seasoning
+    })
+  },
+  changeFoodWeightval: function (e) {
+    let id = e.currentTarget.dataset.rowid;
+    let weightval = e.detail.value;
+    let food = this.data.content_food;
+    food.map((item) => {
+      if (item.id == id) {
+        item.weightval = weightval;
+        return;
+      }
+    })
+    this.setData({
+      content_food: food
+    })
   },
   getFoodList: function (cname) {
     sapi.foodlistByCnname(cname, (res) => {
@@ -236,7 +292,7 @@ Page({
     });
   },
   searchSeasoningChange: function (e) {
-    isEmptyStr(e.detail.value)?!1:this.getSeasoningList(e.detail.value);
+    isEmptyStr(e.detail.value) ? !1 : this.getSeasoningList(e.detail.value);
   },
   getSeasoningList: function (cname) {
     sapi.seasoninglistByCnname(cname, (res) => {
@@ -248,19 +304,19 @@ Page({
       });
     });
   },
-  showToptips() {
-    $wuxToptips().error({
-        hidden: false,
-        text: 'Toptips Title',
-        duration: 3000,
-        success() {},
+  showToptipsWarn(msg) {
+    $wuxToptips().warn({
+      hidden: false,
+      text: msg,
+      duration: 3000,
+      success() {},
     })
   },
-  isReapt: function(row, list){
+  isReapt: function (row, list) {
     let r = false;
-    if(list.length != 0){
+    if (list.length != 0) {
       list.map((item) => {
-        if (item.id == row.id){
+        if (item.id == row.id) {
           r = true;
           return;
         }
