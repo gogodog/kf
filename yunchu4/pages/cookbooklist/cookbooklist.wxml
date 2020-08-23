@@ -1,98 +1,31 @@
-<view class="box"> 
- <view class="box-head" style="background-color:#bbb">
-  <wux-tabbar defaultCurrent="tab2">
-      <wux-tabbar-item key="tab1" title="未发布1"></wux-tabbar-item>
-      <wux-tabbar-item key="tab2" title="已发布"></wux-tabbar-item>
-      <wux-tabbar-item key="tab3" title="草稿箱"></wux-tabbar-item>
+<view class="box">
+  <view class="box-head">
+    <wux-tabbar defaultCurrent="{{tabCurrent}}" bind:change="tagChange" backgroundColor="#FFCC00">
+      <wux-tabbar-item prefixCls="wux-tabbar1-item" key="0" title="未发布"></wux-tabbar-item>
+      <wux-tabbar-item prefixCls="wux-tabbar1-item" key="1" title="已发布"></wux-tabbar-item>
+      <wux-tabbar-item prefixCls="wux-tabbar1-item" key="2" title="已删除"></wux-tabbar-item>
     </wux-tabbar>
- </view>
- <scroll-view class="box-scroll" scroll-y="true">
-   <wux-white-space size="small" />
-    <wux-wing-blank size="default">
-      <wux-card title="卡片标题" extra="额外内容" thumb="http://cdn.skyvow.cn/logo.png">
-        <view slot="body">卡片内容</view>
-        <view slot="footer">尾部内容</view>
-      </wux-card>
+  </view>
+  <scroll-view class="box-scroll" scroll-y="true" lower-threshold="100" bindscrolltolower="hotload">
+    <wux-white-space size="large" />
+    <wux-wing-blank wx:for="{{contentlist[tabCurrent].rows}}" wx:key="index" wx:for-item="cbook" size="default">
+      <listcard title="{{cbook.id + '-' + cbook.name}}" time="{{cbook.update_time}}" tag="{{[{color:'red',title:'海鲜'}, {color:'black',title:'川菜'}]}}" isSlotBody="{{true}}" selfMoreText="{{true}}" isShowDelete='{{true}}'>
+        <view slot="body">
+          <wux-cell-group title="食材">
+            <wux-cell wx:for="{{cbook.cfood}}" wx:key="index" title="{{item.cnname}}" extra="{{item.weightval+''+item.ctype}}" />
+          </wux-cell-group>
+          <wux-cell-group title="调料">
+            <wux-cell wx:for="{{cbook.cseasoning}}" wx:key="index" title="{{item.cnname}}" extra="{{item.weightval+''+item.ctype}}" />
+          </wux-cell-group>
+        </view>
+        <view slot="smt">
+          <wux-media title="做法" label="{{cbook.method}}"></wux-media>
+          <wux-media title="心法" label="{{cbook.attion}}"></wux-media>
+        </view>
+      </listcard>
     </wux-wing-blank>
-    <wux-wing-blank size="default">
-      <wux-card title="卡片标题" extra="额外内容" thumb="http://cdn.skyvow.cn/logo.png">
-        <view slot="body">卡片内容</view>
-        <view slot="footer">尾部内容</view>
-      </wux-card>
-    </wux-wing-blank>
-    <wux-wing-blank size="default">
-      <wux-card title="卡片标题" extra="额外内容" thumb="http://cdn.skyvow.cn/logo.png">
-        <view slot="body">卡片内容</view>
-        <view slot="footer">尾部内容</view>
-      </wux-card>
-    </wux-wing-blank>
-    <wux-wing-blank size="default">
-      <wux-card title="卡片标题" extra="额外内容" thumb="http://cdn.skyvow.cn/logo.png">
-        <view slot="body">卡片内容</view>
-        <view slot="footer">尾部内容</view>
-      </wux-card>
-    </wux-wing-blank>
-    <wux-wing-blank size="default">
-      <wux-card title="卡片标题" extra="额外内容" thumb="http://cdn.skyvow.cn/logo.png">
-        <view slot="body">卡片内容</view>
-        <view slot="footer">尾部内容</view>
-      </wux-card>
-    </wux-wing-blank>
-    <wux-wing-blank size="default">
-      <wux-card title="卡片标题" extra="额外内容" thumb="http://cdn.skyvow.cn/logo.png">
-        <view slot="body">卡片内容</view>
-        <view slot="footer">尾部内容</view>
-      </wux-card>
-    </wux-wing-blank>
-    <wux-wing-blank size="default">
-      <wux-card title="卡片标题" extra="额外内容" thumb="http://cdn.skyvow.cn/logo.png">
-        <view slot="body">卡片内容</view>
-        <view slot="footer">尾部内容</view>
-      </wux-card>
-    </wux-wing-blank>
-<wux-wing-blank size="default">
-      <wux-card title="卡片标题" extra="额外内容" thumb="http://cdn.skyvow.cn/logo.png">
-        <view slot="body">卡片内容</view>
-        <view slot="footer">尾部内容</view>
-      </wux-card>
-    </wux-wing-blank><wux-wing-blank size="default">
-      <wux-card title="卡片标题" extra="额外内容" thumb="http://cdn.skyvow.cn/logo.png">
-        <view slot="body">卡片内容</view>
-        <view slot="footer">尾部内容</view>
-      </wux-card>
-    </wux-wing-blank><wux-wing-blank size="default">
-      <wux-card title="卡片标题" extra="额外内容" thumb="http://cdn.skyvow.cn/logo.png">
-        <view slot="body">卡片内容</view>
-        <view slot="footer">尾部内容</view>
-      </wux-card>
-    </wux-wing-blank><wux-wing-blank size="default">
-      <wux-card title="卡片标题" extra="额外内容" thumb="http://cdn.skyvow.cn/logo.png">
-        <view slot="body">卡片内容</view>
-        <view slot="footer">尾部内容</view>
-      </wux-card>
-    </wux-wing-blank><wux-wing-blank size="default">
-      <wux-card title="卡片标题" extra="额外内容" thumb="http://cdn.skyvow.cn/logo.png">
-        <view slot="body">卡片内容</view>
-        <view slot="footer">尾部内容</view>
-      </wux-card>
-    </wux-wing-blank><wux-wing-blank size="default">
-      <wux-card title="卡片标题" extra="额外内容" thumb="http://cdn.skyvow.cn/logo.png">
-        <view slot="body">卡片内容</view>
-        <view slot="footer">尾部内容</view>
-      </wux-card>
-    </wux-wing-blank><wux-wing-blank size="default">
-      <wux-card title="卡片标题" extra="额外内容" thumb="http://cdn.skyvow.cn/logo.png">
-        <view slot="body">卡片内容</view>
-        <view slot="footer">尾部内容</view>
-      </wux-card>
-    </wux-wing-blank><wux-wing-blank size="default">
-      <wux-card title="卡片标题" extra="额外内容" thumb="http://cdn.skyvow.cn/logo.png">
-        <view slot="body">卡片内容</view>
-        <view slot="footer">尾部内容</view>
-      </wux-card>
-    </wux-wing-blank>
-    <wux-white-space body-style="margin-top: 100rpx" />
-		<wux-divider text="云厨" />
-		<wux-white-space body-style="margin-top: 100rpx" />
- </scroll-view> 
+    <wux-white-space body-style="margin-top: 60rpx" />
+    <wux-divider text="云厨" />
+    <wux-white-space body-style="margin-top: 60rpx" />
+  </scroll-view>
 </view>

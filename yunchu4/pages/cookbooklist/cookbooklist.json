@@ -8,8 +8,12 @@
     "wux-white-space": "../../lib/white-space/index",
     "wux-tabs": "../../lib/tabs/index",
     "wux-tab": "../../lib/tab/index",
-    "wux-divider": "../../lib/divider/index"
+    "wux-divider": "../../lib/divider/index",
+    "wux-cell-group": "../../lib/cell-group/index",
+    "wux-cell": "../../lib/cell/index",
+    "listcard":"../../comment/listcard/card",
+    "wux-media": "../../lib/media/index"
   },
-  "navigationBarTitleText": "菜谱列表",
-  "navigationBarBackgroundColor": "#bbb"
+  "navigationBarTitleText": "列表",
+  "navigationBarBackgroundColor": "#FFCC00"
 }

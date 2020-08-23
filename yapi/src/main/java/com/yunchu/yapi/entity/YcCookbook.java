@@ -3,8 +3,15 @@ package com.yunchu.yapi.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.google.gson.Gson;
+import com.yunchu.yapi.tools.GsonUtil;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
@@ -30,7 +37,12 @@ import lombok.experimental.Accessors;
 public class YcCookbook extends Model<YcCookbook> {
 
 
-    @TableId(value = "id", type = IdType.AUTO)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     @ApiModelProperty(value = "微信用户名称")
@@ -49,7 +61,7 @@ public class YcCookbook extends Model<YcCookbook> {
     @TableField("seasoning")
     private String seasoning;
 
-    @ApiModelProperty(value = "制作方法")
+    @ApiModelProperty(value = "心法")
     @TableField("attion")
     private String attion;
 
@@ -57,9 +69,9 @@ public class YcCookbook extends Model<YcCookbook> {
     @TableField("method")
     private String method;
 
-    @ApiModelProperty(value = "制作方法")
-    @TableField("desc")
-    private String desc;
+    @ApiModelProperty(value = "描述")
+    @TableField("miaoshu")
+    private String miaoshu;
 
     @ApiModelProperty(value = "uuid")
     @TableField("user_code")
@@ -79,11 +91,11 @@ public class YcCookbook extends Model<YcCookbook> {
 
     @ApiModelProperty(value = "创建时间")
     @TableField("create_time")
-    private LocalDateTime createTime;
+    private Date createTime;
 
     @ApiModelProperty(value = "修改时间")
     @TableField("update_time")
-    private LocalDateTime updateTime;
+    private Date updateTime;
 
     @ApiModelProperty(value = "是否删除 0 未删除 1删除")
     @TableField("delete_flag")
@@ -94,6 +106,18 @@ public class YcCookbook extends Model<YcCookbook> {
     @Override
     protected Serializable pkVal() {
         return this.id;
+    }
+    
+    public List<Map<String, Object>> getCfood(){
+    	if(StringUtils.isBlank(this.food))
+    		return null;
+    	return GsonUtil.GsonToListGsonObject(this.food);
+    }
+    
+    public List<Map<String, Object>> getCseasoning(){
+    	if(StringUtils.isBlank(this.seasoning))
+    		return null;
+    	return GsonUtil.GsonToListGsonObject(this.seasoning);
     }
 
 }

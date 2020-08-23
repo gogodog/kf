@@ -1,5 +1,3 @@
-import {HttpModel} from '../../api/httpModel'
-let reqModel = new HttpModel();
 var imagess = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597151382586&di=a65985f98701b3232172f90a89763a9e&imgtype=0&src=http%3A%2F%2Fimg.ewebweb.com%2Fuploads%2F20191231%2F10%2F1577759575-COAacTqFYk.jpg";
 Page({
   onLoad:function(){},

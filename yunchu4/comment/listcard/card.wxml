@@ -1,7 +1,7 @@
 <!--dist/cards/card/card.wxml-->
 <view class='wx-cards-card'>
   <view class='header'>
-    <view class='pc'>
+    <view wx:if="{{headerImg}}" class='pc'>
       <image mode='aspectFill' src='{{headerImg}}'></image>
     </view>
     <view class='title-time'>
@@ -12,15 +12,21 @@
       <icon-button type='more' style='display: none;'></icon-button>
     </view>
   </view>
-  <view class='img'>
+  <view wx:if="{{img}}" class='img'>
     <image mode='widthFix' src='{{img}}'></image>
   </view>
-  <view class='text'>
+  <view wx:if="{{isSlotBody}}" class='text'>
+    <slot name="body"></slot>
+  </view>
+  <view wx:if="{{richContext}}" class='text'>
+    <rich-text >{{richContext}}</rich-text>
+  </view>
+  <view wx:if="{{context}}" class='text'>
     {{context}}
   </view>
   <view class='buttons'>
     <view style='display: flex;'>
-      <view class='tag' wx:if='{{tag}}'><tag class="i-tags" color="{{tagColor}}">{{tag}}</tag></view>
+      <view class='tag' wx:for='{{tag}}'><tag class="i-tags" color="{{item.color}}">{{item.title}}</tag></view>
       <icon-button type='{{isLiked ? "red-like" : "like"}}' style='display: {{isShowLike ? "" : "none"}};' bindtap='handleLike'></icon-button>
       <text class='number' style='display: {{likeNumber ? "" : "none"}}'>{{likeNumber}}</text>
       <icon-button type='{{isUnliked ? "blue-unlike" : "unlike"}}' style='display: {{isShowUnlike ? "" : "none"}};' bindtap='handleUnlike'></icon-button>
@@ -32,6 +38,9 @@
     </view>
   </view>
   <view class='more-text {{isMoreText ? "explain-text" : ""}}'>
-    <text>{{moreText}}</text>
+    <text wx:if="{{!selfMoreText}}" >{{moreText}}</text>
+    <block wx:if="{{selfMoreText}}" >
+      <slot name="smt"></slot>
+    </block>
   </view>
 </view>

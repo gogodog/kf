@@ -121,8 +121,8 @@ public class CodeGenerator {
         
         //这些文件不输出
         TemplateConfig templateConfig = new TemplateConfig();
-        templateConfig.setController(null);
         templateConfig.setXml(null);
+        templateConfig.setController(null);
         templateConfig.setService(null);
         templateConfig.setServiceImpl(null);
         

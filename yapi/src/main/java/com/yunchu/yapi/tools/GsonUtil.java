@@ -128,4 +128,32 @@ public class GsonUtil {
 		}
 		return map;
 	}
+	
+	/**
+	 * json字符串转成map的
+	 * 
+	 * @param gsonString
+	 * @return
+	 */
+	public static Map<String, Object> GsonToGsonObject(String gsonString) {
+		Map<String, Object> map = null;
+		if (gson != null) {
+			map = gson.fromJson(gsonString, new TypeToken<Map<String, Object>>() {}.getType());
+		}
+		return map;
+	}
+	
+	/**
+	 * json字符串转成list中有map的
+	 * 
+	 * @param gsonString
+	 * @return
+	 */
+	public static List<Map<String, Object>> GsonToListGsonObject(String gsonString) {
+		List<Map<String, Object>> list = null;
+		if (gson != null) {
+			list = gson.fromJson(gsonString, new TypeToken<List<Map<String, Object>>>() {}.getType());
+		}
+		return list;
+	}
 }

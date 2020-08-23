@@ -27,5 +27,6 @@
     "wux-notification": "../../lib/notification/index"
   },
   "disableScroll": false,
-  "navigationBarTitleText": "搭配食谱"
+  "navigationBarTitleText": "搭配食谱",
+  "navigationBarBackgroundColor": "#FFCC00"
 }
