@@ -1,5 +1,9 @@
 <!-- 选配页面 -->
-<wux-notice-bar loop>{{"👋&nbsp ==> "+noticecontent}}</wux-notice-bar>
+<view class="box">
+  <view class="box-head">
+    <wux-notice-bar loop>{{"👋&nbsp ==> "+noticecontent}}</wux-notice-bar>
+  </view>
+  <scroll-view class="box-scroll" scroll-y="true" lower-threshold="100" bindscrolltolower="hotload">
 <wux-white-space body-style="height: 40rpx"/>
   <view style="{{sfood_visible | sseasoning_visible ?'position: fixed' : ''}}">
     <wux-steps direction="vertical">
@@ -83,6 +87,8 @@
   </wux-cell-group>
 </wux-popup>
 <wux-fab-button position="bottomRight" theme="balanced" direction="vertical" spaceBetween="30" sAngle="180" eAngle="180" buttons="{{ buttons }}" bind:click="operateClick" />
+</scroll-view>
+</view>
 <wux-dialog id="wux-dialog" />
 <wux-dialog id="wux-dialog--alert" />
 <wux-notification id="wux-notification" />
