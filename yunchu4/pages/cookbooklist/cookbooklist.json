@@ -12,7 +12,8 @@
     "wux-cell-group": "../../lib/cell-group/index",
     "wux-cell": "../../lib/cell/index",
     "listcard":"../../comment/listcard/card",
-    "wux-media": "../../lib/media/index"
+    "wux-media": "../../lib/media/index",
+    "wux-dialog": "../../lib/dialog/index"
   },
   "navigationBarTitleText": "列表",
   "navigationBarBackgroundColor": "#FFCC00"

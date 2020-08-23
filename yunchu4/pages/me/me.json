@@ -17,5 +17,6 @@
     "wux-cell": "../../lib/cell/index",
     "wux-divider": "../../lib/divider/index"
   },
-  "navigationBarTitleText": "我的"
+  "navigationBarTitleText": "我的",
+  "disableScroll": false
 }

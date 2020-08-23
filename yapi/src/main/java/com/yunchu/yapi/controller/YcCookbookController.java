@@ -1,5 +1,7 @@
 package com.yunchu.yapi.controller;
 
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +41,11 @@ public class YcCookbookController {
 	public Result listByStatus(int status, Page<YcCookbook> page){
 		YcCookbookHandler.checkStatus(status);
 		return Result.ok(ycCookbookService.listByStatus(page, status));
+	}
+	
+	@GetMapping("/delete/id")
+	public Result deleteById(@NotEmpty Integer id){
+		return Result.ok(ycCookbookService.deleteById(id));
 	}
 	
 }

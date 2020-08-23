@@ -9,7 +9,7 @@
   <scroll-view class="box-scroll" scroll-y="true" lower-threshold="100" bindscrolltolower="hotload">
     <wux-white-space size="large" />
     <wux-wing-blank wx:for="{{contentlist[tabCurrent].rows}}" wx:key="index" wx:for-item="cbook" size="default">
-      <listcard title="{{cbook.id + '-' + cbook.name}}" time="{{cbook.update_time}}" tag="{{[{color:'red',title:'海鲜'}, {color:'black',title:'川菜'}]}}" isSlotBody="{{true}}" selfMoreText="{{true}}" isShowDelete='{{true}}'>
+      <listcard title="{{tabCurrent + '==' +cbook.id + '-' + cbook.name}}" time="{{cbook.cupdate_time}}" tag="{{[{color:'red',title:'海鲜'}, {color:'black',title:'川菜'}]}}" bind:delete="predeleteCookBook" data-deleteId="{{cbook.id}}" data-name="{{cbook.name}}" isSlotBody="{{true}}" selfMoreText="{{true}}" isShowDelete='{{true}}'>
         <view slot="body">
           <wux-cell-group title="食材">
             <wux-cell wx:for="{{cbook.cfood}}" wx:key="index" title="{{item.cnname}}" extra="{{item.weightval+''+item.ctype}}" />
@@ -29,3 +29,4 @@
     <wux-white-space body-style="margin-top: 60rpx" />
   </scroll-view>
 </view>
+<wux-dialog id="wux-dialog" />

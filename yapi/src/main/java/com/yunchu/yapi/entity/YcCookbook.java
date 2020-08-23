@@ -3,7 +3,7 @@ package com.yunchu.yapi.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import com.google.gson.Gson;
+import com.yunchu.yapi.tools.DateUtil;
 import com.yunchu.yapi.tools.GsonUtil;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.util.Date;
@@ -118,6 +118,10 @@ public class YcCookbook extends Model<YcCookbook> {
     	if(StringUtils.isBlank(this.seasoning))
     		return null;
     	return GsonUtil.GsonToListGsonObject(this.seasoning);
+    }
+    
+    public String getCupdateTime(){
+    	return DateUtil.simpleDate(this.updateTime, DateUtil.CN_FORMAT);
     }
 
 }

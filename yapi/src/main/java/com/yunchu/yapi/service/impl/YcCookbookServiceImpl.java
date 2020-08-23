@@ -35,4 +35,9 @@ public class YcCookbookServiceImpl extends ServiceImpl<YcCookbookMapper, YcCookb
 		return page.getRecords();
 	}
 
+	@Override
+	public int deleteById(int id) {
+		return super.baseMapper.deleteById(id);
+	}
+
 }

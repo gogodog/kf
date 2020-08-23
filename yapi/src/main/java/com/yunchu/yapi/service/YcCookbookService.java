@@ -22,4 +22,6 @@ public interface YcCookbookService extends IService<YcCookbook> {
 
 	List<YcCookbook> listByStatus(Page<YcCookbook> page, int status);
 
+	int deleteById(int id);
+
 }
