@@ -15,6 +15,7 @@
         <result column="user_code" property="userCode" />
         <result column="user_wx_name" property="userWxName" />
         <result column="user_wx_head" property="userWxHead" />
+        <result column="status" property="status" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
         <result column="delete_flag" property="deleteFlag" />

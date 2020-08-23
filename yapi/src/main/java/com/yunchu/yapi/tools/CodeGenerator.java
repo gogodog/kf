@@ -55,11 +55,11 @@ public class CodeGenerator {
         // 是否打开输出目录
         gc.setOpen(false);
         // controller 命名方式，注意 %s 会自动填充表实体属性
-        //gc.setControllerName("%sController");
+        gc.setControllerName("");
         // service 命名方式
-        gc.setServiceName("%sService");
+        gc.setServiceName("");
         // serviceImpl 命名方式
-        gc.setServiceImplName("%sServiceImpl");
+        gc.setServiceImplName("");
         // mapper 命名方式
         gc.setMapperName("%sMapper");
         // xml 命名方式
@@ -118,7 +118,15 @@ public class CodeGenerator {
         // 自定义输出文件
         cfg.setFileOutConfigList(focList);
         mpg.setCfg(cfg);
-        mpg.setTemplate(new TemplateConfig().setXml(null));
+        
+        //这些文件不输出
+        TemplateConfig templateConfig = new TemplateConfig();
+        templateConfig.setController(null);
+        templateConfig.setXml(null);
+        templateConfig.setService(null);
+        templateConfig.setServiceImpl(null);
+        
+        mpg.setTemplate(templateConfig);
 
         // TODO 策略配置
         StrategyConfig strategy = new StrategyConfig();

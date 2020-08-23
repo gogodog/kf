@@ -20,7 +20,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author cott.wen
- * @since 2020-08-22
+ * @since 2020-08-23
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -72,6 +72,10 @@ public class YcCookbook extends Model<YcCookbook> {
     @ApiModelProperty(value = "微信头像")
     @TableField("user_wx_head")
     private String userWxHead;
+
+    @ApiModelProperty(value = "0:未发布，1:已发布，2:已删除")
+    @TableField("status")
+    private Boolean status;
 
     @ApiModelProperty(value = "创建时间")
     @TableField("create_time")

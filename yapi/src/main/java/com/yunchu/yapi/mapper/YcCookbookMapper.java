@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author cott.wen
- * @since 2020-08-22
+ * @since 2020-08-23
  */
 public interface YcCookbookMapper extends BaseMapper<YcCookbook> {
 

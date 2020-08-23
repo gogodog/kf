@@ -1,0 +1,14 @@
+.box {
+    display: flex;
+    flex-direction:column;
+    height:100vh;
+    overflow:hidden;
+   }
+   .box-head {
+    flex-shrink: 0;
+    height: 50px;
+   }
+   .box-scroll {
+    flex: 1;
+    height: 1px;
+   }
