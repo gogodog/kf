@@ -19,10 +19,10 @@
 		<wux-card>
                 <view slot="body">
 					<wux-grids bordered="{{ false }}" col="4">
-						<wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="订单" />
-						<wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="菜谱" />
-						<wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="收藏价" />
-						<wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="待付款" />
+						<wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="订单" data-goto="../cookbooklist/cookbooklist" bind:click="gotoPage"/>
+						<wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="菜谱"  data-goto="../cookbooklist/cookbooklist" bind:click="gotoPage"/>
+						<wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="收藏价"  data-goto="../cookbooklist/cookbooklist" bind:click="gotoPage"/>
+						<wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="待付款"  data-goto="../cookbooklist/cookbooklist" bind:click="gotoPage"/>
 					</wux-grids>
 				</view>
             </wux-card>

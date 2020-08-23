@@ -1,11 +1,13 @@
 {
   "pages":[
-    "pages/me/me",
     "pages/index/index",
+    "pages/cookbooklist/cookbooklist",
+    "pages/me/me",
     "pages/pick/pick",
     "pages/newCookBook/newCookBook",
     "pages/logs/logs",
     "pages/street/street"
+
   ],
   "window":{
     "backgroundTextStyle":"light",
