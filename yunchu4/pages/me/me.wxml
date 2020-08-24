@@ -1,43 +1,88 @@
-<view class="page">
-	<view class="page__bd">
-		<wux-white-space body-style="height: 80rpx" />
-		<wux-row>
-			<wux-col span="12">
-				<wux-skeleton active>
-					<wux-row>
-						<wux-col span="12" style="text-align: center;">
-							<wux-avatar src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3379848400,1190658504&fm=15&gp=0.jpg" body-style="background-color: #33cd5f;width: 160rpx;height: 160rpx;line-height: 160rpx;border-radius: 80rpx;" size="large"></wux-avatar>
-						</wux-col>
-						<wux-col span="12" style="text-align: center;">
-							<wux-tag color="gold">vip</wux-tag><text>00029012019</text>
-						</wux-col>
-					</wux-row>
-				</wux-skeleton>
-			</wux-col>
-		</wux-row>
-		<wux-white-space size="cardtop" body-style="margin-top: 80rpx" />
-		<wux-card>
-                <view slot="body">
-					<wux-grids bordered="{{ false }}" col="4">
-						<wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="订单" data-goto="../cookbooklist/cookbooklist" bind:click="gotoPage"/>
-						<wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="菜谱"  data-goto="../cookbooklist/cookbooklist" bind:click="gotoPage"/>
-						<wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="收藏价"  data-goto="../cookbooklist/cookbooklist" bind:click="gotoPage"/>
-						<wux-grid thumb="http://cdn.skyvow.cn/logo.png" label="待付款"  data-goto="../cookbooklist/cookbooklist" bind:click="gotoPage"/>
-					</wux-grids>
-				</view>
-            </wux-card>
-		<wux-cell-group>
-            <wux-cell thumb="http://cdn.skyvow.cn/logo.png" title="首页" is-link url="/pages/index/index"></wux-cell>
-            <wux-cell thumb="http://cdn.skyvow.cn/logo.png" title="首页" is-link url="/pages/index/index"></wux-cell>
-            <wux-cell thumb="http://cdn.skyvow.cn/logo.png" title="首页" is-link url="/pages/index/index"></wux-cell>
-            <wux-cell thumb="http://cdn.skyvow.cn/logo.png" title="首页" is-link url="/pages/index/index"></wux-cell>
-			<wux-cell thumb="http://cdn.skyvow.cn/logo.png" title="首页" is-link url="/pages/index/index"></wux-cell>
-			<wux-cell thumb="http://cdn.skyvow.cn/logo.png" title="首页" is-link url="/pages/index/index"></wux-cell>
-			<wux-cell thumb="http://cdn.skyvow.cn/logo.png" title="首页" is-link url="/pages/index/index"></wux-cell>
-			<wux-cell thumb="http://cdn.skyvow.cn/logo.png" title="首页" is-link url="/pages/index/index"></wux-cell>
-        </wux-cell-group>
-		<wux-white-space body-style="margin-top: 100rpx" />
-		<wux-divider prefixCls="wux-divider-bottom" text="云厨" />
-		<wux-white-space body-style="margin-top: 100rpx" />
-	</view>
-</view>
+
+
+<scroll-view scroll-y class="scrollPage">
+  <view class="UCenter-bg">
+	<view class="cu-avatar xl round margin-left" style="background-image:url(https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3379848400,1190658504&fm=15&gp=0.jpg);"></view>
+    <view class="text-xl">木桑有酩
+      <text class="text-df">v2.0</text>
+    </view>
+    <image src="https://raw.githubusercontent.com/weilanwl/ColorUI/master/demo/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
+  </view>
+	<view class="cu-list grid col-4 no-border">
+    <view class="cu-item" wx:for="{{iconList}}" wx:key="index"  data-goto="{{item.url}}" bind:click="gotoPage">
+      <view class="cuIcon-{{item.icon}} text-{{item.color}}">
+        <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
+          <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
+        </view>
+      </view>
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+    <view class="cu-item arrow">
+      <view class="content" bindtap="CopyLink" data-link="https://github.com/weilanwl/ColorUI">
+        <text class="cuIcon-github text-grey"></text>
+        <text class="text-grey">我的地址</text>
+      </view>
+    </view>
+	<view class="cu-item arrow">
+      <button class="cu-btn content" open-type="feedback">
+        <text class="cuIcon-writefill text-cyan"></text>
+        <text class="text-grey">云厨红包</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/cookbooklist/cookbooklist" hover-class="none">
+        <text class="cuIcon-formfill text-green"></text>
+        <text class="text-grey">客服中心</text>
+      </navigator>
+    </view>
+	<view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/log/log" hover-class="none">
+        <text class="cuIcon-formfill text-green"></text>
+        <text class="text-grey">帮助和反馈</text>
+      </navigator>
+    </view>
+	<view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/log/log" hover-class="none">
+        <text class="cuIcon-formfill text-green"></text>
+        <text class="text-grey">餐饮加盟</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/test/list" hover-class="none">
+        <text class="cuIcon-creativefill text-orange"></text>
+        <text class="text-grey">云厨公告</text>
+      </navigator>
+    </view>
+  </view>
+  <view class="cu-tabbar-height"></view>
+</scroll-view>
+
+
+
+
+<view class="cu-bar tabbar bg-black foot">
+    <view class="action text-gray" bindtap="NavChnavBottomChangeange" data-cur="0">
+      <view class="cuIcon-homefill"></view> 首页
+    </view>
+    <view class="action text-gray" bindtap="NavChnavBottomChangeange" data-cur="1">
+      <view class="cuIcon-similar"></view> 食街
+    </view>
+    <view class="action text-gray add-action" bindtap="NavChnavBottomChangeange" data-cur="2">
+      <button class="cu-btn cuIcon-add bg-green shadow"></button>
+      菜谱
+    </view>
+    <view class="action text-gray" bindtap="NavChnavBottomChangeange" data-cur="3">
+      <view class="cuIcon-cart">
+        <view class="cu-tag badge">99</view>
+      </view>
+      toDo
+    </view>
+    <view class="action text-green" bindtap="NavChnavBottomChangeange" data-cur="4">
+      <view class="cuIcon-my">
+        <view class="cu-tag badge"></view>
+      </view>
+      我的
+    </view>
+  </view>

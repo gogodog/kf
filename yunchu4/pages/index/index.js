@@ -1,7 +1,11 @@
-var imagess = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597151382586&di=a65985f98701b3232172f90a89763a9e&imgtype=0&src=http%3A%2F%2Fimg.ewebweb.com%2Fuploads%2F20191231%2F10%2F1577759575-COAacTqFYk.jpg";
+let imagess = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597151382586&di=a65985f98701b3232172f90a89763a9e&imgtype=0&src=http%3A%2F%2Fimg.ewebweb.com%2Fuploads%2F20191231%2F10%2F1577759575-COAacTqFYk.jpg";
+let appInst =  getApp();
+
 Page({
   onLoad:function(){},
   data: {
+    StatusBar: appInst.globalData.StatusBar,
+    CustomBar: appInst.globalData.CustomBar,
     current: '1',
     dataSet: [{
         id: '5b61575a4256350d332d03a1',
@@ -102,23 +106,6 @@ Page({
     interval: 3000, //间隔时间
     duration: 1000, //滑动时间
   },
-  onBarChange(e) {
-    if(e.detail.key == 1){
-      wx.navigateTo({
-        url: '../street/street',
-      })
-    }
-    if(e.detail.key == 2){
-      wx.navigateTo({
-        url: '../pick/pick',
-      })
-    }
-    if(e.detail.key == 4){
-      wx.navigateTo({
-        url: '../me/me',
-      })
-    }
-  },
   // 改变卡片展开状态事件的回调
   handleExpand: function (event) {
     console.log(event.detail)
@@ -129,19 +116,21 @@ Page({
     console.log(event.detail)
     console.log('tap card!')
   },
-
   // 点赞
   handleLike: function (event) {
     console.log(event.detail)
     console.log('like!')
   },
-
   // 点击用户头像区域
   handleUserEvent: function (event) {
     console.log(event.detail)
     console.log('user!')
   },
-
+  NavChnavBottomChangeange: function(e){
+    wx.redirectTo({
+      url:appInst.globalData.nabbootomMap[e.currentTarget.dataset.cur]
+    });
+  },
   onReachBottom: function () {
     console.log('reach bottom')
     console.log("YYYY:", this.data.dataSet)

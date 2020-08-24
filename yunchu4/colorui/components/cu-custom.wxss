@@ -1,0 +1,4 @@
+/* colorui/components/cu-custom.wxss */
+.cus_bg_winer{
+    background-color: #f7ac09f1;
+}

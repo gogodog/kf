@@ -18,14 +18,41 @@ App({
 
     wx.getSystemInfo({
       success: (res) => {
-        let clientHeight = res.windowHeight;
-        let clientWidth = res.windowWidth;
-        let rpxR = 750 / clientWidth;
-        let calc = clientHeight * rpxR - 406;
-        this.globalData.winHeight = calc;
+        this.setWinHeight(res)
+        this.setGlobalColorUI(res)
       },
     });
+    wx.getSystemInfo({
+      success: e => {
+        this.globalData.StatusBar = e.statusBarHeight;
+        let capsule = wx.getMenuButtonBoundingClientRect();
+        if (capsule) {
+          this.globalData.Custom = capsule;
+          this.globalData.CustomBar = capsule.bottom + capsule.top - e.statusBarHeight;
+        } else {
+          this.globalData.CustomBar = e.statusBarHeight + 50;
+        }
+      }
+    })
   },
+  setWinHeight: function(res){
+    let clientHeight = res.windowHeight;
+    let clientWidth = res.windowWidth;
+    let rpxR = 750 / clientWidth;
+    let calc = clientHeight * rpxR - 406;
+    this.globalData.winHeight = calc;
+  },
+  setGlobalColorUI: function(e){
+    this.globalData.StatusBar = e.statusBarHeight;
+    let capsule = wx.getMenuButtonBoundingClientRect();
+    if (capsule) {
+      this.globalData.Custom = capsule;
+      this.globalData.CustomBar = capsule.bottom + capsule.top - e.statusBarHeight;
+    } else {
+      this.globalData.CustomBar = e.statusBarHeight + 50;
+    }
+  },
+
   getUserInfo: function (callback) {
     var that = this
     if (this.globalData.userInfo) {
@@ -42,5 +69,12 @@ App({
   globalData: {
     userInfo: "++++",
     winHeight: null,
+    nabbootomMap: [
+      "/pages/index/index",
+      "/pages/street/street",
+      "/pages/pick/pick",
+      "/pages/todo/todo",
+      "/pages/me/me"
+    ]
   },
 });

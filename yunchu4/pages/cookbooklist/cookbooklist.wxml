@@ -1,14 +1,14 @@
-<view class="box">
-  <view class="box-head">
-    <wux-tabbar defaultCurrent="{{tabCurrent}}" bind:change="tagChange" backgroundColor="#FFCC00">
+<scroll-view scroll-y="{{modalName==null}}" class="page {{modalName!=null?'show':''}}" lower-threshold="100" bindscrolltolower="hotload">
+  <cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">订单列表</view>
+  </cu-custom>
+  <wux-tabbar defaultCurrent="{{tabCurrent}}" bind:change="tagChange" backgroundColor="background-image: var(--gradualPink);color: var(--white);">
       <wux-tabbar-item prefixCls="wux-tabbar1-item" key="0" title="未发布"></wux-tabbar-item>
       <wux-tabbar-item prefixCls="wux-tabbar1-item" key="1" title="已发布"></wux-tabbar-item>
       <wux-tabbar-item prefixCls="wux-tabbar1-item" key="2" title="已删除"></wux-tabbar-item>
     </wux-tabbar>
-  </view>
-  <scroll-view class="box-scroll" scroll-y="true" lower-threshold="100" bindscrolltolower="hotload">
-    <wux-white-space size="large" />
-    <wux-wing-blank wx:for="{{contentlist[tabCurrent].rows}}" wx:key="index" wx:for-item="cbook" size="default">
+<wux-wing-blank wx:for="{{contentlist[tabCurrent].rows}}" wx:key="index" wx:for-item="cbook" size="default">
       <listcard title="{{tabCurrent + '==' +cbook.id + '-' + cbook.name}}" time="{{cbook.cupdate_time}}" tag="{{[{color:'red',title:'海鲜'}, {color:'black',title:'川菜'}]}}" bind:delete="predeleteCookBook" data-deleteId="{{cbook.id}}" data-name="{{cbook.name}}" isSlotBody="{{true}}" selfMoreText="{{true}}" isShowDelete='{{true}}'>
         <view slot="body">
           <wux-cell-group title="食材">
@@ -24,9 +24,10 @@
         </view>
       </listcard>
     </wux-wing-blank>
-    <wux-white-space body-style="margin-top: 60rpx" />
-    <wux-divider text="云厨" />
-    <wux-white-space body-style="margin-top: 60rpx" />
-  </scroll-view>
-</view>
+
+
+
+
+
+</scroll-view>
 <wux-dialog id="wux-dialog" />

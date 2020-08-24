@@ -1,10 +1,13 @@
 import {ServerApi} from '../../api/serverapi'
 import { $wuxDialog } from '../../lib/index'
 
+let appInst =  getApp();
 let sapi = new ServerApi();
 
 Page({
   data: {
+    StatusBar: appInst.globalData.StatusBar,
+    CustomBar: appInst.globalData.CustomBar,
     tabCurrent:0,
 
     contentlist:[

@@ -4,17 +4,18 @@
     "pages/cookbooklist/cookbooklist",
     "pages/me/me",
     "pages/pick/pick",
-    "pages/newCookBook/newCookBook",
     "pages/logs/logs",
     "pages/street/street"
 
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
+  "window": {
+    "navigationBarBackgroundColor": "#39b54a",
+    "navigationBarTitleText": "【DOIIIT】",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "white"
   },
-  "style": "v2",
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
   "sitemapLocation": "sitemap.json"
 }

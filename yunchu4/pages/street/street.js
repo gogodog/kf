@@ -1,9 +1,15 @@
-const app = getApp();
+let appInst = getApp();
 Page({
   data: {
+    StatusBar: appInst.globalData.StatusBar,
+    CustomBar: appInst.globalData.CustomBar,
     userInfo:""
   },
-
+  NavChnavBottomChangeange: function(e){
+    wx.redirectTo({
+      url:appInst.globalData.nabbootomMap[e.currentTarget.dataset.cur]
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
