@@ -12,8 +12,8 @@ Page({
 
     msgInput:'',
     //status ==> 0:发送成功 1:发送失败 2:对方撤销 3:自己撤销 4:拒收 5:不是好友关系 6:接收成功
-    //type   ==> 0:文字 1:图片 2:语音 3:定位
-    chats:[{msg:"HHHi",time:"00:0X",status:0, type:0, self:true}]
+    //type   ==> 0:文字 1:图片 2:语音 3:定位 4+:异常提醒信息 5+:正常提醒
+    chats:[]
   },
   msgInput:function(e){
     var ival = e.detail.value;
@@ -24,32 +24,6 @@ Page({
   },
   onLoad:function(){
     this.createChat();
-    //this.moca();
-  },
-  moca: function(){
-    let chats = this.data.chats;
-    let moca = [
-      {msg:"Hi, 这是我的聊天室-发送成功",time:"13:23",status:0, type:0, self:true},
-      {msg:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598384984908&di=80ef9f5afb3a612f53c5a64c9ff606cb&imgtype=0&src=http%3A%2F%2Fpic.90sjimg.com%2Fback_pic%2Fqk%2Fback_origin_pic%2F00%2F01%2F90%2F7b96b74a0a2b615089859de45551ecc0.jpg",time:"13:23",status:0, type:1, self:true},
-      {msg:"Hi, 这是我的聊天室-发送失败",time:"13:24",status:1, type:0, self:true},
-      {msg:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598384984908&di=80ef9f5afb3a612f53c5a64c9ff606cb&imgtype=0&src=http%3A%2F%2Fpic.90sjimg.com%2Fback_pic%2Fqk%2Fback_origin_pic%2F00%2F01%2F90%2F7b96b74a0a2b615089859de45551ecc0.jpg",time:"13:23",status:1, type:1, self:true},
-      {msg:"Hi, 这是我的聊天室-对方撤销",time:"13:25",status:2, type:0, self:false},
-      {msg:"Hi, 这是我的聊天室-自己撤销",time:"13:26",status:3, type:0, self:true},
-      {msg:"Hi, 这是我的聊天室-自己撤销",time:"13:26",status:3, type:0, self:true},
-
-      {msg:"Hi, 这是我的聊天室-发送定位",time:"13:26",status:0, type:3, self:true},
-      {msg:"Hi, 这是我的聊天室-发送定位",time:"13:26",status:0, type:2, self:true},
-
-      {msg:"Hi, 这是我的聊天室-对方拒收",time:"13:27",status:4, type:0, self:false},
-      {msg:"Hi, 这是我的聊天室-不是好友",time:"13:28",status:5, type:0, self:false},
-      {msg:"Hi, 我是你的好朋友",time:"13:29",status:6, type:0, self:false}
-    ]
-    for(let i = 0 ; i< moca.length ; i++){
-      chats.push(moca[i]);
-    }
-    this.setData({
-      chats: chats
-    })
   },
   setChats: function(msg){
     let chats = this.data.chats;
@@ -69,12 +43,14 @@ Page({
     wxs = chat.startConnect(userId,this.openCk, this.erCk, this.msgCk, this.closeCk);
   },
   openCk:function(msg){
-    msg.self=false;
-    console.log("chat open:",msg)
-    this.setChats(msg);
+    let m = {msg:"欢迎进行客服询问！",type:50};
+    this.setChats(m);
   },
   erCk:function(res){
-    console.log("chat err:",res)
+    if(this.checkWebSocket()){
+      let m = {msg:"服务器中断，请检查网络",type:40};
+      this.setChats(m);
+    }
   },
   msgCk:function(res){
     console.log("recive msg:",res)
@@ -89,7 +65,7 @@ Page({
     let rec = this.chatMessage(m);
   },
   chatMessage: function(msg){
-    if(!wxs || wxs.readyState != wxs.OPEN){
+    if(this.checkWebSocket()){
       this.createChat();
     }
     chat.sendOne(wxs, msg, 
@@ -101,6 +77,9 @@ Page({
         this.setChats(msg);
       }
     )
+  },
+  checkWebSocket: function(){
+    return !wxs || wxs.readyState != wxs.OPEN;
   },
   closeChat: function(){
     console.log("closed")
