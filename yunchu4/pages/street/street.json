@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "card":"../../comment/card/card"
+    "card":"../../comment/card/card",
+    "wux-white-space": "../../lib/white-space/index"
   }
 }

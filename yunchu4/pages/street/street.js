@@ -1,70 +1,20 @@
 import { CommonFuc } from "../../api/common";
 let appInst = getApp();
+const Tabs = [{name:"关注",index:"0"}, {name:"食街",index:"1"}];
 Page({
   data: {
     StatusBar: appInst.globalData.StatusBar,
     CustomBar: appInst.globalData.CustomBar,
-    userInfo:""
+    Tabs,
+    TabCur:0
   },
   NavChnavBottomChangeange: function(e){
     new CommonFuc().NavChnavBottomChangeange(e);
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    let that = this;
-    app.getUserInfo(function(res){
-      that.setData({
-        userInfo:res
-      })
+  tabChange: function(e) {
+    console.log("tagChange:", e)
+    this.setData({
+      TabCur: e.currentTarget.dataset.id
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

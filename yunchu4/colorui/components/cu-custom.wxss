@@ -2,3 +2,29 @@
 .cus_bg_winer{
     background-color: #f7ac09f1;
 }
+.cu-custom-nav{
+    display: block;
+    position: relative;
+}
+.cu-bar-nav .content-nav{
+position: absolute;
+text-align: center;
+left: 0;
+right: 0;
+bottom: 0;
+top: 0;
+margin: auto;
+height: 60rpx;
+font-size: 32rpx;
+line-height: 60rpx;
+cursor: none;
+pointer-events: none;
+text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
+
+}
+.yc_top{
+    position:fixed;z-index:100
+}
+

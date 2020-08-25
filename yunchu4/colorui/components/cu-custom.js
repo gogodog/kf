@@ -14,6 +14,18 @@ Component({
     bgColor: {
       type: String,
       default: ''
+    },
+    tabs:{
+      type:Array,
+      default:[]
+    },
+    tabCur:{
+      type:Number,
+      default:0
+    },
+    bgStyle: {
+      type: String,
+      default: ''
     }, 
     isCustom: {
       type: [Boolean, String],
@@ -26,6 +38,10 @@ Component({
     bgImage: {
       type: String,
       default: ''
+    },
+    model: {
+      type: String,
+      default: 'nav'
     },
   },
   /**
@@ -40,6 +56,16 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    TabChangeEvent(e){
+      console.log("c:::", e)
+      var detail = {
+        id: event.currentTarget.dataset.id
+      } 
+      // 触发事件的选项
+      var option = {} 
+      // 使用 triggerEvent 方法触发自定义组件事件，指定事件名、detail对象和事件选项
+      this.triggerEvent("iclick", detail, option)
+    },
     BackPage() {
       wx.navigateBack({
         delta: 1

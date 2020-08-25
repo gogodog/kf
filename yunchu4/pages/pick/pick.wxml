@@ -1,5 +1,7 @@
 <!-- 选配页面 -->
-<cu-custom bgImage="https://image.weilanwl.com/color2.0/plugin/cjkz2329.jpg"/>
+<cu-custom model="nav" bgColor="bg-red" isBack="{{false}}" isCustom="{{false}}">
+  <text slot="content">制作菜谱</text>
+</cu-custom>
 <view class="box">
   <view class="box-head">
     <wux-notice-bar loop>{{"👋&nbsp ==> "+noticecontent}}</wux-notice-bar>

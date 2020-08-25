@@ -1,1 +1,13 @@
 /* pages/street/street.wxss */
+.yc_top{
+    position:fixed;z-index:100
+}
+.choosed{
+    border-bottom: 1px solid;
+}
+.tab-item{
+    position: relative;
+    z-index: 99999;
+    padding-bottom: 10rpx;
+    margin: 0 25rpx;
+}
