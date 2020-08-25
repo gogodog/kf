@@ -3,7 +3,7 @@
 <scroll-view scroll-y class="scrollPage">
   <view class="UCenter-bg">
 	<view class="cu-avatar xl round margin-left" style="background-image:url(https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3379848400,1190658504&fm=15&gp=0.jpg);"></view>
-    <view class="text-xl">木桑有酩
+    <view class="text-xl">六孔
       <text class="text-df">v2.0</text>
     </view>
     <image src="https://raw.githubusercontent.com/weilanwl/ColorUI/master/demo/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
@@ -26,13 +26,13 @@
       </view>
     </view>
 	<view class="cu-item arrow">
-      <button class="cu-btn content" open-type="feedback">
-        <text class="cuIcon-writefill text-cyan"></text>
-        <text class="text-grey">云厨红包</text>
-      </button>
+      <navigator class="content" url="/pages/cookbooklist/cookbooklist" hover-class="none">
+        <text class="cuIcon-formfill text-green"></text>
+        <text class="text-grey">红包</text>
+      </navigator>
     </view>
     <view class="cu-item arrow">
-      <navigator class="content" url="/pages/cookbooklist/cookbooklist" hover-class="none">
+      <navigator class="content" url="/pages/kefu/kefu" hover-class="none">
         <text class="cuIcon-formfill text-green"></text>
         <text class="text-grey">客服中心</text>
       </navigator>

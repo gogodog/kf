@@ -32,5 +32,5 @@ overflow: hidden;
     padding-bottom: 10rpx;
 }
 .yc-nav-item .choosed{
-    border-bottom: 1rpx solid;
+    border-bottom: 1px solid;
 }

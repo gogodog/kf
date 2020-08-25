@@ -5,7 +5,8 @@
     "pages/me/me",
     "pages/pick/pick",
     "pages/logs/logs",
-    "pages/street/street"
+    "pages/street/street",
+    "pages/kefu/kefu"
 
   ],
   "window": {

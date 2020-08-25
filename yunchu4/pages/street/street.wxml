@@ -55,6 +55,7 @@
     isUnLiked="{{false}}"
     unlikeNumber='{{2}}'
     isShowDelete='{{true}}'></card>
+    <wux-white-space body-style="height: 95rpx"/>
 </scroll-view>
 
 <scroll-view wx:if="{{TabCur == 0}}">
@@ -186,6 +187,7 @@
     isUnLiked="{{false}}"
     unlikeNumber='{{2}}'
     isShowDelete='{{true}}'></card>
+    <wux-white-space body-style="height: 95rpx"/>
 </scroll-view>
     
     <view class="cu-bar tabbar bg-white foot">

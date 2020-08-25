@@ -14,10 +14,14 @@ import com.google.gson.reflect.TypeToken;
 public class GsonUtil {
 	// 不用创建对象,直接使用Gson.就可以调用方法
 	private static Gson gson = null;
+	private static Gson gson_date = null;
 	// 判断gson对象是否存在了,不存在则创建对象
 	static {
 		if (gson == null) {
 			gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+		}
+		if (gson_date == null) {
+			gson_date = new GsonBuilder().setDateFormat("yyyy/MM/dd HH:mm:ss").create();
 		}
 	}
 
