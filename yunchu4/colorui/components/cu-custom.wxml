@@ -20,9 +20,7 @@
 <view wx:if="{{model=='tab'}}" class="cu-custom" style="height:{{CustomBar}}px;">
   <view class="cu-bar fixed {{bgImage!=''?'none-bg text-white bg-img':''}} {{bgColor}}" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}};{{bgStyle?bgStyle:''}}">
     <view class="content" style="top:{{StatusBar}}px; width:100%">
-        <view class="cu-item {{index==tabCur?'text-white cur':''}}" wx:for="{{tabs}}" wx:key="index" bindtap="TabChangeEvent" data-id="{{index}}">
-          {{item.name}}
-        </view>
+        <span class="yc-nav-item {{tabCur==index?'choosed':''}}" wx:for="{{tabs}}" wx:key="index" bindtap="TabChangeEvent" data-id="{{index}}">{{item.name}}</span>
     </view>
   </view>
 </view>

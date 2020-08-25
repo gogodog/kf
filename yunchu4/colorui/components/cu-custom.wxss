@@ -27,4 +27,10 @@ overflow: hidden;
 .yc_top{
     position:fixed;z-index:100
 }
-
+.yc-nav-item{
+    margin: 20rpx;
+    padding-bottom: 10rpx;
+}
+.yc-nav-item .choosed{
+    border-bottom: 1rpx solid;
+}

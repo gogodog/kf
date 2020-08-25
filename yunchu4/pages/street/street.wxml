@@ -1,5 +1,5 @@
 <!--pages/street/street.wxml-->
-<cu-custom model="nav" bgColor="bg-red"/>
+<cu-custom model="tab" bgColor="bg-red" tabs="{{Tabs}}" tabCur="{{TabCur}}"/>
 <scroll-view scroll-x class="bg-red nav text-center yc_top">
   <view class="cu-item {{index==TabCur?'text-white cur':''}}" wx:for="{{Tabs}}" wx:key="index" bindtap="tabChange" data-id="{{index}}">
     {{item.name}}
