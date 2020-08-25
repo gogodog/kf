@@ -87,21 +87,21 @@
     </block>
   </wux-cell-group>
 </wux-popup>
-<wux-fab-button position="bottomRight" theme="balanced" direction="vertical" spaceBetween="30" sAngle="180" eAngle="180" buttons="{{ buttons }}" bind:click="operateClick" />
+<wux-fab-button position="bottomRight" theme="white" direction="vertical" spaceBetween="40" sAngle="180" bodyStyle="bottom:120rpx" eAngle="180" buttons="{{ buttons }}" bind:click="operateClick" />
 </scroll-view>
 </view>
 <wux-dialog id="wux-dialog" />
 <wux-dialog id="wux-dialog--alert" />
 <wux-notification id="wux-notification" />
 <wux-toptips id="wux-toptips" />
-<view class="cu-bar tabbar bg-black foot">
+<view class="cu-bar tabbar bg-white foot">
     <view class="action text-gray" bindtap="NavChnavBottomChangeange" data-cur="0">
       <view class="cuIcon-homefill"></view> 首页
     </view>
     <view class="action text-gray" bindtap="NavChnavBottomChangeange" data-cur="1">
       <view class="cuIcon-similar"></view> 食街
     </view>
-    <view class="action text-geen add-action" bindtap="NavChnavBottomChangeange" data-cur="2">
+    <view class="action text-geen add-action">
       <button class="cu-btn cuIcon-add bg-green shadow"></button>
       菜谱
     </view>

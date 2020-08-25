@@ -24,10 +24,5 @@
         </view>
       </listcard>
     </wux-wing-blank>
-
-
-
-
-
 </scroll-view>
 <wux-dialog id="wux-dialog" />

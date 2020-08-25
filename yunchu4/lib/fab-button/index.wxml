@@ -1,5 +1,5 @@
 <view class="{{ classes.backdrop }}" wx:if="{{ backdrop && buttonVisible }}"></view>
-<view class="wux-class {{ classes.wrap }}" catchtap="onToggle">
+<view class="wux-class {{ classes.wrap }}" catchtap="onToggle" style="{{bodyStyle}}">
 	<view class="{{ classes.action }}" hover-class="{{ classes.hover }}">
 		<image class="{{ classes.text }}" src="{{ action }}" wx:if="{{ action }}" />
 		<slot name="action" wx:else></slot>

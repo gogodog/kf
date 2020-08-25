@@ -10,6 +10,7 @@ import {
 import {
   ServerApi
 } from '../../api/serverapi'
+import { CommonFuc } from "../../api/common";
 let sapi = new ServerApi();
 let appInst = getApp();
 
@@ -92,9 +93,7 @@ Page({
     content_method_catch: '',
   },
   NavChnavBottomChangeange: function(e){
-    wx.redirectTo({
-      url:appInst.globalData.nabbootomMap[e.currentTarget.dataset.cur]
-    });
+    new CommonFuc().NavChnavBottomChangeange(e);
   },
   setSseasoningKey: function (v) {
     this.setData({

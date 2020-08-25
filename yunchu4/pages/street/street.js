@@ -1,3 +1,4 @@
+import { CommonFuc } from "../../api/common";
 let appInst = getApp();
 Page({
   data: {
@@ -6,9 +7,7 @@ Page({
     userInfo:""
   },
   NavChnavBottomChangeange: function(e){
-    wx.redirectTo({
-      url:appInst.globalData.nabbootomMap[e.currentTarget.dataset.cur]
-    });
+    new CommonFuc().NavChnavBottomChangeange(e);
   },
   /**
    * 生命周期函数--监听页面加载

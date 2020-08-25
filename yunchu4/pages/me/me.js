@@ -1,4 +1,4 @@
-// pages/me/me.js
+import { CommonFuc } from "../../api/common";
 const bottomLogo = "../../img/yunchu.gif";
 let appInst = getApp();
 Page({
@@ -31,9 +31,7 @@ Page({
     }]
   },
   NavChnavBottomChangeange: function(e){
-    wx.redirectTo({
-      url:appInst.globalData.nabbootomMap[e.currentTarget.dataset.cur]
-    });
+    new CommonFuc().NavChnavBottomChangeange(e)
   },
   gotoPage: function(e){
     console.log("GoTo:", e)

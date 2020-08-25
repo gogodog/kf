@@ -62,7 +62,7 @@
 
 
 
-<view class="cu-bar tabbar bg-black foot">
+<view class="cu-bar tabbar bg-white foot">
     <view class="action text-gray" bindtap="NavChnavBottomChangeange" data-cur="0">
       <view class="cuIcon-homefill"></view> 首页
     </view>
@@ -79,7 +79,7 @@
       </view>
       toDo
     </view>
-    <view class="action text-green" bindtap="NavChnavBottomChangeange" data-cur="4">
+    <view class="action text-green">
       <view class="cuIcon-my">
         <view class="cu-tag badge"></view>
       </view>

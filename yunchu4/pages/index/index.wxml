@@ -25,7 +25,7 @@
 	</view>
 </view>
 <view class="cu-bar tabbar bg-white foot">
-    <view class="action text-green" bindtap="NavChnavBottomChangeange" data-cur="0">
+    <view class="action text-green">
       <view class="cuIcon-homefill"></view> 首页
     </view>
     <view class="action text-gray" bindtap="NavChnavBottomChangeange" data-cur="1">
