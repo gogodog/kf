@@ -14,7 +14,7 @@ Page({
   tabChange: function(e) {
     console.log("tagChange:", e)
     this.setData({
-      TabCur: e.currentTarget.dataset.id
+      TabCur: e.detail.id
     })
   }
 })

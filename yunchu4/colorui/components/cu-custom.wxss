@@ -34,3 +34,11 @@ overflow: hidden;
 .yc-nav-item .choosed{
     border-bottom: 1px solid;
 }
+.choosed{
+    color:yellow;
+    border-bottom:1px solid;
+}
+.tab-item{
+    margin: 0 20rpx;
+    font-size:32rpx;
+}

@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/findex/findex",
     "pages/street/street",
     "pages/index/index",
     "pages/cookbooklist/cookbooklist",

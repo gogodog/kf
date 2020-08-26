@@ -1,0 +1,10 @@
+<!--pages/findex/findex.wxml-->
+<text>pages/findex/findex.wxml</text>
+
+
+
+
+
+
+<!-- foot -->
+<footnav tabCur="{{0}}" />

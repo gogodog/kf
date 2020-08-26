@@ -2,10 +2,3 @@
 .yc_top{
     position:fixed;z-index:100
 }
-.choosed{
-    color:yellow
-}
-.tab-item{
-    margin: 0 20rpx;
-    font-size:32rpx;
-}
