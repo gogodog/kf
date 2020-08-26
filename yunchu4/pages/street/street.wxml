@@ -1,11 +1,21 @@
 <!--pages/street/street.wxml-->
-<cu-custom model="tab" bgColor="bg-red" tabs="{{Tabs}}" tabCur="{{TabCur}}"/>
-<scroll-view scroll-x class="bg-red nav text-center yc_top">
+<!-- <cu-custom model="tab" bgColor="bg-red" tabs="{{Tabs}}" tabCur="{{TabCur}}"/> -->
+
+
+<view class="cu-custom bg-red" style="height:{{CustomBar}}px;position: fixed;left: 0;right: 0;display: flex;justify-content: center;z-index: 1;">
+ <view style="height:{{CustomBar}}px;display: flex;align-items: flex-end;">
+        <span class="tab-item {{item.index==TabCur?'choosed':''}}" wx:for="{{Tabs}}" style="line-height:{{StatusBar}}px;" bindtap="tabChange" data-id="{{item.index}}">{{item.name}}{{item.index==TabCur?'|':''}}</span>
+  </view>
+</view>
+
+
+
+<!-- <scroll-view scroll-x class="bg-red nav text-center yc_top">
   <view class="cu-item {{index==TabCur?'text-white cur':''}}" wx:for="{{Tabs}}" wx:key="index" bindtap="tabChange" data-id="{{index}}">
     {{item.name}}
   </view>
-</scroll-view>
-<wux-white-space body-style="height: 90rpx"/>
+</scroll-view> -->
+<wux-white-space body-style="height: {{CustomBar}}px"/>
 <scroll-view wx:if="{{TabCur == 1}}" scroll-y class="scrollPage">
 <card
     headerImg='{{userInfo.avatarUrl}}'
@@ -58,7 +68,7 @@
     <wux-white-space body-style="height: 95rpx"/>
 </scroll-view>
 
-<scroll-view wx:if="{{TabCur == 0}}">
+<scroll-view wx:if="{{TabCur == 0}}" scroll-y class="scrollPage">
 <card
     headerImg='{{userInfo.avatarUrl}}'
     title='2诺夏梦陇'
