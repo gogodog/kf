@@ -19,6 +19,4 @@ public class ChatController {
 //        mav.addObject("userId", userId);
         return mav;
     }
-
-
 }

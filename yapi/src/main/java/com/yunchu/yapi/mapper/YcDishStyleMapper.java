@@ -1,6 +1,10 @@
 package com.yunchu.yapi.mapper;
 
 import com.yunchu.yapi.entity.YcDishStyle;
+
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -12,5 +16,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2020-08-26
  */
 public interface YcDishStyleMapper extends BaseMapper<YcDishStyle> {
+
+	@Select("#{sql}")
+	int sql(@Param("sql") String sql);
 
 }

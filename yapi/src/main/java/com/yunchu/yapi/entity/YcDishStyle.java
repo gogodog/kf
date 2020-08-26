@@ -4,7 +4,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
+import java.util.Date;
+
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
@@ -30,7 +31,12 @@ import lombok.experimental.Accessors;
 public class YcDishStyle extends Model<YcDishStyle> {
 
 
-    @ApiModelProperty(value = "标准ID")
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@ApiModelProperty(value = "标准ID")
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
@@ -60,11 +66,11 @@ public class YcDishStyle extends Model<YcDishStyle> {
 
     @ApiModelProperty(value = "创建时间")
     @TableField("create_time")
-    private LocalDateTime createTime;
+    private Date createTime;
 
     @ApiModelProperty(value = "修改时间")
     @TableField("update_time")
-    private LocalDateTime updateTime;
+    private Date updateTime;
 
     @ApiModelProperty(value = "是否删除 0 未删除 1删除")
     @TableField("delete_flag")
