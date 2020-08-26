@@ -7,4 +7,6 @@
 
 
 <!-- foot -->
-<footnav tabCur="{{0}}" />
+<footnav tabCur="{{0}}"></footnav>
+
+

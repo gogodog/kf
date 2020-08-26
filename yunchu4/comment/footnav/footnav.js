@@ -1,12 +1,4 @@
-const appInst = getApp();
 Component({
-  /**
-   * 组件的一些选项
-   */
-  options: {
-    addGlobalClass: true,
-    multipleSlots: true
-  },
   /**
    * 组件的对外属性
    */
@@ -20,9 +12,6 @@ Component({
    * 组件的初始数据
    */
   data: {
-    StatusBar: app.globalData.StatusBar,
-    CustomBar: app.globalData.CustomBar,
-    Custom: app.globalData.Custom,
     tabCur:0,
     NavItem: [
       "/pages/index/index",
@@ -38,9 +27,9 @@ Component({
   methods: {
     NavChnavBottomChangeange: function(e){
       wx.redirectTo({
-        url:appInst.globalData.nabbootomMap[e.currentTarget.dataset.cur]
+        url:this.data.NavItem[e.currentTarget.dataset.cur]
       });
-      this.setdata({
+      this.setData({
         tabCur:e.currentTarget.dataset.cur
       })
     }
