@@ -183,28 +183,4 @@
     isShowDelete='{{true}}'></card>
     <wux-white-space body-style="height: 95rpx"/>
 </scroll-view>
-    
-    <view class="cu-bar tabbar bg-white foot">
-    <view class="action text-gray" bindtap="NavChnavBottomChangeange" data-cur="0">
-      <view class="cuIcon-homefill"></view> 首页
-    </view>
-    <view class="action text-green">
-      <view class="cuIcon-similar"></view> 食街
-    </view>
-    <view class="action text-gray add-action" bindtap="NavChnavBottomChangeange" data-cur="2">
-      <button class="cu-btn cuIcon-add bg-green shadow"></button>
-      菜谱
-    </view>
-    <view class="action text-gray" bindtap="NavChnavBottomChangeange" data-cur="3">
-      <view class="cuIcon-cart">
-        <view class="cu-tag badge">99</view>
-      </view>
-      toDo
-    </view>
-    <view class="action text-gray" bindtap="NavChnavBottomChangeange" data-cur="4">
-      <view class="cuIcon-my">
-        <view class="cu-tag badge"></view>
-      </view>
-      我的
-    </view>
-  </view>
+<footnav tabCur="{{1}}"></footnav>

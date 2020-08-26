@@ -19,6 +19,8 @@ import org.apache.commons.lang3.StringUtils;
  * @author cott.wen
  */
 public class CodeGenerator {
+	
+	public static final boolean NEED_SERVICE_AND_CONTROLLER = Boolean.TRUE;
 
     /**
      * <p>
@@ -79,7 +81,7 @@ public class CodeGenerator {
         // 全局 相关配置
         mpg.setGlobalConfig(gc);
 
-        // TODO 数据源配置
+        // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setUrl("jdbc:mysql://rm-2zep3xy7yb8h7h3hzyo.mysql.rds.aliyuncs.com:3306/yapi?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=true&characterEncoding=UTF-8");
         dsc.setDriverName("com.mysql.jdbc.Driver");
@@ -87,7 +89,7 @@ public class CodeGenerator {
         dsc.setPassword("YunchuApi");
         mpg.setDataSource(dsc);
 
-        // TODO 包配置
+        // 包配置
         PackageConfig pc = new PackageConfig();
         // 父包名。如果为空，将下面子包名必须写全部， 否则就只需写子包名
         pc.setParent("com.yunchu.yapi");
@@ -99,7 +101,7 @@ public class CodeGenerator {
         pc.setServiceImpl("service.impl");
         mpg.setPackageInfo(pc);
 
-        // TODO 自定义配置
+        // 自定义配置
         InjectionConfig cfg = new InjectionConfig() {
             @Override
             public void initMap() {
@@ -122,13 +124,15 @@ public class CodeGenerator {
         //这些文件不输出
         TemplateConfig templateConfig = new TemplateConfig();
         templateConfig.setXml(null);
-        templateConfig.setController(null);
-        templateConfig.setService(null);
-        templateConfig.setServiceImpl(null);
+        if(!NEED_SERVICE_AND_CONTROLLER){
+            templateConfig.setController(null);
+            templateConfig.setService(null);
+            templateConfig.setServiceImpl(null);
+        }
         
         mpg.setTemplate(templateConfig);
 
-        // TODO 策略配置
+        // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         // 数据库表映射到实体的命名策略，驼峰原则
         strategy.setNaming(NamingStrategy.underline_to_camel);
@@ -142,7 +146,7 @@ public class CodeGenerator {
         strategy.setEntityLombokModel(true);
         // 设置逻辑删除键
         strategy.setLogicDeleteFieldName("delete_flag");
-        // TODO 指定生成的bean的数据库表名
+        // 指定生成的bean的数据库表名
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         // 驼峰转连字符
         strategy.setControllerMappingHyphenStyle(true);

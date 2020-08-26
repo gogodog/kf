@@ -5,20 +5,26 @@
     <view class="action {{tabCur==1?'text-green':'text-gray'}}" bindtap="NavChnavBottomChangeange" data-cur="1">
       <view class="cuIcon-similar"></view> 食街
     </view>
-    <view class="action {{tabCur==2?'text-green':'text-gray'}} add-action" bindtap="NavChnavBottomChangeange" data-cur="2">
+    <view class="action add-action {{tabCur==2?'text-green':'text-gray'}}" bindtap="NavChnavBottomChangeange" data-cur="2">
       <button class="cu-btn cuIcon-add bg-green shadow"></button>
       菜谱
     </view>
-    <view class="action {{tabCur==3?'text-green':'text-gray'}} " bindtap="NavChnavBottomChangeange" data-cur="3">
+    <view class="action {{tabCur==3?'text-green':'text-gray'}}" bindtap="NavChnavBottomChangeange" data-cur="3">
       <view class="cuIcon-cart">
         <view class="cu-tag badge">99</view>
       </view>
       toDo
     </view>
-    <view class="action {{tabCur==4?'text-green':'text-gray'}} " bindtap="NavChnavBottomChangeange" data-cur="4">
+    <view class="action {{tabCur==4?'text-green':'text-gray'}}" bindtap="NavChnavBottomChangeange" data-cur="4">
       <view class="cuIcon-my">
         <view class="cu-tag badge"></view>
       </view>
       我的
+    </view>
+    <view class="action {{tabCur==5?'text-green':'text-gray'}}" bindtap="NavChnavBottomChangeange" data-cur="5">
+      <view class="cuIcon-my">
+        <view class="cu-tag badge"></view>
+      </view>
+      新首页
     </view>
   </view>

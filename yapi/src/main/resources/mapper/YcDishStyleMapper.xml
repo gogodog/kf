@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yunchu.yapi.mapper.YcDishStyleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yunchu.yapi.entity.YcDishStyle">
+        <id column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="cnname" property="cnname" />
+        <result column="enname" property="enname" />
+        <result column="p_id" property="pId" />
+        <result column="miaoshu" property="miaoshu" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="delete_flag" property="deleteFlag" />
+    </resultMap>
+
+</mapper>

@@ -30,9 +30,6 @@ Page({
       url: ''
     }]
   },
-  NavChnavBottomChangeange: function(e){
-    new CommonFuc().NavChnavBottomChangeange(e)
-  },
   gotoPage: function(e){
     console.log("GoTo:", e)
     wx.navigateTo({

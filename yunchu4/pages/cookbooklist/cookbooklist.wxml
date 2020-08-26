@@ -1,5 +1,5 @@
 <scroll-view scroll-y="{{modalName==null}}" class="page {{modalName!=null?'show':''}}" lower-threshold="100" bindscrolltolower="hotload">
-  <cu-custom bgColor="bg-gradual-pink" model="nav" isBack="{{true}}">
+  <cu-custom model="nav" isBack="{{true}}" bgColor="bg-red" >
     <view slot="backText">返回</view>
     <view slot="content">订单列表</view>
   </cu-custom>

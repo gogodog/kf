@@ -1,4 +1,16 @@
+const NavItem = [
+  "/pages/index/index",
+  "/pages/street/street",
+  "/pages/pick/pick",
+  "/pages/todo/todo",
+  "/pages/me/me",
+  "/pages/findex/findex",
+];
+
 Component({
+  options: {
+    addGlobalClass: true
+  },
   /**
    * 组件的对外属性
    */
@@ -12,25 +24,22 @@ Component({
    * 组件的初始数据
    */
   data: {
-    tabCur:0,
-    NavItem: [
-      "/pages/index/index",
-      "/pages/street/street",
-      "/pages/pick/pick",
-      "/pages/todo/todo",
-      "/pages/me/me"
-    ]
+    tabCur:0
   },
   /**
    * 组件的方法列表
    */
   methods: {
     NavChnavBottomChangeange: function(e){
+      let cur = e.currentTarget.dataset.cur;
+      if(this.data.tabCur == cur){
+        return;
+      }
       wx.redirectTo({
-        url:this.data.NavItem[e.currentTarget.dataset.cur]
+        url:NavItem[cur]
       });
       this.setData({
-        tabCur:e.currentTarget.dataset.cur
+        tabCur:cur
       })
     }
   }
