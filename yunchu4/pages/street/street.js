@@ -1,5 +1,5 @@
 let appInst = getApp();
-const Tabs = [{name:"关注",index:"0"}, {name:"食街",index:"1"}];
+const Tabs = [{name:"关注",index:"0"}, {name:"推荐",index:"1"}];
 Page({
   data: {
     StatusBar: appInst.globalData.StatusBar,

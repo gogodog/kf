@@ -1,0 +1,5 @@
+<scroll-view scroll-x class="bg-white nav text-center bg-red" style="position:fixed;top:{{CustomBar}}px;z-index:2">
+  <view class="cu-item {{index==tabCur?'text-blue cur':''}}" wx:key="index" wx:for="{{tabs}}" bindtap="TabChangeEvent" data-id="{{index}}">
+    {{item.name}}
+  </view>
+</scroll-view>
