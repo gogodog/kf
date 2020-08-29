@@ -2,67 +2,97 @@
 <cu-custom model="nav" bgColor="bg-red" isBack="{{false}}" isCustom="{{false}}">
   <text slot="content">制作菜谱</text>
 </cu-custom>
-<view class="box">
-  <view class="box-head">
-    <wux-notice-bar loop>{{"👋&nbsp ==> "+noticecontent}}</wux-notice-bar>
-  </view>
-  <scroll-view class="box-scroll" scroll-y="true" lower-threshold="100" bindscrolltolower="hotload">
-<wux-white-space body-style="height: 40rpx"/>
-  <view style="{{sfood_visible | sseasoning_visible ?'position: fixed' : ''}}">
-    <wux-steps direction="vertical">
-      <wux-step status="finish" title="食材">
-        <view slot="content" style="margin-top:60rpx">
-          <wux-cell-group wx:if="{{content_food.length > 0}}">
-            <wux-swipe-action wx:for="{{content_food}}" wx:index="{{index}}" autoClose right="{{swipeBut}}" data-id="{{item.id}}" bind:click="operateDelFood">
-              <wux-cell title="{{item.cnname}}" hover-class="none">
-                <wux-input-number default-value="{{item.weightval}}" min="0" max="200" longpress disabled="{{ false }}" slot="footer" data-rowid="{{item.id}}" bind:change="changeFoodWeightval" />
-              </wux-cell>
-            </wux-swipe-action>
-          </wux-cell-group>
-          <view class="page__hd" wx:if="{{content_food.length == 0}}">
-            <view class="page__title">点击下方操作按钮添加菜单</view>
-          </view>
-        </view>
-      </wux-step>
-      <wux-step status="finish" title="调料">
-        <view slot="content" style="margin-top:60rpx">
-          <wux-cell-group wx:if="{{content_seasoning.length > 0}}">
-            <wux-swipe-action wx:for="{{content_seasoning}}" wx:index="{{index}}" autoClose right="{{swipeBut}}" data-id="{{item.id}}" bind:click="operateDelSeasoning">
-              <wux-cell title="{{item.cnname}}" hover-class="none">
-                <wux-input-number default-value="{{item.weightval}}" min="0" max="200" longpress disabled="{{ false }}" slot="footer" data-rowid="{{item.id}}" bind:change="changeSeasoningWeightval" />
-              </wux-cell>
-            </wux-swipe-action>
-          </wux-cell-group>
-          <view class="page__hd" wx:if="{{content_seasoning.length == 0}}">
-            <view class="page__title">点击下方操作按钮添加菜单</view>
-          </view>
-        </view>
-      </wux-step>
-      <wux-step status="finish" title="做法">
-        <view slot="content" style="margin-top:60rpx">
-          <wux-cell-group>
-            <wux-cell hover-class="none">
-              <wux-textarea bind:change="setContentMethod" autoHeight defaultValue="{{content_method_catch}}" placeholder="请点击这里输入制作方法（建议每步使用换行隔开）" />
-            </wux-cell>
-          </wux-cell-group>
-        </view>
-      </wux-step>
-      <wux-step status="finish" title="需要注意">
-        <view slot="content" style="margin-top:60rpx">
-          <wux-cell-group>
-            <wux-cell hover-class="none">
-              <wux-textarea bind:change="setContentAttion" autoHeight defaultValue="{{content_attion_catch}}" placeholder="请点击这里输入需要注意的事项" />
-            </wux-cell>
-          </wux-cell-group>
-        </view>
-      </wux-step>
-    </wux-steps>
-    <wux-wing-blank size="large" body-style="margin-left: 50rpx; margin-right: 50rpx">
-      <wux-button block outline type="positive" bind:click="submitPick">确认提交</wux-button>
-    </wux-wing-blank>
-    <wux-white-space body-style="height: 100rpx" />
-  </view>
+<wux-notice-bar loop>{{"👋&nbsp ==> "+noticecontent}}</wux-notice-bar>
+<view class="cu-bar bg-white solid-bottom">
+  <view class="action"><text class="cuIcon-title text-orange "></text>主料</view>
+  <view class="action"><button class="cu-btn line-red">添加</button></view>
+</view>
+<view class="cu-list menu">
+    <block wx:if="{{content_food.length > 0}}">
+      <view wx:for="{{content_food}}" wx:key="index" class="cu-item {{modalName1=='move-box-'+ index?'move-cur':''}}" wx:key bindtouchstart="ListTouchStart1" bindtouchmove="ListTouchMove1" bindtouchend="ListTouchEnd1" data-target="move-box-{{index}}">
+        <view class="cu-avatar radius lg" style="margin-top: 10rpx;margin-bottom: 10rpx;margin-right: 20rpx;background-image:url({{item.avatar}});"></view>
+        <view class="content"><view class="text-grey">{{item.cnname}}</view></view>
+        <view class="action"><wux-input-number default-value="{{item.weightval}}" min="0" max="200" longpress disabled="{{ false }}" slot="footer" data-rowid="{{item.id}}" bind:change="changeFoodWeightval" /></view>
+        <view class="move" data-id="{{item.id}}" bindtap="operateDelFood"><view class="bg-red">删除</view></view>
+      </view>
+    </block>
+    <view wx:if="{{content_food.length == 0}}" class="cu-item">
+      <view class="content">
+        <text class="cuIcon-warn text-green"></text>
+        <text class="text-grey">点击操作按钮添加</text>
+      </view>
+    </view>
+</view>
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action"><text class="cuIcon-title text-orange "></text>辅料</view>
+  <view class="action"><button class="cu-btn bg-green shadow" bindtap="showModal" data-target="gridModal">添加</button></view>
+</view>
+<view class="cu-list menu">
+    <block wx:if="{{content_food.length > 0}}">
+      <view wx:for="{{content_food}}" wx:key="index" class="cu-item {{modalName2=='move-box-'+ index?'move-cur':''}}" wx:key bindtouchstart="ListTouchStart2" bindtouchmove="ListTouchMove2" bindtouchend="ListTouchEnd2" data-target="move-box-{{index}}">
+        <view class="cu-avatar radius lg" style="margin-top: 10rpx;margin-bottom: 10rpx;margin-right: 20rpx;background-image:url({{item.avatar}});"></view>
+        <view class="content"><view class="text-grey">{{item.cnname}}</view></view>
+        <view class="action"><wux-input-number default-value="{{item.weightval}}" min="0" max="200" longpress disabled="{{ false }}" slot="footer" data-rowid="{{item.id}}" bind:change="changeFoodWeightval" /></view>
+        <view class="move" data-id="{{item.id}}" bindtap="operateDelFood"><view class="bg-red">删除</view></view>
+      </view>
+    </block>
+    <view wx:if="{{content_food.length == 0}}" class="cu-item">
+      <view class="content">
+        <text class="cuIcon-warn text-green"></text>
+        <text class="text-grey">点击操作按钮添加</text>
+      </view>
+    </view>
+</view>
 
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action"><text class="cuIcon-title text-orange "></text>调味品</view>
+  <view class="action"><button class="cu-btn bg-green shadow" bindtap="showModal" data-target="gridModal">添加</button></view>
+</view>
+<view class="cu-list menu">
+    <block wx:if="{{content_seasoning.length > 0}}">
+      <view wx:for="{{content_seasoning}}" wx:key="index" class="cu-item {{modalName3=='move-box-'+ index?'move-cur':''}}" wx:key bindtouchstart="ListTouchStart3" bindtouchmove="ListTouchMove3" bindtouchend="ListTouchEnd3" data-target="move-box-{{index}}">
+        <view class="cu-avatar radius lg" style="margin-top: 10rpx;margin-bottom: 10rpx;margin-right: 20rpx;background-image:url({{item.avatar}});"></view>
+        <view class="content"><view class="text-grey">{{item.cnname}}</view></view>
+        <view class="action"><wux-input-number default-value="{{item.weightval}}" min="0" max="200" longpress disabled="{{ false }}" slot="footer" data-rowid="{{item.id}}" bind:change="changeFoodWeightval" /></view>
+        <view class="move" data-id="{{item.id}}" bindtap="operateDelSeasoning"><view class="bg-red">删除</view></view>
+      </view>
+    </block>
+    <view wx:if="{{content_seasoning.length == 0}}" class="cu-item">
+      <view class="content">
+        <text class="cuIcon-warn text-green"></text>
+        <text class="text-grey">点击操作按钮添加</text>
+      </view>
+    </view>
+</view>
+
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action"><text class="cuIcon-title text-orange "></text>做法</view>
+</view>
+<view>
+  <wux-cell-group>
+    <wux-cell hover-class="none">
+      <wux-textarea bind:change="setContentMethod" autoHeight defaultValue="{{content_method_catch}}" placeholder="请点击这里输入制作方法（建议每步使用换行隔开）" />
+    </wux-cell>
+  </wux-cell-group>
+</view>
+
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action"><text class="cuIcon-title text-orange "></text>需要注意</view>
+</view>
+<view>
+  <wux-cell-group>
+    <wux-cell hover-class="none">
+      <wux-textarea bind:change="setContentAttion" autoHeight defaultValue="{{content_attion_catch}}" placeholder="请点击这里输入需要注意的事项" />
+    </wux-cell>
+  </wux-cell-group>
+</view>
+<view class="padding flex flex-direction">
+  <button class="cu-btn bg-red margin-tb-sm lg" bindtap="submitPick">嫣红</button>
+</view>
+
+
+<view class="box">
+<scroll-view class="box-scroll" scroll-y="true" lower-threshold="100" bindscrolltolower="hotload">
 <wux-popup position="bottom" visible="{{ sfood_visible }}" bind:close="searchClose" catchtouchmove="return">
   <wux-cell-group>
     <wux-search-bar placeholder="{{sfood_placeholder}}" clear bind:change="searchFoodChange" controlled value="{{sfood_key}}" />
@@ -92,8 +122,61 @@
 <wux-fab-button position="bottomRight" theme="white" direction="vertical" spaceBetween="40" sAngle="180" bodyStyle="bottom:120rpx" eAngle="180" buttons="{{ buttons }}" bind:click="operateClick" />
 </scroll-view>
 </view>
+
+
+
+
+
+
+
+
+
+<scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}}">
+			<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}"><view slot="backText">返回</view>
+				<view slot="content">全屏抽屉</view>
+			</cu-custom>			
+			<view class='padding margin text-center'>
+				<view class='cu-btn bg-green lg block shadow radius margin-xl' bindtap="showModal" data-target="viewModal">
+					打开抽屉
+				</view>
+			</view>
+			<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+				<view class="cu-item arrow" wx:for="{{20}}" wx:key="index">
+					<view class="content">
+						<text class="cuIcon-github text-grey"></text>
+						<text class="text-grey">{{index +1}}</text>
+					</view>
+				</view>
+			</view>
+			
+			<view class='padding margin text-center'>
+				<view class='cu-btn bg-green lg block shadow radius margin-xl' bindtap="showModal" data-target="viewModal">
+					打开抽屉11
+				</view>
+			</view>
+		</scroll-view>
+		<view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
+			<text class="cuIcon-pullright"></text>
+		</view>
+		<scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+			<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+				<view class="cu-item arrow" wx:for="{{8}}" wx:key="index">
+					<view class="content">
+						<text class="cuIcon-github text-grey"></text>
+						<text class="text-grey">{{index +1}}+111</text>
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+
+
+
+
+
+
+
 <wux-dialog id="wux-dialog" />
 <wux-dialog id="wux-dialog--alert" />
 <wux-notification id="wux-notification" />
 <wux-toptips id="wux-toptips" />
-<footnav tabCur="{{2}}" />
+<!-- <footnav tabCur="{{2}}" /> -->

@@ -327,4 +327,74 @@ Page({
     }
     return r;
   },
+  showModal(e) {
+    console.log(e)
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  // 删除控制器1
+  ListTouchStart1(e) {
+    console.log("ListTouchStart1",e)
+    this.setData({
+      ListTouchStart1: e.touches[0].pageX
+    })
+  },
+  ListTouchMove1(e) {
+    console.log("ListTouchMove1",e)
+    this.setData({
+      ListTouchDirection1: e.touches[0].pageX - this.data.ListTouchStart1 > 0 ? 'right' : 'left'
+    })
+  },
+  ListTouchEnd1(e) {
+    this.setData({
+      modalName1:this.data.ListTouchDirection1 =='left'?e.currentTarget.dataset.target:null,
+      ListTouchDirection1: null,
+    })
+  },
+  // 删除控制器2
+  ListTouchStart2(e) {
+    console.log("ListTouchStart2",e)
+    this.setData({
+      ListTouchStart2: e.touches[0].pageX
+    })
+  },
+  ListTouchMove2(e) {
+    console.log("ListTouchMove2",e)
+    this.setData({
+      ListTouchDirection2: e.touches[0].pageX - this.data.ListTouchStar2 > 0 ? 'right' : 'left'
+    })
+  },
+  ListTouchEnd2(e) {
+    console.log("ListTouchEnd2",e)
+    this.setData({
+      modalName2:this.data.ListTouchDirection2 =='left'?e.currentTarget.dataset.target:null,
+      ListTouchDirection2: null,
+    })
+  },
+  // 删除控制器3
+  ListTouchStart3(e) {
+    console.log("ListTouchStart3",e)
+    this.setData({
+      ListTouchStart3: e.touches[0].pageX
+    })
+  },
+  ListTouchMove3(e) {
+    console.log("ListTouchMove3",e)
+    this.setData({
+      ListTouchDirection3: e.touches[0].pageX - this.data.ListTouchStart3 > 0 ? 'right' : 'left'
+    })
+  },
+  ListTouchEnd3(e) {
+    console.log("ListTouchEnd3",e)
+    this.setData({
+      modalName3:this.data.ListTouchDirection3 =='left'?e.currentTarget.dataset.target:null,
+      ListTouchDirection3: null,
+    })
+  },
 });
