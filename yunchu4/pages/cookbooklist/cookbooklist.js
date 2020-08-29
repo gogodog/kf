@@ -3,11 +3,13 @@ import { $wuxDialog } from '../../lib/index'
 
 let appInst =  getApp();
 let sapi = new ServerApi();
+const Tabs = [{name:"未发布",index:"0"}, {name:"已发布",index:"1"}, {name:"已删除",index:"2"}];
 
 Page({
   data: {
     StatusBar: appInst.globalData.StatusBar,
     CustomBar: appInst.globalData.CustomBar,
+    Tabs,
     tabCurrent:0,
 
     contentlist:[
@@ -22,11 +24,13 @@ Page({
     this.searchCbookList(status, page);
   },
   tagChange:function(e){
-    if(e.detail.key != this.data.tabCurrent){
+    console.log(e);
+    let id = e.currentTarget.dataset.id;
+    if(id != this.data.tabCurrent){
       this.setData({
-        tabCurrent: e.detail.key
+        tabCurrent: id
       })
-      let status = e.detail.key;
+      let status = id;
       let page = this.data.contentlist[status].page;
       this.searchCbookList(status, page);
     }
