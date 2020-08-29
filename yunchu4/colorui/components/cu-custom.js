@@ -65,7 +65,6 @@ Component({
       wx.navigateBack({
         delta: 1
       });
-      this.triggerEvent("over", {}, {})
     },
     toHome(){
       wx.reLaunch({

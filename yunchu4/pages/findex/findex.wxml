@@ -1,5 +1,8 @@
-<!--pages/findex/findex.wxml-->
-<text>pages/findex/findex.wxml</text>
+<cu-custom model="search" bgColor="bg-red" isBack="{{false}}"><view slot="content">
+
+
+
+</view></cu-custom>
 
 
 

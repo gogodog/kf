@@ -10,7 +10,7 @@ Page({
   tabChange: function(e) {
     console.log("tagChange:", e)
     this.setData({
-      TabCur: e.detail.id
+      TabCur: e.currentTarget.dataset.id
     })
   }
 })

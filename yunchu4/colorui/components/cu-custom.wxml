@@ -14,9 +14,10 @@
     <slot name="right"></slot>
   </view>
 </view>
-
 <view wx:if="{{model=='tab'}}" class="cu-custom {{bgColor}}" style="height:{{CustomBar}}px;position: fixed;left: 0;right: 0;display: flex;justify-content: center;z-index: 1;">
- <view style="height:{{CustomBar}}px;display: flex;align-items: flex-end;">
-        <span class="tab-item {{item.index==tabCur?'choosed':''}}" wx:for="{{tabs}}" style="line-height:{{StatusBar}}px;" bindtap="TabChangeEvent" data-id="{{item.index}}">{{item.name}}</span>
+  <view style="height:{{CustomBar}}px;display: flex;align-items: flex-end;">
+    <span class="tab-item {{item.index==tabCur?'choosed':''}}" wx:for="{{tabs}}" style="line-height:{{StatusBar}}px;" bindtap="TabChangeEvent" data-id="{{item.index}}">
+      {{item.name}}
+    </span>
   </view>
 </view>

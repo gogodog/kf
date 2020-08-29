@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
@@ -78,6 +79,7 @@ public class CodeGenerator {
         gc.setBaseResultMap(true);
         // XML columList
         gc.setBaseColumnList(false);
+        gc.setDateType(DateType.ONLY_DATE);
         // 全局 相关配置
         mpg.setGlobalConfig(gc);
 
