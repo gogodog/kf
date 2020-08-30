@@ -157,7 +157,7 @@
         </view>
       </view>
     </block>
-    <view wx:if="{{!sfood_list || sfood_list.length == 0}}" class="solid-bottom text-xs" style="text-align:center"><text class="text-gray">{{sfood_key && sfood_key.length>0?'橱柜无此食材':'输入名称搜索素材'}}</text></view>
+    <view wx:if="{{!sfood_list || sfood_list.length == 0}}" class="solid-bottom text-xs" style="text-align:center;margin-top: 60rpx;"><text class="text-gray">{{sfood_key && sfood_key.length>0?'橱柜无此食材':'输入名称搜索素材'}}</text></view>
     </block>
 
     <block wx:if="{{sassistfood_visible}}">
@@ -189,7 +189,7 @@
         </view>
       </view>
     </block>
-    <view wx:if="{{!sassistfood_list || sassistfood_list.length == 0}}" class="solid-bottom text-xs" style="text-align:center"><text class="text-gray">{{sassistfood_key && sassistfood_key.length>0?'橱柜无此食材':'输入名称搜索素材'}}</text></view>
+    <view wx:if="{{!sassistfood_list || sassistfood_list.length == 0}}" class="solid-bottom text-xs" style="text-align:center;margin-top: 60rpx;"><text class="text-gray">{{sassistfood_key && sassistfood_key.length>0?'橱柜无此食材':'输入名称搜索素材'}}</text></view>
     </block>
 
 <block wx:if="{{sseasoning_visible}}">
@@ -221,7 +221,7 @@
         </view>
       </view>
     </block>
-    <view wx:if="{{!sseasoning_list || sseasoning_list.length == 0}}" class="solid-bottom text-xs" style="text-align:center"><text class="text-gray">{{sseasoning_key && sseasoning_key.length>0?'橱柜无此食材':'输入名称搜索素材'}}</text></view>
+    <view wx:if="{{!sseasoning_list || sseasoning_list.length == 0}}" class="solid-bottom text-xs" style="text-align:center;margin-top: 60rpx;"><text class="text-gray">{{sseasoning_key && sseasoning_key.length>0?'橱柜无此食材':'输入名称搜索素材'}}</text></view>
     </block>
 
 

@@ -335,6 +335,7 @@ Page({
     isEmptyStr(e.detail.value) ? 
       this.setData({
         sfood_list: [],
+        sfood_key: ''
       }
     ) 
     : this.getFoodList(e.detail.value);
@@ -344,6 +345,7 @@ Page({
     isEmptyStr(e.detail.value) ? 
       this.setData({
         sassistfood_list: [],
+        sassistfood_key: ''
       }
     ) 
     : this.getAssistFoodList(e.detail.value);
@@ -352,6 +354,7 @@ Page({
     isEmptyStr(e.detail.value) ? 
       this.setData({
         sseasoning_list: [],
+        sseasoning_key: ''
       }
     ) 
    : this.getSeasoningList(e.detail.value);
