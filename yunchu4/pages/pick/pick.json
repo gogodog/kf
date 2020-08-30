@@ -25,7 +25,9 @@
     "wux-dialog": "../../lib/dialog/index",
     "wux-image": "../../lib/image/index",
     "wux-notification": "../../lib/notification/index",
-    "wux-notice-bar": "../../lib/notice-bar/index"
+    "wux-notice-bar": "../../lib/notice-bar/index",
+    "wux-animation-group": "../../lib/animation-group/index",
+    "tips": "../../comment/tips/tips"
   },
   "navigationBarTitleText": "搭配食谱",
   "navigationBarBackgroundColor": "#FFCC00"

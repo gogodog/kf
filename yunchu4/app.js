@@ -3,6 +3,11 @@ let request_ = new HttpModel();
 App({
   onLaunch: function () {
     request_.wxlogin();
+    wx.setBackgroundFetchToken({
+      token: '9099e29e023'
+    })
+
+
     wx.getSetting({
       success: (res) => {
         if (res.authSetting['scope.userInfo']) {// 已经授权

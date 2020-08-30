@@ -1,0 +1,36 @@
+.inner {
+    color: red;
+  }
+  
+  .weui-toptips_warn {
+    background-color: #e64340;
+  }
+  
+  .weui-toptips {
+    position: fixed;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    /* top: 0; */
+    left: 0;
+    right: 0;
+    padding: 5px;
+    font-size: 14px;
+    text-align: center;
+    color: #fff;
+    z-index: 5000;
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+  .animation-slide-top {
+    animation-name: slide-top
+}
+  @keyframes slid-top{
+    0% {
+      opacity: 0;
+      transform: translateY(-100%)
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0)
+  }
+  }

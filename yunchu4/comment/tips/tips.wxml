@@ -1,0 +1,2 @@
+<view class="weui-toptips weui-toptips_warn" style="background-color: #fefcec;color: #f76a24" hidden="{{showTopTips}}">{{msg}}
+</view>

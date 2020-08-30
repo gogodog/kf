@@ -8,7 +8,7 @@
 		"es6": true,
 		"enhance": false,
 		"postcss": true,
-		"preloadBackgroundData": false,
+		"preloadBackgroundData": true,
 		"minified": true,
 		"newFeature": false,
 		"coverView": true,
@@ -31,7 +31,7 @@
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.12.1",
+	"libVersion": "2.10.4",
 	"appid": "wx4836d3eceda3aeb1",
 	"projectname": "yunchu4",
 	"debugOptions": {

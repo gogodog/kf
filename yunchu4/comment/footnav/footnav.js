@@ -1,10 +1,10 @@
 const NavItem = [
-  "/pages/index/index",
-  "/pages/street/street",
-  "/pages/pick/pick",
-  "/pages/todo/todo",
-  "/pages/me/me",
-  "/pages/findex/findex",
+  {path:"/pages/index/index", isback:false},
+  {path:"/pages/street/street", isback:false},
+  {path:"/pages/pick/pick", isback:true},
+  {path:"/pages/todo/todo", isback:false},
+  {path:"/pages/me/me", isback:false},
+  {path:"/pages/findex/findex", isback:false}
 ];
 
 Component({
@@ -32,12 +32,19 @@ Component({
   methods: {
     NavChnavBottomChangeange: function(e){
       let cur = e.currentTarget.dataset.cur;
-      if(this.data.tabCur == cur){
+      let targetItem = NavItem[cur];
+      if(!targetItem && this.data.tabCur == cur){
         return;
       }
-      wx.redirectTo({
-        url:NavItem[cur]
-      });
+      if(targetItem.isback){
+        wx.navigateTo({
+          url: targetItem.path,
+        })
+      }else{
+        wx.redirectTo({
+          url:targetItem.path
+        });
+      }
       this.setData({
         tabCur:cur
       })

@@ -1,6 +1,6 @@
 <cu-custom model="nav" bindover="leaveover" bgColor="bg-red"><view slot="content">食街</view></cu-custom>
 <scroll-view scroll-x class="bg-white nav text-center bg-red" style="position:fixed;top:{{CustomBar}}px;z-index:2">
-  <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:key="index" wx:for="{{Tabs}}" wx:key bindtap="tabChange" data-id="{{index}}">{{item.name}}</view>
+  <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:key="index" wx:for="{{Tabs}}" bindtap="tabChange" data-id="{{index}}">{{item.name}}</view>
 </scroll-view>
 <wux-white-space body-style="height: 90rpx"/>
 <scroll-view wx:if="{{TabCur == 1}}" scroll-y class="scrollPage">
