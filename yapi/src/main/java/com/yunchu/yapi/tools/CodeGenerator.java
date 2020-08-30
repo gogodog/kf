@@ -58,11 +58,11 @@ public class CodeGenerator {
         // 是否打开输出目录
         gc.setOpen(false);
         // controller 命名方式，注意 %s 会自动填充表实体属性
-        gc.setControllerName("");
+        gc.setControllerName("%sController");
         // service 命名方式
-        gc.setServiceName("");
+        gc.setServiceName("%sService");
         // serviceImpl 命名方式
-        gc.setServiceImplName("");
+        gc.setServiceImplName("%sServiceImpl");
         // mapper 命名方式
         gc.setMapperName("%sMapper");
         // xml 命名方式

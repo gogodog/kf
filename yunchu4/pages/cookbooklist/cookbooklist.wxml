@@ -10,16 +10,19 @@
 <wux-wing-blank wx:for="{{contentlist[tabCurrent].rows}}" wx:key="index" wx:for-item="cbook" size="default">
       <listcard title="{{tabCurrent + '==' +cbook.id + '-' + cbook.name}}" time="{{cbook.cupdate_time}}" tag="{{[{color:'red',title:'海鲜'}, {color:'black',title:'川菜'}]}}" bind:delete="predeleteCookBook" data-deleteId="{{cbook.id}}" data-name="{{cbook.name}}" isSlotBody="{{true}}" selfMoreText="{{true}}" isShowDelete='{{true}}'>
         <view slot="body">
-          <wux-cell-group title="食材">
+          <wux-cell-group wx:if="{{cbook.cfood && cbook.cfood.length != 0}}" title="主料">
             <wux-cell wx:for="{{cbook.cfood}}" wx:key="index" title="{{item.cnname}}" extra="{{item.weightval+''+item.ctype}}" />
           </wux-cell-group>
-          <wux-cell-group title="调料">
+          <wux-cell-group wx:if="{{cbook.cassistfood && cbook.cassistfood.length != 0}}" title="辅料">
+            <wux-cell wx:for="{{cbook.cassistfood}}" wx:key="index" title="{{item.cnname}}" extra="{{item.weightval+''+item.ctype}}" />
+          </wux-cell-group>
+          <wux-cell-group wx:if="{{cbook.cseasoning && cbook.cseasoning.length != 0}}" title="调料">
             <wux-cell wx:for="{{cbook.cseasoning}}" wx:key="index" title="{{item.cnname}}" extra="{{item.weightval+''+item.ctype}}" />
           </wux-cell-group>
         </view>
         <view slot="smt">
-          <wux-media title="做法" label="{{cbook.method}}"></wux-media>
-          <wux-media title="心法" label="{{cbook.attion}}"></wux-media>
+          <wux-media wx:if="{{cbook.method && cbook.method.length != 0}}" title="做法" label="{{cbook.method}}"></wux-media>
+          <wux-media wx:if="{{cbook.attion && cbook.attion.length != 0}}" title="心法" label="{{cbook.attion}}"></wux-media>
         </view>
       </listcard>
     </wux-wing-blank>

@@ -2,7 +2,7 @@ package com.yunchu.yapi.service.impl;
 
 import com.yunchu.yapi.entity.YcDishStyle;
 import com.yunchu.yapi.mapper.YcDishStyleMapper;
-import com.yunchu.yapi.service.IYcDishStyleService;
+import com.yunchu.yapi.service.YcDishStyleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2020-08-26
  */
 @Service
-public class YcDishStyleServiceImpl extends ServiceImpl<YcDishStyleMapper, YcDishStyle> implements IYcDishStyleService {
+public class YcDishStyleServiceImpl extends ServiceImpl<YcDishStyleMapper, YcDishStyle> implements YcDishStyleService {
 
 }

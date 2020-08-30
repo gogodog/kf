@@ -3,7 +3,7 @@
   <view slot="backText">返回</view>
   <text slot="content">制作菜谱</text>
 </cu-custom>
-<scroll-view scroll-y class="DrawerPage {{sseasoning_visible || sfood_visible?'show':''}}">
+<scroll-view scroll-y class="DrawerPage {{sseasoning_visible || sfood_visible || sassistfood_visible?'show':''}}">
   <wux-notice-bar loop>{{"👋&nbsp ==> "+noticecontent}}</wux-notice-bar>
   <view class="cu-bar bg-white solid-bottom">
     <view class="action">
@@ -33,8 +33,8 @@
     </block>
     <view wx:if="{{content_food.length == 0}}" class="cu-item">
       <view class="content">
-        <text class="cuIcon-warn text-green"></text>
-        <text class="text-grey">点击操作按钮添加</text>
+        <text class="cuIcon-edit text-green"></text>
+        <text class="text-grey">点击按钮添加</text>
       </view>
     </view>
   </view>
@@ -44,28 +44,28 @@
       辅料
     </view>
     <view class="action">
-      <button class="cu-btn line-red" style="height:50rpx">添加</button>
+      <button class="cu-btn line-red" style="height:50rpx" bindtap="showModal" data-target="assistfoodSearch">添加</button>
     </view>
   </view>
   <view class="cu-list menu">
-    <block wx:if="{{content_food.length > 0}}">
-      <view wx:for="{{content_food}}" wx:key="id" class="cu-item {{modalName2=='move-box-'+ index?'move-cur':''}}" wx:key bindtouchstart="ListTouchStart2" bindtouchmove="ListTouchMove2" bindtouchend="ListTouchEnd2" data-target="move-box-{{index}}">
+    <block wx:if="{{content_assistfood.length > 0}}">
+      <view wx:for="{{content_assistfood}}" wx:key="id" class="cu-item {{modalName2=='move-box-'+ index?'move-cur':''}}" wx:key bindtouchstart="ListTouchStart2" bindtouchmove="ListTouchMove2" bindtouchend="ListTouchEnd2" data-target="move-box-{{index}}">
         <view class="cu-avatar radius lg" style="margin-top: 10rpx;margin-bottom: 10rpx;margin-right: 20rpx;background-image:url({{item.avatar}});"></view>
         <view class="content">
           <view class="text-grey">{{item.cnname}}</view>
         </view>
         <view class="action">
-          <wux-input-number default-value="{{item.weightval}}" min="0" max="200" longpress disabled="{{ false }}" slot="footer" data-rowid="{{item.id}}" bind:change="changeFoodWeightval" />
+          <wux-input-number default-value="{{item.weightval}}" min="0" max="200" longpress disabled="{{ false }}" slot="footer" data-rowid="{{item.id}}" bind:change="changeAssistFoodWeightval" />
         </view>
-        <view class="move" data-id="{{item.id}}" bindtap="operateDelFood">
+        <view class="move" data-id="{{item.id}}" bindtap="operateDelAssistFood">
           <view class="bg-red">删除</view>
         </view>
       </view>
     </block>
-    <view wx:if="{{content_food.length == 0}}" class="cu-item">
+    <view wx:if="{{content_assistfood.length == 0}}" class="cu-item">
       <view class="content">
-        <text class="cuIcon-warn text-green"></text>
-        <text class="text-grey">点击操作按钮添加</text>
+        <text class="cuIcon-edit text-green"></text>
+        <text class="text-grey">点击按钮添加</text>
       </view>
     </view>
   </view>
@@ -95,8 +95,8 @@
     </block>
     <view wx:if="{{content_seasoning.length == 0}}" class="cu-item">
       <view class="content">
-        <text class="cuIcon-warn text-green"></text>
-        <text class="text-grey">点击操作按钮添加</text>
+        <text class="cuIcon-edit text-green"></text>
+        <text class="text-grey">点击按钮添加</text>
       </view>
     </view>
   </view>
@@ -122,11 +122,11 @@
     提交
   </view>
 </scroll-view>
-<view class="DrawerClose {{sseasoning_visible || sfood_visible?'show':''}}" style="background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.00));" bindtap="hideModal">
+<view class="DrawerClose {{sseasoning_visible || sfood_visible || sassistfood_visible?'show':''}}" style="background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.00));" bindtap="hideModal">
   <text class="cuIcon-pullright"></text>
 </view>
 
-<scroll-view scroll-y class="DrawerWindow {{sseasoning_visible || sfood_visible?'show':''}}" style="top:{{StatusBar+20}}px">
+<scroll-view scroll-y class="DrawerWindow {{sseasoning_visible || sfood_visible || sassistfood_visible?'show':''}}" style="top:{{StatusBar+20}}px">
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
       <block wx:if="{{sfood_visible}}">
     <view class="cu-bar search bg-white">
@@ -157,6 +157,39 @@
         </view>
       </view>
     </block>
+    <view wx:if="{{!sfood_list || sfood_list.length == 0}}" class="solid-bottom text-xs" style="text-align:center"><text class="text-gray">{{sfood_key && sfood_key.length>0?'橱柜无此食材':'输入名称搜索素材'}}</text></view>
+    </block>
+
+    <block wx:if="{{sassistfood_visible}}">
+    <view class="cu-bar search bg-white">
+      <view class="search-form round">
+        <text class="cuIcon-search"></text>
+        <input type="text" placeholder="搜索辅料" value="{{sassistfood_key}}" confirm-type="search" bindinput="searchAssistFoodChange"></input>
+      </view>
+      <view class="action">
+        <button class="cu-btn bg-red shadow-blur round">搜索</button>
+      </view>
+    </view>
+    <view class="padding-sm flex flex-wrap" style="background-color: white;">
+      <view class="padding-xs" wx:for="{{sassistfood_tag}}" wx:key="index" data-s="3" data-skey="{{item.key}}" bindtap="operateClickTag">
+        <view class="cu-tag line-red">{{item.key}}</view>
+      </view>
+    </view>
+    <block wx:for="{{sassistfood_list}}" wx:key="index">
+      <view class="cu-item">
+        <view class="content padding-tb-sm" bindtap="sassistfoodTap" data-row="{{item}}">
+          <view>
+            <view class="cu-avatar radius sm" style="background-image:url({{item.avatar}});"></view>
+            <span style="margin-left: 20rpx;">{{item.cnname}}</span>
+          </view>
+          <view class="text-gray text-sm">
+            <text class="cuIcon-infofill margin-right-xs"></text>
+            {{item.infoc.desc}}
+          </view>
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{!sassistfood_list || sassistfood_list.length == 0}}" class="solid-bottom text-xs" style="text-align:center"><text class="text-gray">{{sassistfood_key && sassistfood_key.length>0?'橱柜无此食材':'输入名称搜索素材'}}</text></view>
     </block>
 
 <block wx:if="{{sseasoning_visible}}">
@@ -188,6 +221,7 @@
         </view>
       </view>
     </block>
+    <view wx:if="{{!sseasoning_list || sseasoning_list.length == 0}}" class="solid-bottom text-xs" style="text-align:center"><text class="text-gray">{{sseasoning_key && sseasoning_key.length>0?'橱柜无此食材':'输入名称搜索素材'}}</text></view>
     </block>
 
 

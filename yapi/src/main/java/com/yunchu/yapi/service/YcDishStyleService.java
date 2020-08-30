@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author cott.wen
  * @since 2020-08-26
  */
-public interface IYcDishStyleService extends IService<YcDishStyle> {
+public interface YcDishStyleService extends IService<YcDishStyle> {
 
 }

@@ -60,6 +60,23 @@ const sfood_tag = [{
     istype: true
   }
 ];
+const sassistfood_tag = [{
+  key: "葱",
+  istype: false
+},
+{
+  key: "蒜",
+  istype: false
+},
+{
+  key: "辣椒",
+  istype: false
+},
+{
+  key: "菜",
+  istype: true
+}
+];
 
 Page({
   data: {
@@ -83,9 +100,17 @@ Page({
     sseasoning_placeholder: '搜索调料',
     sseasoning_tag,
 
+    //search-assistfood
+    sassistfood_visible: false,
+    sassistfood_key: '',
+    sassistfood_list: [],
+    sassistfood_placeholder: '搜索食材',
+    sassistfood_tag,
+
     //pick content
     content_food: [],
     content_seasoning: [],
+    content_assistfood: [],
     content_attion: '',
     content_method: '',
     content_attion_catch: '',
@@ -111,6 +136,12 @@ Page({
     })
     this.getFoodList(v);
   },
+  setSassistfoodKey: function (v) {
+    this.setData({
+      sassistfood_key: v
+    })
+    this.getAssistFoodList(v);
+  },
   setpickname: function(e){
     this.setData({
       pickname: e.detail.value
@@ -133,6 +164,13 @@ Page({
       content_food: list,
     });
   },
+  setContentAssistFood: function (row) {
+    let list = this.data.content_assistfood;
+    list.push(row);
+    this.setData({
+      content_assistfood: list,
+    });
+  },
   setContentSeasoning: function (row) {
     let list = this.data.content_seasoning;
     list.push(row);
@@ -146,15 +184,22 @@ Page({
       content_food: removeOne(list, id, col),
     });
   },
+  removeContentAssistFood: function (id, col) {
+    let list = this.data.content_assistfood;
+    this.setData({
+      content_assistfood: removeOne(list, id, col),
+    });
+  },
   removeContentSeasoning: function (id, col) {
     let list = this.data.content_seasoning;
     this.setData({
       content_seasoning: removeOne(list, id, col),
     });
   },
-  setSearchVisible: function (foodVisible, seasoningVisible) {
+  setSearchVisible: function (foodVisible, seasoningVisible, assistfoodVisible) {
     this.setData({
       sfood_visible: foodVisible,
+      sassistfood_visible: assistfoodVisible,
       sseasoning_visible: seasoningVisible,
     });
   },
@@ -162,18 +207,19 @@ Page({
     console.log("tag:", e);
     let s = e.currentTarget.dataset.s;
     let skey = e.currentTarget.dataset.skey;
-    s == 1 ? this.setSfoodKey(skey) : s == 2 ? this.setSseasoningKey(skey) : "";
+    s == 1 ? this.setSfoodKey(skey) : s == 2 ? this.setSseasoningKey(skey) : s == 3 ? this.setSassistfoodKey(skey) : '';
   },
   operateDelFood: function (e) {
     console.log("delFood:", e);
     this.removeContentFood(e.currentTarget.dataset.id, "id")
   },
+  operateDelAssistFood: function (e) {
+    console.log("delAssistFood:", e);
+    this.removeContentAssistFood(e.currentTarget.dataset.id, "id")
+  },
   operateDelSeasoning: function (e) {
     console.log("delFood:", e);
     this.removeContentSeasoning(e.currentTarget.dataset.id, "id")
-  },
-  operateClick: function (e) {
-    this.setSearchVisible(e.detail.index === 0, e.detail.index === 1);
   },
   submitPick: function () {
     let params = {};
@@ -181,6 +227,7 @@ Page({
     params.content_method = this.data.content_method;
     params.content_food = this.data.content_food;
     params.content_seasoning = this.data.content_seasoning;
+    params.content_assistfood = this.data.content_assistfood;
     console.log("请求数据：", params)
     this.checkSubmitPick(params) ? this.inPickName((name) => {
       params.name = name;
@@ -190,28 +237,43 @@ Page({
   },
   subPick: function(){
     let params = this.data.subparam;
-    console.log("subPick1",this.data.pickname);
-    console.log("subPick2",params);
     if(this.data.subDialog && this.data.pickname != '' && params){
       params.name = this.data.pickname;
       sapi.savePick(params, (res) => {
         wx.redirectTo({
           url: '../index/index',
         })
-      })
+        },
+        (errmsg) => {
+          console.log("errmsss", errmsg)
+          this.hideDialog();
+          this.showToptipsWarn("失败：" + errmsg);
+        }
+      )
     }else{
       this.showToptipsWarn("请输入菜谱名称")
     }
   },
   checkSubmitPick: function (params) {
     if (isEmptyCollection(params.content_food)) {
-      this.showToptipsWarn("请添加食材");
+      this.showToptipsWarn("请添加主料");
       return false;
     } else {
       let erroritem = this.checkWeightval(params.content_food);
       console.log("error::", erroritem)
       if (erroritem) {
-        this.showToptipsWarn("食材【" + erroritem.cnname + "】的重量必须大于0");
+        this.showToptipsWarn("主料【" + erroritem.cnname + "】的重量必须大于0");
+        return false;
+      }
+    }
+    if (isEmptyCollection(params.content_assistfood)) {
+      this.showToptipsWarn("请添加辅料");
+      return false;
+    } else {
+      let erroritem = this.checkWeightval(params.content_assistfood);
+      console.log("error::", erroritem)
+      if (erroritem) {
+        this.showToptipsWarn("辅料【" + erroritem.cnname + "】的重量必须大于0");
         return false;
       }
     }
@@ -237,7 +299,6 @@ Page({
   checkWeightval: function (colectionc) {
     let errorItem = null;
     colectionc.map((item) => {
-      //console.log("Item:", item)
       if (!item.weightval || item.weightval <= 0) {
         errorItem = item;
         return;
@@ -258,6 +319,12 @@ Page({
     let list = this.data.content_food;
     return this.isReapt(row, list) ? this.showToptipsWarn("已经添加此食材") : this.setContentFood(row);
   },
+  sassistfoodTap: function (e) {
+    console.log("sassistfoodTap",e);
+    let row = e.currentTarget.dataset.row;
+    let list = this.data.content_assistfood;
+    return this.isReapt(row, list) ? this.showToptipsWarn("已经添加此食材") : this.setContentAssistFood(row);
+  },
   sseasoningTap: function (e) {
     let row = e.currentTarget.dataset.row;
     let list = this.data.content_seasoning;
@@ -271,6 +338,23 @@ Page({
       }
     ) 
     : this.getFoodList(e.detail.value);
+  },
+  searchAssistFoodChange: function (e) {
+    console.log("searchAssistFoodChange", e)
+    isEmptyStr(e.detail.value) ? 
+      this.setData({
+        sassistfood_list: [],
+      }
+    ) 
+    : this.getAssistFoodList(e.detail.value);
+  },
+  searchSeasoningChange: function (e) {
+    isEmptyStr(e.detail.value) ? 
+      this.setData({
+        sseasoning_list: [],
+      }
+    ) 
+   : this.getSeasoningList(e.detail.value);
   },
   changeSeasoningWeightval: function (e) {
     let id = e.currentTarget.dataset.rowid;
@@ -300,6 +384,20 @@ Page({
       content_food: food
     })
   },
+  changeAssistFoodWeightval: function (e) {
+    let id = e.currentTarget.dataset.rowid;
+    let weightval = e.detail.value;
+    let assistfood = this.data.content_assistfood;
+    assistfood.map((item) => {
+      if (item.id == id) {
+        item.weightval = weightval;
+        return;
+      }
+    })
+    this.setData({
+      content_assistfood: assistfood
+    })
+  },
   getFoodList: function (cname) {
     sapi.foodlistByCnname(cname, (res) => {
       this.setData({
@@ -307,13 +405,12 @@ Page({
       });
     });
   },
-  searchSeasoningChange: function (e) {
-    isEmptyStr(e.detail.value) ? 
+  getAssistFoodList: function (cname) {
+    sapi.assistFoodlistByCnname(cname, (res) => {
       this.setData({
-        sseasoning_list: [],
-      }
-    ) 
-   : this.getSeasoningList(e.detail.value);
+        sassistfood_list: isEmptyCollection(res) ? [] : res,
+      });
+    });
   },
   getSeasoningList: function (cname) {
     sapi.seasoninglistByCnname(cname, (res) => {
@@ -342,10 +439,10 @@ Page({
     this.setData({
       modalName: e.currentTarget.dataset.target
     })
-    this.setSearchVisible('foodSearch' === e.currentTarget.dataset.target, 'seasoningSearch' === e.currentTarget.dataset.target);
+    this.setSearchVisible('foodSearch' === e.currentTarget.dataset.target, 'seasoningSearch' === e.currentTarget.dataset.target, 'assistfoodSearch' === e.currentTarget.dataset.target);
   },
   hideModal(e) {
-    this.setSearchVisible(false, false);
+    this.setSearchVisible(false, false, false);
   },
   hideDialog(){
     this.setData({

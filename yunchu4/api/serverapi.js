@@ -22,6 +22,17 @@ class ServerApi extends HTTP{
       }
     });
   }
+  assistFoodlistByCnname(type, callBack){
+    let url = "/yapi/yc-assist-food/list/bycnname?cnname="+type;
+    this.request({
+      url:url,
+      success:(res)=>{
+        if(res.code === "200"){
+          callBack(res.data);
+        }
+      }
+    });
+  }
   seasoninglistByCnname(type, callBack){
     let url = "/yapi/yc-seasoning/list/bycnname?cnname="+type;
     this.request({
@@ -33,7 +44,7 @@ class ServerApi extends HTTP{
       }
     });
   }
-  savePick(param, callBack){
+  savePick(param, callBack, errorBack){
     this.request({
       url:"/yapi/yc-cookbook/new/cookbook",
       method:"POST",
@@ -41,6 +52,9 @@ class ServerApi extends HTTP{
       success:(res)=>{
         if(res.code === "200"){
           callBack(res.data);
+        }else{
+          console.log(res.msg)
+          errorBack(res.msg);
         }
       }
     });

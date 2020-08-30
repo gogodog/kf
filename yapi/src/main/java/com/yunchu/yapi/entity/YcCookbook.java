@@ -53,11 +53,16 @@ public class YcCookbook extends Model<YcCookbook> {
     @TableField("img")
     private String img;
 
-    @ApiModelProperty(value = "食材（json）")
+    @ApiModelProperty(value = "主料（json）")
     @TableField("food")
     private String food;
+    
+    @ApiModelProperty(value = "辅料（json）")
+    @TableField("assistfood")
+    private String assistfood;
+    
 
-    @ApiModelProperty(value = "食材（json）")
+    @ApiModelProperty(value = "调料（json）")
     @TableField("seasoning")
     private String seasoning;
 
@@ -118,6 +123,12 @@ public class YcCookbook extends Model<YcCookbook> {
     	if(StringUtils.isBlank(this.seasoning))
     		return null;
     	return GsonUtil.GsonToListGsonObject(this.seasoning);
+    }
+    
+    public List<Map<String, Object>> getCassistfood(){
+    	if(StringUtils.isBlank(this.assistfood))
+    		return null;
+    	return GsonUtil.GsonToListGsonObject(this.assistfood);
     }
     
     public String getCupdateTime(){

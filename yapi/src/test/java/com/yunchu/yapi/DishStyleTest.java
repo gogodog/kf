@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.yunchu.yapi.entity.YcDishStyle;
 import com.yunchu.yapi.mapper.YcDishStyleMapper;
-import com.yunchu.yapi.service.IYcDishStyleService;
+import com.yunchu.yapi.service.YcDishStyleService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -20,7 +20,7 @@ import lombok.extern.log4j.Log4j2;
 public class DishStyleTest {
 	
 	@Autowired
-	IYcDishStyleService iYcDishStyleService;
+	YcDishStyleService ycDishStyleService;
 	@Autowired
 	YcDishStyleMapper ycDishStyleMapper;
 	

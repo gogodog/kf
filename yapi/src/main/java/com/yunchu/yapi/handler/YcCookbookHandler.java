@@ -11,7 +11,10 @@ public class YcCookbookHandler {
 
 	public static boolean checkNewCookbook(CookBookInsertRequestVo vo){
 		if(CollectionUtils.isEmpty(vo.getContentFood())){
-			throw new AppException("食材不能为空");
+			throw new AppException("主料不能为空");
+		}
+		if(CollectionUtils.isEmpty(vo.getContentAssistfood())){
+			throw new AppException("辅料不能为空");
 		}
 		if(CollectionUtils.isEmpty(vo.getContentSeasoning())){
 			throw new AppException("调料不能为空");
@@ -26,6 +29,7 @@ public class YcCookbookHandler {
 		ck.setAttion(vo.getContentAttion());
 		ck.setMethod(vo.getContentMethod());
 		ck.setFood(GsonUtil.GsonStringReturnEmpty(vo.getContentFood()));
+		ck.setAssistfood(GsonUtil.GsonStringReturnEmpty(vo.getContentAssistfood()));
 		ck.setSeasoning(GsonUtil.GsonStringReturnEmpty(vo.getContentSeasoning()));
 		ck.setName(vo.getName());
 		return ck;

@@ -19,6 +19,9 @@ class HTTP{
         }else{
           this.show_error(res.errMsg);
         }
+      },
+      fail:(res) => {
+        this.show_error("异常，请刷新重试");
       }
     })
   }
@@ -28,6 +31,7 @@ class HTTP{
       return;
     }
     wx.showToast({
+      icon: 'loading',
       title: ecode
     })
   }

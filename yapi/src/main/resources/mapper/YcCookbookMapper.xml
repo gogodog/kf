@@ -8,6 +8,7 @@
         <result column="name" property="name" />
         <result column="img" property="img" />
         <result column="food" property="food" />
+        <result column="assistfood" property="assistfood" />
         <result column="seasoning" property="seasoning" />
         <result column="attion" property="attion" />
         <result column="method" property="method" />
