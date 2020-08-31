@@ -33,6 +33,25 @@ class ServerApi extends HTTP{
       }
     });
   }
+  dishStyleTree(callBack){
+    this.request({
+      url:"/yapi/yc-dish-style/tree",
+      success:(res)=>{
+        if(res.code === "200")
+          callBack && callBack(res.data);
+      }
+    });
+  }
+  publishCookbook(param, callBack, errorBack){
+    this.request({
+      url:"/yapi/yc-cookbook/publish/cookbook",
+      method:"POST",
+      data:param,
+      success:(res)=>{
+        res.code === "200" ? callBack(res.data) : errorBack(res.msg);
+      }
+    });
+  }
   seasoninglistByCnname(type, callBack){
     let url = "/yapi/yc-seasoning/list/bycnname?cnname="+type;
     this.request({

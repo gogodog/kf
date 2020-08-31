@@ -1,14 +1,32 @@
 <scroll-view scroll-y="{{modalName==null}}" class="page {{modalName!=null?'show':''}}" lower-threshold="100" bindscrolltolower="hotload">
 <cu-custom model="nav" isBack="{{true}}" bgColor="bg-red" >
-  <view slot="backText">返回</view>
-  <view slot="content">订单列表</view>
+  <view slot="backText">返回</view><view slot="content">订单列表</view>
 </cu-custom>
 <scroll-view scroll-x class="bg-white nav text-center bg-red" style="position:fixed;top:{{CustomBar}}px;z-index:2">
   <view class="cu-item {{index==tabCurrent?'text-blue cur':''}}" wx:key="index" wx:for="{{Tabs}}" bindtap="tagChange" data-id="{{index}}">{{item.name}}</view>
 </scroll-view>
 <wux-white-space body-style="height: 90rpx"/>
 <wux-wing-blank wx:for="{{contentlist[tabCurrent].rows}}" wx:key="index" wx:for-item="cbook" size="default">
-      <listcard title="{{tabCurrent + '==' +cbook.id + '-' + cbook.name}}" time="{{cbook.cupdate_time}}" tag="{{[{color:'red',title:'海鲜'}, {color:'black',title:'川菜'}]}}" bind:delete="predeleteCookBook" data-deleteId="{{cbook.id}}" data-name="{{cbook.name}}" isSlotBody="{{true}}" selfMoreText="{{true}}" isShowDelete='{{true}}'>
+      <listcard
+      tap1="{{true}}"
+      bind:tap1="modifyCookBook"
+      tap1color="black"
+      tap1title="修改"
+      tap2="{{true}}"
+      bind:tap2="publishCookBook"
+      tap2color="red"
+      tap2title="发布"
+      tap3="{{true}}"
+      bind:tap3="predeleteCookBook"
+      tap3color="black" 
+      tap3title="删除"
+      title="{{cbook.name}}"
+      time="{{cbook.cupdate_time}}"
+      data-id="{{cbook.id}}"
+      data-name="{{cbook.name}}"
+      data-item="{{cbook}}"
+      isSlotBody="{{true}}"
+      selfMoreText="{{true}}">
         <view slot="body">
           <wux-cell-group wx:if="{{cbook.cfood && cbook.cfood.length != 0}}" title="主料">
             <wux-cell wx:for="{{cbook.cfood}}" wx:key="index" title="{{item.cnname}}" extra="{{item.weightval+''+item.ctype}}" />
@@ -28,3 +46,4 @@
     </wux-wing-blank>
 </scroll-view>
 <wux-dialog id="wux-dialog" />
+<wux-toast id="wux-toast" />

@@ -7,8 +7,8 @@
     "pages/me/me",
     "pages/pick/pick",
     "pages/logs/logs",
-    "pages/kefu/kefu"
-
+    "pages/kefu/kefu",
+    "pages/publish/publish"
   ],
   "window": {
     "navigationBarBackgroundColor": "#39b54a",

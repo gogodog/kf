@@ -1,0 +1,36 @@
+<cu-custom model="nav" isBack="{{true}}" bgColor="bg-red">
+  <view slot="backText">返回</view>
+  <view slot="content">发布</view>
+</cu-custom>
+<view class="cu-bar bg-white solid-bottom">
+  <view class="action">
+    <text class="cuIcon-title text-orange"></text>
+    标签
+  </view>
+  <view class="action">
+    <switch class='sm' checked='{{tagModel}}' bindtap="checkTag"></switch>
+  </view>
+</view>
+<view class="padding-sm flex flex-wrap">
+  <view class="padding-xs" wx:for="{{ColorList}}" wx:key wx:if="{{item.name!='gray'}}">
+    <view class="cu-tag bg-{{item.name}}">{{item.title}}</view>
+  </view>
+</view>
+
+<view class="cu-modal bottom-modal {{tagModel?'show':''}}" style="margin-top: 600rpx;">
+  <view class="cu-dialog">
+    <block wx:for="{{tagTree}}" wx:index="index">
+      <view class="cu-bar bg-white">
+        <view class="action">
+          <text class="cuIcon-title text-green"></text>
+          <text>{{item.cnname}}</text>
+        </view>
+      </view>
+      <view class="padding-sm flex flex-wrap">
+        <view class="padding-xs" wx:for="{{item.children}}" wx:key="index" wx:for-item="row">
+          <view class="cu-tag line-black">{{row.cnname}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yunchu.yapi.mapper.YcCookbookStyleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yunchu.yapi.entity.YcCookbookStyle">
+        <id column="id" property="id" />
+        <result column="cookbook_id" property="cookbookId" />
+        <result column="style_id" property="styleId" />
+        <result column="style_enname" property="styleEnname" />
+        <result column="style_cnname" property="styleCnname" />
+        <result column="style_miaoshu" property="styleMiaoshu" />
+        <result column="style_p_id" property="stylePId" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="delete_flag" property="deleteFlag" />
+    </resultMap>
+
+</mapper>

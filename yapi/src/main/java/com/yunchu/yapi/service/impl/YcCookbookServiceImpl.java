@@ -5,6 +5,9 @@ import com.yunchu.yapi.handler.YcCookbookHandler;
 import com.yunchu.yapi.mapper.YcCookbookMapper;
 import com.yunchu.yapi.service.YcCookbookService;
 import com.yunchu.yapi.vo.CookBookInsertRequestVo;
+
+import lombok.extern.log4j.Log4j2;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -21,6 +24,7 @@ import org.springframework.stereotype.Service;
  * @since 2020-08-22
  */
 @Service
+@Log4j2(topic="YcCookbookServiceImpl::")
 public class YcCookbookServiceImpl extends ServiceImpl<YcCookbookMapper, YcCookbook> implements YcCookbookService {
 
 	@Override
@@ -38,6 +42,13 @@ public class YcCookbookServiceImpl extends ServiceImpl<YcCookbookMapper, YcCookb
 	@Override
 	public int deleteById(int id) {
 		return super.baseMapper.deleteById(id);
+	}
+
+	@Override
+	public int publiishCookBook(CookBookInsertRequestVo vo) {
+		log.info(vo);
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

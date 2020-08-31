@@ -1,5 +1,5 @@
 import {ServerApi} from '../../api/serverapi'
-import { $wuxDialog } from '../../lib/index'
+import {$wuxDialog, $wuxToast} from '../../lib/index'
 
 let appInst =  getApp();
 let sapi = new ServerApi();
@@ -18,13 +18,10 @@ Page({
       {rows:[], page:1}
     ]
   },
-  onLoad: function(){
-    let status = this.data.tabCurrent;
-    let page = this.data.contentlist[status].page;
-    this.searchCbookList(status, page);
+  onShow: function(){
+    this.refreshList(this);
   },
   tagChange:function(e){
-    console.log(e);
     let id = e.currentTarget.dataset.id;
     if(id != this.data.tabCurrent){
       this.setData({
@@ -59,30 +56,61 @@ Page({
     });
   },
   predeleteCookBook: function(e) {
+    let that = this;
+    let id = e.currentTarget.dataset.id;
     $wuxDialog().confirm({
         content: '确定要删除【'+e.currentTarget.dataset.name+'】吗？',
         onConfirm(e) {
-            this.deleteCookBook(e);
+            that.deleteCookBook(id);
         }
     })
   },
-  deleteCookBook: function(e){
-    sapi.deleteCookBookById(e.currentTarget.dataset.deleteid, (res)=>{
+  deleteCookBook: function(id){
+    sapi.deleteCookBookById(id, (res)=>{
       if(res.code == 200){
-        let contentlist = this.data.contentlist;
-        let status = this.data.tabCurrent;
-        contentlist[status].rows = [];
-        contentlist[status].page = 1;
-        this.setData({
-          contentlist:contentlist
-        })
-        this.searchCbookList(status, 1)
+        this.refreshList(this)
+        this.showToastSuccess("已删除")
+      }else{
+        this.showToastError(res.msg)
       }
     });
+  },
+  refreshList: function(that){
+    let contentlist = that.data.contentlist;
+    let status = that.data.tabCurrent;
+    contentlist[status].rows = [];
+    contentlist[status].page = 1;
+    that.setData({
+      contentlist:contentlist
+    })
+    that.searchCbookList(status, 1)
+  },
+  modifyCookBook: function(e){
+    console.log("modifyBookCook去修改页面:", e);
+  },
+  publishCookBook: function(e){
+    wx.navigateTo({
+      url:'../publish/publish?item='+JSON.stringify(e.currentTarget.dataset.item)
+    })
   },
   hotload: function(){
     let status = this.data.tabCurrent;
     let page = this.data.contentlist[status].page;
     this.searchCbookList(status, page);
-  }
+  },
+  showToastError(errmsg, ck){
+    this.showToast(errmsg, ck, 'forbidden')
+  },
+  showToastSuccess(errmsg, ck){
+    this.showToast(errmsg, ck, 'success')
+  },
+  showToast(errmsg, ck, type) {
+    $wuxToast().show({
+        type: type,
+        duration: 1500,
+        color: '#fff',
+        text: errmsg,
+        success: () => {ck&&ck()}
+    })
+  },
 })

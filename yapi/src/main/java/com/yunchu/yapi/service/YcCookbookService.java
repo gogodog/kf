@@ -24,4 +24,6 @@ public interface YcCookbookService extends IService<YcCookbook> {
 
 	int deleteById(int id);
 
+	int publiishCookBook(CookBookInsertRequestVo vo);
+
 }

@@ -13,7 +13,8 @@
     "wux-cell": "../../lib/cell/index",
     "listcard":"../../comment/listcard/card",
     "wux-media": "../../lib/media/index",
-    "wux-dialog": "../../lib/dialog/index"
+    "wux-dialog": "../../lib/dialog/index",
+    "wux-toast": "../../lib/toast/index"
   },
   "navigationBarTitleText": "列表",
   "navigationBarBackgroundColor": "#FFCC00"

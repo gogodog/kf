@@ -37,6 +37,11 @@ public class YcCookbookController {
 		return Result.ok(ycCookbookService.newCookBook(vo));
 	}
 	
+	@PostMapping("/publish/cookbook")
+	public Result publiishCookBook(@Validated @RequestBody CookBookInsertRequestVo vo){
+		return Result.ok(ycCookbookService.publiishCookBook(vo));
+	}
+	
 	@GetMapping("/list/status")
 	public Result listByStatus(int status, Page<YcCookbook> page){
 		YcCookbookHandler.checkStatus(status);

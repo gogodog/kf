@@ -26,7 +26,10 @@
   </view>
   <view class='buttons'>
     <view style='display: flex;'>
-      <view class='tag' wx:for='{{tag}}'><tag class="i-tags" color="{{item.color}}">{{item.title}}</tag></view>
+      <view class='tag' wx:for='{{tag}}' wx:key='index'><tag class="i-tags" color="{{item.color}}">{{item.title}}</tag></view>
+      <view class='tag' bindtap='handleTap1' wx:if='{{tap1}}'><tag class="i-tags" color="{{tap1color}}">{{tap1title}}</tag></view>
+      <view class='tag' bindtap='handleTap2' wx:if='{{tap2}}'><tag class="i-tags" color="{{tap2color}}">{{tap2title}}</tag></view>
+      <view class='tag' bindtap='handleTap3' wx:if='{{tap3}}'><tag class="i-tags" color="{{tap3color}}">{{tap3title}}</tag></view>
       <icon-button type='{{isLiked ? "red-like" : "like"}}' style='display: {{isShowLike ? "" : "none"}};' bindtap='handleLike'></icon-button>
       <text class='number' style='display: {{likeNumber ? "" : "none"}}'>{{likeNumber}}</text>
       <icon-button type='{{isUnliked ? "blue-unlike" : "unlike"}}' style='display: {{isShowUnlike ? "" : "none"}};' bindtap='handleUnlike'></icon-button>

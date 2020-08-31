@@ -14,6 +14,15 @@ Component({
     isShowLike: Boolean,
     isSlotBody:Boolean,
     selfMoreText:Boolean,
+    tap1:Boolean,
+    tap1color:String,
+    tap1title:String,
+    tap2:Boolean,
+    tap2color:String,
+    tap2title:String,
+    tap3:Boolean,
+    tap3color:String,
+    tap3title:String,
     isLiked: {
       type: Boolean,
       observer: function () { this.setData({ isLiked: this.properties.isLiked }); }
@@ -63,6 +72,18 @@ Component({
     handleUnlike() {
       this.setData({ isUnliked: !this.data.isUnliked });
       this.triggerEvent('unlike', {isUnliked: this.data.isUnliked});
+    },
+
+    handleTap1() {
+      this.triggerEvent('tap1');
+    },
+
+    handleTap2() {
+      this.triggerEvent('tap2');
+    },
+
+    handleTap3() {
+      this.triggerEvent('tap3');
     },
 
     handleDelete() {
