@@ -8,6 +8,7 @@ import com.yunchu.yapi.handler.YcDishStyleHandler;
 import com.yunchu.yapi.mapper.YcCookbookMapper;
 import com.yunchu.yapi.mapper.YcCookbookStyleMapper;
 import com.yunchu.yapi.service.YcCookbookService;
+import com.yunchu.yapi.system.handler.exception.AppException;
 import com.yunchu.yapi.vo.CookBookInsertRequestVo;
 import com.yunchu.yapi.vo.CookBookPublishRequestVo;
 
@@ -21,6 +22,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
@@ -31,7 +33,7 @@ import org.springframework.stereotype.Service;
  * @since 2020-08-22
  */
 @Service
-@Log4j2(topic="YcCookbookServiceImpl::")
+@Log4j2(topic="YcCookbookServiceImpl")
 public class YcCookbookServiceImpl extends ServiceImpl<YcCookbookMapper, YcCookbook> implements YcCookbookService {
 	
 	@Autowired
@@ -55,14 +57,17 @@ public class YcCookbookServiceImpl extends ServiceImpl<YcCookbookMapper, YcCookb
 	}
 
 	@Override
+	@Transactional
 	public int publiishCookBook(CookBookPublishRequestVo vo) {
 		log.info(vo);
 		super.baseMapper.updateById(YcCookbookHandler.publishCookBookEntity(vo));
 		for (YcDishStyle tag : vo.getTags()) {
-			YcCookbookStyle inner = YcDishStyleHandler.transferToYcCookbookStyle(tag, vo.getCid());
+			if(tag.getId() == 22){
+				throw new AppException("123");
+			}
+			YcCookbookStyle entity = YcDishStyleHandler.transferToYcCookbookStyle(tag, vo.getCid());
+			this.ycCookbookStyleMapper.insert(entity);
 		}
-		this.ycCookbookStyleMapper.insert(entity);
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

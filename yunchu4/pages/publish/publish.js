@@ -14,7 +14,7 @@ Page({
     ColorList: appInst.globalData.ColorList,
     tagModel:false,
     tagTree:[],
-    targetItem:[],
+    targetItem:{},
 
     //inparams
     choosedTags:[],
@@ -24,7 +24,7 @@ Page({
   },
   onLoad: function name(option) {
     this.setData({
-      targetItem: option.item
+      targetItem: JSON.parse(option.item)
     })
   },
   onShow: function(){
@@ -168,6 +168,8 @@ Page({
     params.tags = this.data.choosedTags;
     params.miaoshu = this.data.miaoshu;
     params.cid = this.data.targetItem.id;
+    console.log("DDDate", this.data);
+    console.log("request.params", params)
     let errmsg = this.checkParamsHandler(params);
     if(errmsg){
       this.showToastError(errmsg)
@@ -175,6 +177,9 @@ Page({
       console.log("request.params", params)
       sapi.publishCookbook(params, (res)=>{
         this.showToastSuccess("发布成功");
+        wx.navigateBack({delta: 1,})
+      }, (res)=>{
+        this.showToastError(res);
       })
     }
   },

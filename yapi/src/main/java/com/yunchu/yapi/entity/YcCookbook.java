@@ -92,7 +92,7 @@ public class YcCookbook extends Model<YcCookbook> {
 
     @ApiModelProperty(value = "0:未发布，1:已发布，2:已删除")
     @TableField("status")
-    private Boolean status;
+    private Integer status;
 
     @ApiModelProperty(value = "创建时间")
     @TableField("create_time")

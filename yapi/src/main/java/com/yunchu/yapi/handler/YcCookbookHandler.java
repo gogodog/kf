@@ -48,6 +48,7 @@ public class YcCookbookHandler {
 		entity.setId(vo.getCid());
 		entity.setMiaoshu(vo.getMiaoshu());
 		entity.setImg(vo.getImg());
+		entity.setStatus(1);
 		return entity;
 	}
 	
