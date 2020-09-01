@@ -2,6 +2,7 @@ package com.yunchu.yapi.service;
 
 import com.yunchu.yapi.entity.YcCookbook;
 import com.yunchu.yapi.vo.CookBookInsertRequestVo;
+import com.yunchu.yapi.vo.CookBookPublishRequestVo;
 
 import java.util.List;
 
@@ -24,6 +25,6 @@ public interface YcCookbookService extends IService<YcCookbook> {
 
 	int deleteById(int id);
 
-	int publiishCookBook(CookBookInsertRequestVo vo);
+	int publiishCookBook(CookBookPublishRequestVo vo);
 
 }

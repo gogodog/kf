@@ -48,3 +48,18 @@ pagehelper:
 wxapp:
   appid: wx4836d3eceda3aeb1
   secret: ce40b37b617c8f13b9a50664fcae2770
+# 自定义的全局图片存放地址
+sglobal: 
+  imgpath: classpath:static/imgstore
+  imgurl:  http://127.0.0.1/yapi/imgstore/
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

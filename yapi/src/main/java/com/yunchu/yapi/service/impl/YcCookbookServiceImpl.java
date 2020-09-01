@@ -1,10 +1,15 @@
 package com.yunchu.yapi.service.impl;
 
 import com.yunchu.yapi.entity.YcCookbook;
+import com.yunchu.yapi.entity.YcCookbookStyle;
+import com.yunchu.yapi.entity.YcDishStyle;
 import com.yunchu.yapi.handler.YcCookbookHandler;
+import com.yunchu.yapi.handler.YcDishStyleHandler;
 import com.yunchu.yapi.mapper.YcCookbookMapper;
+import com.yunchu.yapi.mapper.YcCookbookStyleMapper;
 import com.yunchu.yapi.service.YcCookbookService;
 import com.yunchu.yapi.vo.CookBookInsertRequestVo;
+import com.yunchu.yapi.vo.CookBookPublishRequestVo;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -13,6 +18,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,7 +33,10 @@ import org.springframework.stereotype.Service;
 @Service
 @Log4j2(topic="YcCookbookServiceImpl::")
 public class YcCookbookServiceImpl extends ServiceImpl<YcCookbookMapper, YcCookbook> implements YcCookbookService {
-
+	
+	@Autowired
+	YcCookbookStyleMapper ycCookbookStyleMapper;
+	
 	@Override
 	public boolean newCookBook(CookBookInsertRequestVo vo) {
 		YcCookbook entity = YcCookbookHandler.fgetBookEntity(vo);
@@ -45,8 +55,13 @@ public class YcCookbookServiceImpl extends ServiceImpl<YcCookbookMapper, YcCookb
 	}
 
 	@Override
-	public int publiishCookBook(CookBookInsertRequestVo vo) {
+	public int publiishCookBook(CookBookPublishRequestVo vo) {
 		log.info(vo);
+		super.baseMapper.updateById(YcCookbookHandler.publishCookBookEntity(vo));
+		for (YcDishStyle tag : vo.getTags()) {
+			YcCookbookStyle inner = YcDishStyleHandler.transferToYcCookbookStyle(tag, vo.getCid());
+		}
+		this.ycCookbookStyleMapper.insert(entity);
 		// TODO Auto-generated method stub
 		return 0;
 	}

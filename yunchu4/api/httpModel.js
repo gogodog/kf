@@ -27,6 +27,49 @@ class HttpModel extends HTTP{
           }
         });
   }
-
+  wxUploadImg(imgpath, ok, fail){
+    let url = this.getApiurl('/store/upload/img');
+    console.log(url)
+    wx.uploadFile({
+      url: url,
+      filePath: imgpath,
+      name: 'img',
+      header: {'content-type': 'multipart/form-data'},
+      success: function (res) {
+        if(res.statusCode == 200){
+          let data = JSON.parse(res.data);
+          if(data.code == '200'){
+            ok && ok(data.data)
+          }
+        }
+      },
+      fail: function (res) {
+        fail && fail(res)
+      }
+     })
+  }
+  asyncUploadImages(imgpath, ok, fail){
+    let url = this.getApiurl('/store/upload/img');
+    return new Promise(function () {
+      //上传主题图片 一次只能上传一张好恶心
+        wx.uploadFile({
+          url: url,
+          filePath: imgpath,
+          name: 'img',
+          async: false,
+          success: function (res) {
+            if(res.statusCode == 200){
+              let data = JSON.parse(res.data);
+              if(data.code == '200'){
+                ok && ok(data.data)
+              }
+            }
+          },
+          fail: function (res) {
+            fail && fail(res)
+          }
+        })
+      })
+  }
 }
 export {HttpModel};

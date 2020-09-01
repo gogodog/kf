@@ -1,5 +1,11 @@
 import { config } from "./config";
 class HTTP{
+  getApiurl(){
+    return config.api_url;
+  }
+  getApiurl(uri){
+    return config.api_url + "/yapi" + uri;
+  }
   request(params){
     if(!params.method){
       params.method = 'GET';

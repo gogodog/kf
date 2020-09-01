@@ -30,7 +30,7 @@ const isEmptyCollection = (c) => {
 
 const removeRow = (list, row, n) => {
   if(list.length != 0){
-    list.map((index, item) => {
+    list.map((item, index) => {
       if(item[n] == row[n]){
         list.splice(index,1);
         return;

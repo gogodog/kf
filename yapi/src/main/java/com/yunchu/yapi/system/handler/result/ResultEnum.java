@@ -12,6 +12,7 @@ public enum ResultEnum {
 	FAIL("20001","失败"),//2万段 服务等服务底层失败异常（非编码逻辑错误，依赖服务）
 	EXCEPTION("30001","异常"),//3万段
 	ARGUMENTVALID("40001","参数校验失败"),//4万段
+	FILEFAIL("40101","文件上传失败"),
 	MIM_LOGIN_NOOPENID_ERROR("WX0001", "没有获取到openid")
 	;
 	

@@ -6,6 +6,7 @@ import com.yunchu.yapi.entity.dbenum.CookBookStatusEnum;
 import com.yunchu.yapi.system.handler.exception.AppException;
 import com.yunchu.yapi.tools.GsonUtil;
 import com.yunchu.yapi.vo.CookBookInsertRequestVo;
+import com.yunchu.yapi.vo.CookBookPublishRequestVo;
 
 public class YcCookbookHandler {
 
@@ -40,6 +41,14 @@ public class YcCookbookHandler {
 			throw new AppException("参数异常");
 		}
 		return true;
+	}
+
+	public static YcCookbook publishCookBookEntity(CookBookPublishRequestVo vo) {
+		YcCookbook entity = new YcCookbook();
+		entity.setId(vo.getCid());
+		entity.setMiaoshu(vo.getMiaoshu());
+		entity.setImg(vo.getImg());
+		return entity;
 	}
 	
 }
