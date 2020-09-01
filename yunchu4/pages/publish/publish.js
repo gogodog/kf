@@ -22,10 +22,11 @@ Page({
     imgList:[],
     imgUrl:null
   },
-  onLoad: function name(option) {
+  onLoad: function(option) {
     this.setData({
       targetItem: JSON.parse(option.item)
     })
+    console.log(this.data.targetItem)
   },
   onShow: function(){
     sapi.dishStyleTree((res)=>{
@@ -91,6 +92,21 @@ Page({
       this.addChoosedTags(item);
       this.setTagTreeChoosed(e.currentTarget.dataset.parent, item, true);
     }
+  },
+  cancleTags: function(e) {
+    let targetItem = e.currentTarget.dataset.item;
+    console.log(targetItem);
+    this.removeChoosedTags(targetItem);
+    let tagTree = this.data.tagTree;
+    tagTree.map((item)=>{
+      if(item.id == targetItem.pid){
+        item.children.map((c)=>{
+          c.isChoosed = false; 
+          return;
+        })
+      }
+    })
+    this.setData({tagTree: tagTree})
   },
   checkTag(e){
     this.setData({

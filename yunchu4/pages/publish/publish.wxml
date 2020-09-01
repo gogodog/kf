@@ -1,6 +1,6 @@
 <cu-custom model="nav" isBack="{{true}}" bgColor="bg-red">
   <view slot="backText">返回</view>
-  <view slot="content">发布</view>
+  <view slot="content">{{targetItem.name}}-发布</view>
 </cu-custom>
 <view class="cu-bar bg-white solid-bottom">
   <view class="action">
@@ -11,7 +11,7 @@
   </view>
 </view>
 <view class="padding-sm flex flex-wrap">
-  <view class="padding-xs" wx:for="{{choosedTags}}" wx:key="index">
+  <view class="padding-xs" wx:for="{{choosedTags}}" wx:key="index" data-item="{{item}}" bindtap="cancleTags">
     <view class="cu-tag bg-red">{{item.cnname}}</view>
   </view>
 </view>
