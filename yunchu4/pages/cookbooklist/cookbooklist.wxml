@@ -44,6 +44,17 @@
         </view>
       </listcard>
     </wux-wing-blank>
+<view wx:if="{{!contentlist[tabCurrent].rows || contentlist[tabCurrent].rows.length == 0}}" class="padding-xs flex align-center" style="margin-top:300rpx">
+    <view class="flex-sub text-center">
+      <view class="text-sl">
+        <text class=" cuIcon-edit text-grey"></text>
+      </view>
+      <view class="text-grey">创建菜谱</view>
+    </view>
+  </view>
+
+
+
 </scroll-view>
 <wux-dialog id="wux-dialog" />
 <wux-toast id="wux-toast" />
