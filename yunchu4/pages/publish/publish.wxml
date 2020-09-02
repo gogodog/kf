@@ -18,7 +18,7 @@
 
 <view class="cu-bar bg-white solid-bottom">
   <view class="action">
-    <text class="cuIcon-title text-orange">上传图片</text>
+    <text class="cuIcon-title text-orange">封面图片</text>
   </view>
 </view>
 <view class="cu-form-group">

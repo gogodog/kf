@@ -86,6 +86,11 @@ Page({
     swipeBut: swipeBut,
     noticecontent:"制作食谱并且发布食谱到食街，可获取点赞。如若食谱被使用，则创作者每次可获取1-2元的贡献收益礼金（可提现）",
 
+    //编辑变量
+    isEdit:false,
+    editID:null,
+    editName:null,
+
     //search-food
     sfood_visible: false,
     sfood_key: '',
@@ -123,6 +128,24 @@ Page({
   },
   onReady: function(){
     tips = this.selectComponent("#tips");
+  },
+  onLoad: function(option) {
+    let initParams = {};
+    let item = wx.getStorageSync('cookbooklist.page.item');
+    if(option.operate && option.operate == 'edit' && item){//编辑页面
+        initParams.content_food = item.cfood;
+        initParams.content_assistfood = item.cassistfood;
+        initParams.content_seasoning = item.cseasoning;
+        initParams.content_attion = item.attion;
+        initParams.content_attion_catch = item.attion;
+        initParams.content_method = item.method;
+        initParams.content_method_catch = item.method;
+        initParams.editID = item.id;
+        initParams.editName = item.name;
+        initParams.isEdit = true;
+        initParams.pickname = item.name;
+        this.setData(initParams);
+    }
   },
   setSseasoningKey: function (v) {
     this.setData({
@@ -228,10 +251,8 @@ Page({
     params.content_food = this.data.content_food;
     params.content_seasoning = this.data.content_seasoning;
     params.content_assistfood = this.data.content_assistfood;
-    console.log("请求数据：", params)
     this.checkSubmitPick(params) ? this.inPickName((name) => {
       params.name = name;
-      console.log(1)
       this.setData({subparam:params})
     }) : false;
   },
@@ -239,20 +260,34 @@ Page({
     let params = this.data.subparam;
     if(this.data.subDialog && this.data.pickname != '' && params){
       params.name = this.data.pickname;
+      if(this.data.isEdit){
+        params.id = this.data.editID;
+        sapi.modifyPick(params, 
+          (res)=>{
+            wx.navigateBack({delta: 1,})
+          },
+          (res)=>{
+            reqErroHandler(res)
+          }
+        )
+        return;
+      }
       sapi.savePick(params, (res) => {
         wx.redirectTo({
           url: '../index/index',
         })
         },
         (errmsg) => {
-          console.log("errmsss", errmsg)
-          this.hideDialog();
-          this.showToptipsWarn("失败：" + errmsg);
+          reqErroHandler(errmsg)
         }
       )
     }else{
       this.showToptipsWarn("请输入菜谱名称")
     }
+  },
+  reqErroHandler(errmsg){
+    this.hideDialog();
+    this.showToptipsWarn("提示：" + errmsg);
   },
   checkSubmitPick: function (params) {
     if (isEmptyCollection(params.content_food)) {
@@ -292,8 +327,6 @@ Page({
       this.showToptipsWarn("请输入制作方法");
       return false;
     }
-
-    console.log("校验请求数据：", params)
     return true;
   },
   checkWeightval: function (colectionc) {
@@ -449,8 +482,7 @@ Page({
   },
   hideDialog(){
     this.setData({
-      subDialog:false,
-      pickname:''
+      subDialog:false
     })
   },
   // 删除控制器1

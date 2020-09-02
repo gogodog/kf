@@ -23,14 +23,13 @@ Page({
     imgUrl:null
   },
   onLoad: function(option) {
-    this.setData({
-      targetItem: JSON.parse(option.item)
-    })
-    console.log(this.data.targetItem)
+    let item = wx.getStorageSync('cookbooklist.page.item');
+    if(option.operate && option.operate == 'publish' && item){//发布页面
+      this.setData({targetItem: item})
+    }
   },
   onShow: function(){
     sapi.dishStyleTree((res)=>{
-      console.log(res)
       this.setData({
         tagTree:res
       })
@@ -82,9 +81,7 @@ Page({
     })
   },
   clickTag: function(e){
-    console.log("clickTag:", e)
     let item = e.currentTarget.dataset.item;
-    console.log(this.data.tagTree)
     if(item.isChoosed){//remove
       this.removeChoosedTags(item);
       this.setTagTreeChoosed(e.currentTarget.dataset.parent, item, false);
@@ -95,7 +92,6 @@ Page({
   },
   cancleTags: function(e) {
     let targetItem = e.currentTarget.dataset.item;
-    console.log(targetItem);
     this.removeChoosedTags(targetItem);
     let tagTree = this.data.tagTree;
     tagTree.map((item)=>{
@@ -148,7 +144,6 @@ Page({
       confirmText: '删除',
       success: res => {
         if (res.confirm) {
-          console.log("imgs:", this.data.imgList)
           this.data.imgList.splice(e.currentTarget.dataset.index, 1);
           this.setData({
             imgList: this.data.imgList,
@@ -184,13 +179,10 @@ Page({
     params.tags = this.data.choosedTags;
     params.miaoshu = this.data.miaoshu;
     params.cid = this.data.targetItem.id;
-    console.log("DDDate", this.data);
-    console.log("request.params", params)
     let errmsg = this.checkParamsHandler(params);
     if(errmsg){
       this.showToastError(errmsg)
     }else{
-      console.log("request.params", params)
       sapi.publishCookbook(params, (res)=>{
         this.showToastSuccess("发布成功");
         wx.navigateBack({delta: 1,})

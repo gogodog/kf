@@ -31,6 +31,7 @@ public class CookBookInsertRequestVo {
 		private String cnname;
 		private String ctype;
 		private int weightval;
+		private String avatar;
 		
 	}
 

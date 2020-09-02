@@ -16,6 +16,7 @@ import com.yunchu.yapi.handler.YcCookbookHandler;
 import com.yunchu.yapi.service.YcCookbookService;
 import com.yunchu.yapi.system.handler.result.Result;
 import com.yunchu.yapi.vo.CookBookInsertRequestVo;
+import com.yunchu.yapi.vo.CookBookModifyRequestVo;
 import com.yunchu.yapi.vo.CookBookPublishRequestVo;
 
 /**
@@ -36,6 +37,11 @@ public class YcCookbookController {
 	@PostMapping("/new/cookbook")
 	public Result newCookBook(@Validated @RequestBody CookBookInsertRequestVo vo){
 		return Result.ok(ycCookbookService.newCookBook(vo));
+	}
+	
+	@PostMapping("/modify/cookbook")
+	public Result modifyCookBook(@Validated @RequestBody CookBookModifyRequestVo vo){
+		return Result.ok(ycCookbookService.modifyCookBook(vo));
 	}
 	
 	@PostMapping("/publish/cookbook")

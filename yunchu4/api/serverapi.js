@@ -79,6 +79,21 @@ class ServerApi extends HTTP{
       }
     });
   }
+  modifyPick(param, callBack, errorBack){
+    this.request({
+      url:"/yapi/yc-cookbook/modify/cookbook",
+      method:"POST",
+      data:param,
+      success:(res)=>{
+        if(res.code === "200"){
+          callBack(res.data);
+        }else{
+          console.log(res.msg)
+          errorBack(res.msg);
+        }
+      }
+    });
+  }
   searchCbookListByStatus(param, callBack){
     param.size = 5;
     this.request({

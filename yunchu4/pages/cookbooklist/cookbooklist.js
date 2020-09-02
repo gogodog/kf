@@ -86,11 +86,15 @@ Page({
     that.searchCbookList(status, 1)
   },
   modifyCookBook: function(e){
-    console.log("modifyBookCook去修改页面:", e);
+    this.navigateTo('../pick/pick?operate=edit', e);
   },
   publishCookBook: function(e){
+    this.navigateTo('../publish/publish?operate=publish', e);
+  },
+  navigateTo: function(path, e) {
+    wx.setStorageSync('cookbooklist.page.item', e.currentTarget.dataset.item);
     wx.navigateTo({
-      url:'../publish/publish?item='+JSON.stringify(e.currentTarget.dataset.item)
+      url:path
     })
   },
   hotload: function(){

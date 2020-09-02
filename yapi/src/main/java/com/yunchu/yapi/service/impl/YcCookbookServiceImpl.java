@@ -10,6 +10,7 @@ import com.yunchu.yapi.mapper.YcCookbookStyleMapper;
 import com.yunchu.yapi.service.YcCookbookService;
 import com.yunchu.yapi.system.handler.exception.AppException;
 import com.yunchu.yapi.vo.CookBookInsertRequestVo;
+import com.yunchu.yapi.vo.CookBookModifyRequestVo;
 import com.yunchu.yapi.vo.CookBookPublishRequestVo;
 
 import lombok.extern.log4j.Log4j2;
@@ -69,6 +70,11 @@ public class YcCookbookServiceImpl extends ServiceImpl<YcCookbookMapper, YcCookb
 			this.ycCookbookStyleMapper.insert(entity);
 		}
 		return 0;
+	}
+
+	@Override
+	public int modifyCookBook(CookBookModifyRequestVo vo) {
+		return super.baseMapper.updateById(YcCookbookHandler.transferToYcCookbookToModify(vo));
 	}
 
 }

@@ -1,11 +1,14 @@
 package com.yunchu.yapi.handler;
 
+import java.util.Date;
+
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.yunchu.yapi.entity.YcCookbook;
 import com.yunchu.yapi.entity.dbenum.CookBookStatusEnum;
 import com.yunchu.yapi.system.handler.exception.AppException;
 import com.yunchu.yapi.tools.GsonUtil;
 import com.yunchu.yapi.vo.CookBookInsertRequestVo;
+import com.yunchu.yapi.vo.CookBookModifyRequestVo;
 import com.yunchu.yapi.vo.CookBookPublishRequestVo;
 
 public class YcCookbookHandler {
@@ -50,6 +53,21 @@ public class YcCookbookHandler {
 		entity.setImg(vo.getImg());
 		entity.setStatus(1);
 		return entity;
+	}
+
+	public static YcCookbook transferToYcCookbookToModify(CookBookModifyRequestVo vo) {
+		if(vo == null)
+			return null;
+		YcCookbook modify = new YcCookbook();
+		modify.setAttion(vo.getContentAttion());
+		modify.setMethod(vo.getContentMethod());
+		modify.setFood(GsonUtil.GsonStringReturnEmpty(vo.getContentFood()));
+		modify.setAssistfood(GsonUtil.GsonStringReturnEmpty(vo.getContentAssistfood()));
+		modify.setSeasoning(GsonUtil.GsonStringReturnEmpty(vo.getContentSeasoning()));
+		modify.setName(vo.getName());
+		modify.setId(vo.getId());
+		modify.setUpdateTime(new Date());
+		return modify;
 	}
 	
 }
