@@ -15,13 +15,10 @@ class HttpModel extends HTTP{
     return wx.login({
           success: (res) => {
             that.login(res.code, (res)=>{
+              console.log("login res:", res)
               wx.setStorage({
-                key:'userInfo',
+                key:'loginUser',
                 data:res
-              })
-              wx.setStorage({
-                key:'userKey',
-                data:res.uucode
               })
             });
           }

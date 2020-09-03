@@ -3,7 +3,6 @@ let request_ = new HttpModel();
 App({
   onLaunch: function () {
     request_.wxlogin();
-
     wx.getSetting({
       success: (res) => {
         if (res.authSetting['scope.userInfo']) {// 已经授权

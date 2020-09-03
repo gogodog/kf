@@ -13,6 +13,7 @@ public enum ResultEnum {
 	EXCEPTION("30001","系统异常，刷新重试"),//3万段
 	ARGUMENTVALID("40001","参数校验失败"),//4万段
 	FILEFAIL("40101","文件上传失败"),
+	NO_LOGIN("40201", "未登录"),
 	MIM_LOGIN_NOOPENID_ERROR("WX0001", "没有获取到openid")
 	;
 	

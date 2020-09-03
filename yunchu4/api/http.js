@@ -10,13 +10,22 @@ class HTTP{
     if(!params.method){
       params.method = 'GET';
     }
+    var loginUser = wx.getStorageSync('loginUser')
+    console.log("catch::", loginUser)
+    let sessionKey = '';
+    if(params.url != "/min/proxy/login" && !loginUser){
+      console.log("未登录")
+      return;
+    }else{
+      sessionKey = loginUser.session_key;
+    }
     wx.request({
       url: config.api_url + params.url,
       method: params.method,
       data:params.data,
       header:{
         'content-type':'application/json',
-        'appKey':config.appKey
+        'sessionKey':sessionKey
       },
       success:(res) => {
         let statusCode = res.statusCode;

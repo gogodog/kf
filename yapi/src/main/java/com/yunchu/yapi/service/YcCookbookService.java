@@ -1,5 +1,6 @@
 package com.yunchu.yapi.service;
 
+import com.yunchu.yapi.entity.YcAppUser;
 import com.yunchu.yapi.entity.YcCookbook;
 import com.yunchu.yapi.vo.CookBookInsertRequestVo;
 import com.yunchu.yapi.vo.CookBookModifyRequestVo;
@@ -20,9 +21,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface YcCookbookService extends IService<YcCookbook> {
 
-	boolean newCookBook(CookBookInsertRequestVo vo);
+	boolean newCookBook(CookBookInsertRequestVo vo, YcAppUser user);
 
-	List<YcCookbook> listByStatus(Page<YcCookbook> page, int status);
+	List<YcCookbook> listByStatus(Page<YcCookbook> page, int status, YcAppUser user);
 
 	int deleteById(int id);
 

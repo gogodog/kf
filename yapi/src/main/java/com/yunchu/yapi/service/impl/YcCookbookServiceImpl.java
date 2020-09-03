@@ -1,5 +1,6 @@
 package com.yunchu.yapi.service.impl;
 
+import com.yunchu.yapi.entity.YcAppUser;
 import com.yunchu.yapi.entity.YcCookbook;
 import com.yunchu.yapi.entity.YcCookbookStyle;
 import com.yunchu.yapi.entity.YcDishStyle;
@@ -8,12 +9,9 @@ import com.yunchu.yapi.handler.YcDishStyleHandler;
 import com.yunchu.yapi.mapper.YcCookbookMapper;
 import com.yunchu.yapi.mapper.YcCookbookStyleMapper;
 import com.yunchu.yapi.service.YcCookbookService;
-import com.yunchu.yapi.system.handler.exception.AppException;
 import com.yunchu.yapi.vo.CookBookInsertRequestVo;
 import com.yunchu.yapi.vo.CookBookModifyRequestVo;
 import com.yunchu.yapi.vo.CookBookPublishRequestVo;
-
-import lombok.extern.log4j.Log4j2;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -34,21 +32,20 @@ import org.springframework.transaction.annotation.Transactional;
  * @since 2020-08-22
  */
 @Service
-@Log4j2(topic="YcCookbookServiceImpl")
 public class YcCookbookServiceImpl extends ServiceImpl<YcCookbookMapper, YcCookbook> implements YcCookbookService {
 	
 	@Autowired
 	YcCookbookStyleMapper ycCookbookStyleMapper;
 	
 	@Override
-	public boolean newCookBook(CookBookInsertRequestVo vo) {
-		YcCookbook entity = YcCookbookHandler.fgetBookEntity(vo);
+	public boolean newCookBook(CookBookInsertRequestVo vo, YcAppUser user) {
+		YcCookbook entity = YcCookbookHandler.fgetBookEntity(vo, user);
 		return super.baseMapper.insert(entity) == 1;
 	}
 
 	@Override
-	public List<YcCookbook> listByStatus(Page<YcCookbook> page, int status) {
-		super.baseMapper.selectPage(page, new QueryWrapper<YcCookbook>().eq("status", status));
+	public List<YcCookbook> listByStatus(Page<YcCookbook> page, int status, YcAppUser user) {
+		super.baseMapper.selectPage(page, new QueryWrapper<YcCookbook>().eq("status", status).eq("user_code", user.getUucode()));
 		return page.getRecords();
 	}
 
@@ -60,12 +57,8 @@ public class YcCookbookServiceImpl extends ServiceImpl<YcCookbookMapper, YcCookb
 	@Override
 	@Transactional
 	public int publiishCookBook(CookBookPublishRequestVo vo) {
-		log.info(vo);
 		super.baseMapper.updateById(YcCookbookHandler.publishCookBookEntity(vo));
 		for (YcDishStyle tag : vo.getTags()) {
-			if(tag.getId() == 22){
-				throw new AppException("123");
-			}
 			YcCookbookStyle entity = YcDishStyleHandler.transferToYcCookbookStyle(tag, vo.getCid());
 			this.ycCookbookStyleMapper.insert(entity);
 		}

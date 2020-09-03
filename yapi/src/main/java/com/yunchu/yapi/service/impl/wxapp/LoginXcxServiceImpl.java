@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.yunchu.yapi.comment.localcatch.LocalCatch;
+import com.yunchu.yapi.comment.localcatch.WxLoginSession;
 import com.yunchu.yapi.comment.wxapp.WxAppCompent;
 import com.yunchu.yapi.entity.YcAppUser;
 import com.yunchu.yapi.mapper.YcAppUserMapper;
@@ -35,19 +36,20 @@ public class LoginXcxServiceImpl implements LoginXcxService{
 			throw new AppException(ResultEnum.MIM_LOGIN_NOOPENID_ERROR);
 		List<YcAppUser> users = this.ycAppUserMapper.selectList(new QueryWrapper<YcAppUser>().eq("wx_openid", wxSession.getOpenid()));
 		boolean isNewUser = CollectionUtils.isEmpty(users);
-		String uucode = isNewUser ? this.register(wxSession.getOpenid()) : users.get(0).getUucode();
-		LocalCatch.putWXSession(uucode, wxSession);
-		return new WxUserLoginResponseVo(isNewUser,wxSession.getOpenid(),code,uucode);
+		YcAppUser user = isNewUser ? this.register(wxSession.getOpenid()) : users.get(0);
+		LocalCatch.putWXSession(user.getUucode(), wxSession);
+		String sessionKey = WxLoginSession.put(user);
+		return new WxUserLoginResponseVo(isNewUser, sessionKey);
 	}
 
-	private String register(String openId) {
+	private YcAppUser register(String openId) {
 		YcAppUser entity = new YcAppUser();
 		entity.setAppId(this.wxappCompent.appid);
 		entity.setLastLoginTime(new Date());
 		entity.setUucode(UUID.randomUUID().toString());
 		entity.setWxOpenid(openId);
 		this.ycAppUserMapper.insert(entity);
-		return entity.getUucode();
+		return entity;
 	}
 
 }

@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.yunchu.yapi.entity.YcAppUser;
 import com.yunchu.yapi.entity.YcCookbook;
 import com.yunchu.yapi.handler.YcCookbookHandler;
 import com.yunchu.yapi.service.YcCookbookService;
@@ -35,8 +37,8 @@ public class YcCookbookController {
 	YcCookbookService ycCookbookService;
 
 	@PostMapping("/new/cookbook")
-	public Result newCookBook(@Validated @RequestBody CookBookInsertRequestVo vo){
-		return Result.ok(ycCookbookService.newCookBook(vo));
+	public Result newCookBook(@Validated @RequestBody CookBookInsertRequestVo vo, @RequestAttribute YcAppUser user){
+		return Result.ok(ycCookbookService.newCookBook(vo, user));
 	}
 	
 	@PostMapping("/modify/cookbook")
@@ -50,9 +52,9 @@ public class YcCookbookController {
 	}
 	
 	@GetMapping("/list/status")
-	public Result listByStatus(int status, Page<YcCookbook> page){
+	public Result listByStatus(int status, Page<YcCookbook> page, @RequestAttribute YcAppUser user){
 		YcCookbookHandler.checkStatus(status);
-		return Result.ok(ycCookbookService.listByStatus(page, status));
+		return Result.ok(ycCookbookService.listByStatus(page, status, user));
 	}
 	
 	@GetMapping("/delete/id")

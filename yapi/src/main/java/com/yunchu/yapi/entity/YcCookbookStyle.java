@@ -30,7 +30,12 @@ import lombok.experimental.Accessors;
 public class YcCookbookStyle extends Model<YcCookbookStyle> {
 
 
-    @TableId(value = "id", type = IdType.AUTO)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     @ApiModelProperty(value = "食谱ID")

@@ -3,6 +3,7 @@ package com.yunchu.yapi.handler;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import com.yunchu.yapi.entity.YcAppUser;
 import com.yunchu.yapi.entity.YcCookbook;
 import com.yunchu.yapi.entity.dbenum.CookBookStatusEnum;
 import com.yunchu.yapi.system.handler.exception.AppException;
@@ -26,7 +27,7 @@ public class YcCookbookHandler {
 		return true;
 	}
 	
-	public static YcCookbook fgetBookEntity(CookBookInsertRequestVo vo){
+	public static YcCookbook fgetBookEntity(CookBookInsertRequestVo vo, YcAppUser user){
 		if(vo == null)
 			return null;
 		YcCookbook ck = new YcCookbook();
@@ -36,6 +37,9 @@ public class YcCookbookHandler {
 		ck.setAssistfood(GsonUtil.GsonStringReturnEmpty(vo.getContentAssistfood()));
 		ck.setSeasoning(GsonUtil.GsonStringReturnEmpty(vo.getContentSeasoning()));
 		ck.setName(vo.getName());
+		ck.setUserCode(user.getUucode());
+		ck.setUserWxHead(user.getWxHead());
+		ck.setUserWxName(user.getWxName());
 		return ck;
 	}
 
