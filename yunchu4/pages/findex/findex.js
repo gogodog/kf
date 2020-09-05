@@ -62,12 +62,15 @@ Page({
         break;
       }
     }
-    console.log(list)
     this.setData(
       this.data.TabCur == 0 ? {attionList: list} : {recommendList: list}
     )
   },
   ushow: function(e){
+    wx.setStorageSync('street.page.item', e.currentTarget.dataset.item);
+    wx.navigateTo({
+      url: "/pages/detail/detail",
+    })
   },
   tabChange: function(e) {
     this.setData({

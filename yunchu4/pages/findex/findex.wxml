@@ -26,7 +26,7 @@
                   <view class="text-darkGrey text-sm">
                     <text class="cuIcon-attentionfill text-red margin-lr-xs" data-id="{{item.id}}" bindtap="uattention">{{item.attion_count}}</text>
                     <text class="cuIcon-appreciatefill text-red margin-lr-xs" data-id="{{item.id}}" bindtap="ulike">{{item.like_count}}</text>
-                    <text class="cuIcon-right margin-lr-xs" data-id="{{item.id}}" bindtap="ushow">去查看</text>
+                    <button class="cu-btn bg-red round sm" style="margin-left:15rpx;font-size: 28rpx;" data-item="{{item}}" bindtap="ushow">查看</button>
                   </view>
                 </view>
               </view>
@@ -59,7 +59,7 @@
                   <view class="text-darkGrey text-sm">
                     <text class="cuIcon-attentionfill text-red margin-lr-xs" data-id="{{item.id}}" bindtap="uattention">{{item.attion_count}}</text>
                     <text class="cuIcon-appreciatefill text-red margin-lr-xs" data-id="{{item.id}}" bindtap="ulike">{{item.like_count}}</text>
-                    <text class="cuIcon-right margin-lr-xs" data-id="{{item.id}}" bindtap="ushow">去查看</text>
+                    <button class="cu-btn bg-red round sm" style="margin-left:15rpx;font-size: 28rpx;" data-item="{{item}}" bindtap="ushow">查看</button>
                   </view>
                 </view>
               </view>
