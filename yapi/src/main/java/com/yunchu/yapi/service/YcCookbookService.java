@@ -27,7 +27,7 @@ public interface YcCookbookService extends IService<YcCookbook> {
 
 	int deleteById(int id);
 
-	int publiishCookBook(CookBookPublishRequestVo vo);
+	int publiishCookBook(CookBookPublishRequestVo vo, YcAppUser user);
 
 	int modifyCookBook(CookBookModifyRequestVo vo);
 

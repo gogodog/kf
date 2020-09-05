@@ -15,5 +15,9 @@
         <result column="update_time" property="updateTime" />
         <result column="delete_flag" property="deleteFlag" />
     </resultMap>
+    
+    <select id="getTagsByCookBookId" resultMap="BaseResultMap">
+        select *from yc_cookbook_style where cookbook_id = #{cookbookId}
+    </select>
 
 </mapper>

@@ -1,0 +1,43 @@
+<view class="cu-card case {{isCard?'no-card':''}}">
+  <view class="cu-item shadow">
+    <view class="image">
+      <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="widthFix"></image>
+      <view class="cu-tag bg-blue">史诗</view>
+    </view>
+    <view class="cu-list menu-avatar">
+      <view class="cu-item">
+        <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+        <view class="content flex-sub">
+          <view class="text-grey">
+            黄焖鸡
+          </view>
+        <view class="text-gray text-sm flex justify-between">
+          prescott
+            <view class="text-gray text-sm">
+              <text class="cuIcon-attentionfill margin-lr-xs"></text> 10
+              <text class="cuIcon-appreciatefill margin-lr-xs"></text> 20
+              <text class="cuIcon-messagefill margin-lr-xs"></text> 30
+              <text class="cuIcon-right margin-lr-xs"></text>查看
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="padding-sm flex flex-wrap">
+      <view style="padding:8rpx"><view class="cu-tag line-blue round">养生</view></view>
+      <view style="padding:8rpx"><view class="cu-tag line-blue round">养生</view></view>
+      <view style="padding:8rpx"><view class="cu-tag line-blue round">养生</view></view>
+      <view style="padding:8rpx"><view class="cu-tag line-blue round">养生</view></view>
+      <view style="padding:8rpx"><view class="cu-tag line-blue round">养生</view></view>
+      <view style="padding:8rpx"><view class="cu-tag line-blue round">养生</view></view>
+      <view style="padding:8rpx"><view class="cu-tag line-blue round">养生</view></view>
+      <view style="padding:8rpx"><view class="cu-tag line-blue round">养生</view></view>
+      <view style="padding:8rpx"><view class="cu-tag line-blue round">养生</view></view>
+      <view style="padding:8rpx"><view class="cu-tag line-blue round">养生</view></view>
+      <view style="padding:8rpx"><view class="cu-tag line-blue round">养生</view></view>
+      <view style="padding:8rpx"><view class="cu-tag line-blue round">养生</view></view>
+      <view style="padding:8rpx"><view class="cu-tag line-blue round">养生</view></view>
+      <view style="padding:8rpx"><view class="cu-tag line-blue round">养生</view></view>
+    </view>
+    </view>
+  </view>
+</view>

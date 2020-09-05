@@ -1,13 +1,16 @@
 package com.yunchu.yapi.controller.wxapi;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yunchu.yapi.service.wxapp.LoginXcxService;
 import com.yunchu.yapi.system.handler.result.Result;
+import com.yunchu.yapi.vo.WxUserLoginRequestVo;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -25,10 +28,10 @@ public class LoginXcxController {
      * @param
      */
     @ResponseBody
-    @GetMapping(value="/login")
-    public Result login(String code) {
-    	log.info("code:", code);
-    	return Result.ok(this.loginXcxService.loginByCode(code));
+    @PostMapping(value="/login")
+    public Result login(@Validated @RequestBody WxUserLoginRequestVo vo) {
+    	log.info("WxUserLoginRequestVo:", vo);
+    	return Result.ok(this.loginXcxService.loginByCode(vo));
     }
 
 }

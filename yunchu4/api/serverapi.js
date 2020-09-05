@@ -114,5 +114,15 @@ class ServerApi extends HTTP{
       }
     });
   }
+  getStreetList(param, sk){
+    param.size = 3;
+    this.request({
+      url:"/yapi/yc-street/street/list",
+      data:param,
+      success:(res)=>{
+        sk && sk(res);
+      }
+    });
+  }
 }
 export {ServerApi};

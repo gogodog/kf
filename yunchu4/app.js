@@ -2,28 +2,23 @@ import {HttpModel} from './api/httpModel';
 let request_ = new HttpModel();
 App({
   onLaunch: function () {
-    request_.wxlogin();
+    this.setWinHeightX();
     wx.getSetting({
       success: (res) => {
         if (res.authSetting['scope.userInfo']) {// 已经授权
           wx.getUserInfo({
             success: (res) => {
               this.globalData.userInfo = res.userInfo;
-              console.log(res.userInfo)
+              request_.wxlogin(res.userInfo);
             },
           });
         }
       },
     });
-
-    wx.getSystemInfo({
-      success: (res) => {
-        this.setWinHeight(res)
-        this.setGlobalColorUI(res)
-      },
-    });
     wx.getSystemInfo({
       success: e => {
+        this.setWinHeight(e)
+        this.setGlobalColorUI(e)
         this.globalData.StatusBar = e.statusBarHeight;
         let capsule = wx.getMenuButtonBoundingClientRect();
         if (capsule) {
@@ -41,6 +36,9 @@ App({
     let rpxR = 750 / clientWidth;
     let calc = clientHeight * rpxR - 406;
     this.globalData.winHeight = calc;
+  },
+  setWinHeightX: function() {
+    this.globalData.winHeightX = wx.getSystemInfoSync().windowHeight
   },
   setGlobalColorUI: function(e){
     this.globalData.StatusBar = e.statusBarHeight;
@@ -69,6 +67,7 @@ App({
   globalData: {
     userInfo: "++++",
     winHeight: null,
+    winHeightX: null,
     nabbootomMap: [
       "/pages/index/index",
       "/pages/street/street",

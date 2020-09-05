@@ -12,5 +12,8 @@ Page({
     this.setData({
       TabCur: e.currentTarget.dataset.id
     })
+  },
+  refreshOnload: function(e) {
+    console.log("refreshOnload");
   }
 })

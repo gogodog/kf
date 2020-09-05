@@ -50,12 +50,15 @@ public class YcCookbookHandler {
 		return true;
 	}
 
-	public static YcCookbook publishCookBookEntity(CookBookPublishRequestVo vo) {
+	public static YcCookbook publishCookBookEntity(CookBookPublishRequestVo vo, YcAppUser user) {
 		YcCookbook entity = new YcCookbook();
 		entity.setId(vo.getCid());
 		entity.setMiaoshu(vo.getMiaoshu());
 		entity.setImg(vo.getImg());
 		entity.setStatus(1);
+		entity.setUserWxHead(user.getWxHead());
+		entity.setUserCode(user.getUucode());
+		entity.setUserWxName(user.getWxName());
 		return entity;
 	}
 

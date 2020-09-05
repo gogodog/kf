@@ -106,6 +106,10 @@ public class YcCookbook extends Model<YcCookbook> {
     @TableField("delete_flag")
     @TableLogic
     private Boolean deleteFlag;
+    
+    @ApiModelProperty(value = "标签集合")
+    @TableField(exist = false)
+    private List<YcCookbookStyle> tags;
 
 
     @Override

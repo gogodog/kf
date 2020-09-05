@@ -1,15 +1,89 @@
-<cu-custom model="search" bgColor="bg-red" isBack="{{false}}"><view slot="content">
-
-
-
-</view></cu-custom>
-
-
-
-
-
-
-<!-- foot -->
-<footnav tabCur="{{5}}"></footnav>
-
-
+<cu-custom model="nav" bindover="leaveover" bgColor="bg-red">
+  <view slot="content">食街</view>
+</cu-custom>
+<scroll-view scroll-x class="bg-white nav text-center bg-red" style="position:fixed;top:{{CustomBar}}px;z-index:2">
+  <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:key="index" wx:for="{{Tabs}}" bindtap="tabChange" data-id="{{index}}">
+    {{item.name}}
+  </view>
+</scroll-view>
+<wux-white-space body-style="height: 90rpx" />
+<swiper current="{{TabCur}}" class="swiper-box" duration="300" style="height:1500rpx" bindchange="bindChange">
+  <swiper-item>
+    <scroll-view style='height:100%;' scroll-y bindscrolltolower="refreshOnload">
+      <view wx:for="{{attionList}}" wx:key="index" class="cu-card case}">
+        <view class="cu-item shadow">
+          <view class="image">
+            <image src="{{item.img}}" mode="widthFix"></image>
+            <view class="cu-tag bg-blue">史诗</view>
+          </view>
+          <view class="cu-list menu-avatar">
+            <view class="cu-item">
+              <view class="cu-avatar round lg" style="background-image:url({{item.user_wx_head}});"></view>
+              <view class="content flex-sub">
+                <view class="text-grey">{{item.name}}</view>
+                <view class="text-gray text-sm flex justify-between">
+                  {{item.user_wx_name?item.user_wx_name:'厨娘彩莲'}}
+                  <view class="text-gray text-sm">
+                    <text class="cuIcon-attentionfill margin-lr-xs"></text>
+                    10
+                    <text class="cuIcon-appreciatefill margin-lr-xs"></text>
+                    20
+                    <text class="cuIcon-messagefill margin-lr-xs"></text>
+                    30
+                    <text class="cuIcon-right margin-lr-xs"></text>
+                    查看{{index}}
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="padding-sm flex flex-wrap">
+              <view style="padding:8rpx" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index">
+                <view class="cu-tag line-blue round">{{tag.style_cnname}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view style='height:100%;' scroll-y bindscrolltolower="refreshOnload">
+      <view wx:for="{{recommendList}}" wx:key="index" class="cu-card case}">
+        <view class="cu-item shadow">
+          <view class="image">
+            <image src="{{item.img}}" mode="widthFix"></image>
+            <view class="cu-tag bg-blue">史诗</view>
+          </view>
+          <view class="cu-list menu-avatar">
+            <view class="cu-item">
+              <view class="cu-avatar round lg" style="background-image:url({{item.user_wx_head}});"></view>
+              <view class="content flex-sub">
+                <view class="text-grey">{{item.name}}</view>
+                <view class="text-gray text-sm flex justify-between">
+                  {{item.user_wx_name?item.user_wx_name:'厨娘彩莲'}}
+                  <view class="text-gray text-sm">
+                    <text class="cuIcon-attentionfill margin-lr-xs"></text>
+                    10
+                    <text class="cuIcon-appreciatefill margin-lr-xs"></text>
+                    20
+                    <text class="cuIcon-messagefill margin-lr-xs"></text>
+                    30
+                    <text class="cuIcon-right margin-lr-xs"></text>
+                    查看{{index}}
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="padding-sm flex flex-wrap">
+              <view style="padding:8rpx" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index">
+                <view class="cu-tag line-blue round">{{tag.style_cnname}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>
+<wux-white-space body-style="height: 100rpx" />
+<footnav tabCur="{{1}}"></footnav>

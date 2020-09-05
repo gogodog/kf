@@ -3,7 +3,15 @@
   <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:key="index" wx:for="{{Tabs}}" bindtap="tabChange" data-id="{{index}}">{{item.name}}</view>
 </scroll-view>
 <wux-white-space body-style="height: 90rpx"/>
-<scroll-view wx:if="{{TabCur == 1}}" scroll-y class="scrollPage">
+
+
+
+
+
+
+
+
+<scroll-view wx:if="{{TabCur == 1}}" scroll-y class="scrollPage" lower-threshold="200" bindscrolltolower="refreshOnload">
 <card
     headerImg='{{userInfo.avatarUrl}}'
     title='1诺夏梦陇'
@@ -38,7 +46,7 @@
     isShowDelete='{{true}}'></card>
     <card
     headerImg='{{userInfo.avatarUrl}}'
-    title='诺夏梦陇'
+    title='1诺夏梦陇'
     time='September 25, 2019'
     img='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597918800769&di=48ce4c79962ed7df630d79a27e3b6d56&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D2150777454%2C3130959978%26fm%3D214%26gp%3D0.jpg'
     context='清香软糯的糯米，bai裹着沙甜的豆馅，吃上一口棉软不粘牙，du沙甜而不腻口。糯米又叫江米，zhi是家常经常食用的粮食之一。因其香黏滑，常被用以制成风味小吃'
@@ -52,7 +60,6 @@
     isUnLiked="{{false}}"
     unlikeNumber='{{2}}'
     isShowDelete='{{true}}'></card>
-    <wux-white-space body-style="height: 95rpx"/>
 </scroll-view>
 
 <scroll-view wx:if="{{TabCur == 0}}" scroll-y class="scrollPage">

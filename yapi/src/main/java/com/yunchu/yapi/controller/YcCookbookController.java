@@ -47,8 +47,8 @@ public class YcCookbookController {
 	}
 	
 	@PostMapping("/publish/cookbook")
-	public Result publiishCookBook(@Validated @RequestBody CookBookPublishRequestVo vo){
-		return Result.ok(ycCookbookService.publiishCookBook(vo));
+	public Result publiishCookBook(@Validated @RequestBody CookBookPublishRequestVo vo, @RequestAttribute YcAppUser user){
+		return Result.ok(ycCookbookService.publiishCookBook(vo, user));
 	}
 	
 	@GetMapping("/list/status")

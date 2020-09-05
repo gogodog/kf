@@ -53,10 +53,19 @@ const removeOne = (arr, val, n) => {
   return arr;
 }
 
+const appendArry = (a1, a2) => {
+  if(!a1 || a1.length == 0)
+    return a2;
+  for(var i = 0 ; i<a2.length ; i++)
+    a1.push(a2[i])
+  return a1;
+}
+
 module.exports = {
   formatTime: formatTime,
   isEmptyStr: isEmptyStr,
   isEmptyCollection:  isEmptyCollection,
   removeRow: removeRow,
-  removeOne: removeOne
+  removeOne: removeOne,
+  appendArry: appendArry
 };

@@ -1,8 +1,12 @@
 import {HTTP} from './http'
 class HttpModel extends HTTP{
-  login(code, callBack){
+  login(userInfo, callBack){
+    userInfo.avatar_url = userInfo.avatarUrl;
+    userInfo.nick_name = userInfo.nickName;
     this.request({
-      url:"/yapi/min/proxy/login?code="+code,
+      url:"/yapi/min/proxy/login",
+      data:userInfo,
+      method:"POST",
       success:(res)=>{
         if(res.code === "200"){
           callBack(res.data);
@@ -10,12 +14,12 @@ class HttpModel extends HTTP{
       }
     });
   }
-  wxlogin(callBack){
+  wxlogin(userInfo, callBack){
     let that = this;
     return wx.login({
           success: (res) => {
-            that.login(res.code, (res)=>{
-              console.log("login res:", res)
+            userInfo.code = res.code
+            that.login(userInfo, (res)=>{
               wx.setStorage({
                 key:'loginUser',
                 data:res
@@ -26,12 +30,14 @@ class HttpModel extends HTTP{
   }
   wxUploadImg(imgpath, ok, fail){
     let url = this.getApiurl('/store/upload/img');
-    console.log(url)
     wx.uploadFile({
       url: url,
       filePath: imgpath,
       name: 'img',
-      header: {'content-type': 'multipart/form-data'},
+      header: {
+        'content-type': 'multipart/form-data',
+        'sessionKey':wx.getStorageSync('loginUser').session_key
+      },
       success: function (res) {
         if(res.statusCode == 200){
           let data = JSON.parse(res.data);
