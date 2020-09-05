@@ -11,7 +11,6 @@ Page({
   },
   onLoad: function(option) {
     let item = wx.getStorageSync('street.page.item');
-    console.log(item)
     if(item)//详情页面
       this.setData({targetItem: item})
   },
