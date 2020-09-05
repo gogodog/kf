@@ -38,7 +38,6 @@ Page({
     })
   },
   uattention: function(e){
-    console.log("uattention-s", e.currentTarget.dataset.id);
     let id = e.currentTarget.dataset.id;
     sapi.uattention(id, res=>{
       if(res.code == "200" && res.data){
@@ -47,7 +46,6 @@ Page({
     });
   },
   ulike: function(e){
-    console.log("ulike-s", e.currentTarget.dataset.id);
     let id = e.currentTarget.dataset.id;
     sapi.ulike(id, res=>{
       if(res.code == "200" && res.data){
@@ -61,7 +59,7 @@ Page({
       let one = list[i];
       if(one.id == id){
         one[param] += 1;
-        return;
+        break;
       }
     }
     console.log(list)
