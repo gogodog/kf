@@ -36,12 +36,6 @@ import lombok.experimental.Accessors;
 @ApiModel(value="YcCookbook对象", description="")
 public class YcCookbook extends Model<YcCookbook> {
 
-
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	@TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
@@ -110,11 +104,27 @@ public class YcCookbook extends Model<YcCookbook> {
     @ApiModelProperty(value = "标签集合")
     @TableField(exist = false)
     private List<YcCookbookStyle> tags;
+    
+    @ApiModelProperty(value = "点赞数量")
+    @TableField(exist = false)
+    private Long likeCount;
+    
+    @ApiModelProperty(value = "关注数量")
+    @TableField(exist = false)
+    private Long attionCount;
 
 
     @Override
     protected Serializable pkVal() {
         return this.id;
+    }
+    
+    public Long getLikeCount(){
+    	return this.likeCount;
+    }
+    
+    public Long getAttionCount(){
+    	return this.attionCount;
     }
     
     public List<Map<String, Object>> getCfood(){

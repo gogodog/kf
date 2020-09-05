@@ -20,18 +20,13 @@
             <view class="cu-item">
               <view class="cu-avatar round lg" style="background-image:url({{item.user_wx_head}});"></view>
               <view class="content flex-sub">
-                <view class="text-grey">{{item.name}}</view>
-                <view class="text-gray text-sm flex justify-between">
+                <view class="text-darkGrey">{{item.name}}</view>
+                <view class="text-darkGrey text-sm flex justify-between">
                   {{item.user_wx_name?item.user_wx_name:'厨娘彩莲'}}
-                  <view class="text-gray text-sm">
-                    <text class="cuIcon-attentionfill margin-lr-xs"></text>
-                    10
-                    <text class="cuIcon-appreciatefill margin-lr-xs"></text>
-                    20
-                    <text class="cuIcon-messagefill margin-lr-xs"></text>
-                    30
-                    <text class="cuIcon-right margin-lr-xs"></text>
-                    查看{{index}}
+                  <view class="text-darkGrey text-sm">
+                    <text class="cuIcon-attentionfill text-red margin-lr-xs" data-id="{{item.id}}" bindtap="uattention">{{item.attion_count}}</text>
+                    <text class="cuIcon-appreciatefill text-red margin-lr-xs" data-id="{{item.id}}" bindtap="ulike">{{item.like_count}}</text>
+                    <text class="cuIcon-right margin-lr-xs" data-id="{{item.id}}" bindtap="ushow">去查看</text>
                   </view>
                 </view>
               </view>
@@ -58,18 +53,13 @@
             <view class="cu-item">
               <view class="cu-avatar round lg" style="background-image:url({{item.user_wx_head}});"></view>
               <view class="content flex-sub">
-                <view class="text-grey">{{item.name}}</view>
-                <view class="text-gray text-sm flex justify-between">
+                <view class="text-darkGrey">{{item.name}}</view>
+                <view class="text-darkGrey text-sm flex justify-between">
                   {{item.user_wx_name?item.user_wx_name:'厨娘彩莲'}}
-                  <view class="text-gray text-sm">
-                    <text class="cuIcon-attentionfill margin-lr-xs"></text>
-                    10
-                    <text class="cuIcon-appreciatefill margin-lr-xs"></text>
-                    20
-                    <text class="cuIcon-messagefill margin-lr-xs"></text>
-                    30
-                    <text class="cuIcon-right margin-lr-xs"></text>
-                    查看{{index}}
+                  <view class="text-darkGrey text-sm">
+                    <text class="cuIcon-attentionfill text-red margin-lr-xs" data-id="{{item.id}}" bindtap="uattention">{{item.attion_count}}</text>
+                    <text class="cuIcon-appreciatefill text-red margin-lr-xs" data-id="{{item.id}}" bindtap="ulike">{{item.like_count}}</text>
+                    <text class="cuIcon-right margin-lr-xs" data-id="{{item.id}}" bindtap="ushow">去查看</text>
                   </view>
                 </view>
               </view>

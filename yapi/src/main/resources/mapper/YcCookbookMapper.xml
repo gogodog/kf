@@ -67,6 +67,8 @@
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
         <result column="delete_flag" property="deleteFlag" />
+        <association property="likeCount" javaType="java.lang.Long" select="com.yunchu.yapi.mapper.YcCookbookLikeMapper.getLikeCountByCookBookId" column="id"/>
+        <association property="attionCount" javaType="java.lang.Long" select="com.yunchu.yapi.mapper.YcCookbookAttionMapper.getAttionCountByCookBookId" column="id"/>
         <collection property="tags" select="com.yunchu.yapi.mapper.YcCookbookStyleMapper.getTagsByCookBookId" column="id"></collection>
     </resultMap>
     
@@ -82,7 +84,10 @@
     </select>
     
     <select id="streetListStep" resultMap="streetListMapStep">
-        select * from yc_cookbook where status = 1
+        select 
+        	*
+        from yc_cookbook
+        where status = 1
     </select>
 
 </mapper>

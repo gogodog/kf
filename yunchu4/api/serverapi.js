@@ -121,5 +121,21 @@ class ServerApi extends HTTP{
       }
     });
   }
+  uattention(id, sk){
+    this.request({
+      url:"/yapi/yc-cookbook-attion/attion?cookbookId="+id,
+      success:(res)=>{
+        sk && sk(res);
+      }
+    });
+  }
+  ulike(id, sk){
+    this.request({
+      url:"/yapi/yc-cookbook-like/like?cookbookId="+id,
+      success:(res)=>{
+        sk && sk(res);
+      }
+    });
+  }
 }
 export {ServerApi};
