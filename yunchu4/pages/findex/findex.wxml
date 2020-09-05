@@ -7,7 +7,7 @@
   </view>
 </scroll-view>
 <wux-white-space body-style="height: 90rpx" />
-<swiper current="{{TabCur}}" class="swiper-box" duration="300" style="height:1500rpx" bindchange="bindChange">
+<swiper current="{{TabCur}}" class="swiper-box" duration="300" style="height:1500rpx" bindchange="refreshOnload">
   <swiper-item>
     <scroll-view style='height:100%;' scroll-y bindscrolltolower="refreshOnload">
       <view wx:for="{{attionList}}" wx:key="index" class="cu-card case}">

@@ -40,7 +40,7 @@ Page({
   tabChange: function(e) {
     console.log("tagChange:", e)
     this.setData({
-      TabCur: e.currentTarget.dataset.id
+      TabCur: this.data.TabCur == 1 ? 0 : 1
     })
   },
   refreshOnload: function() {
