@@ -48,7 +48,6 @@ class ServerApi extends HTTP{
       method:"POST",
       data:param,
       success:(res)=>{
-        console.log("---", res)
         res.code === "200" ? callBack&&callBack(res.data) : errorBack&&errorBack(res.msg);
       }
     });
@@ -73,7 +72,6 @@ class ServerApi extends HTTP{
         if(res.code === "200"){
           callBack(res.data);
         }else{
-          console.log(res.msg)
           errorBack(res.msg);
         }
       }
@@ -88,7 +86,6 @@ class ServerApi extends HTTP{
         if(res.code === "200"){
           callBack(res.data);
         }else{
-          console.log(res.msg)
           errorBack(res.msg);
         }
       }

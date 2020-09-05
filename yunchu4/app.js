@@ -2,23 +2,13 @@ import {Login} from './api/login';
 let login = new Login();
 App({
   onLaunch: function () {
-    this.setWinHeightX();
     login.LoginProcess((res)=>{
-      console.log("登录存储：", res);
       this.globalData.userInfo = res.userInfo;
     });
     wx.getSystemInfo({
       success: e => {
         this.setWinHeight(e)
         this.setGlobalColorUI(e)
-        this.globalData.StatusBar = e.statusBarHeight;
-        let capsule = wx.getMenuButtonBoundingClientRect();
-        if (capsule) {
-          this.globalData.Custom = capsule;
-          this.globalData.CustomBar = capsule.bottom + capsule.top - e.statusBarHeight;
-        } else {
-          this.globalData.CustomBar = e.statusBarHeight + 50;
-        }
       }
     })
   },
@@ -28,9 +18,7 @@ App({
     let rpxR = 750 / clientWidth;
     let calc = clientHeight * rpxR - 406;
     this.globalData.winHeight = calc;
-  },
-  setWinHeightX: function() {
-    this.globalData.winHeightX = wx.getSystemInfoSync().windowHeight
+    this.globalData.winHeightX = clientHeight;
   },
   setGlobalColorUI: function(e){
     this.globalData.StatusBar = e.statusBarHeight;
@@ -42,22 +30,8 @@ App({
       this.globalData.CustomBar = e.statusBarHeight + 50;
     }
   },
-
-  getUserInfo: function (callback) {
-    var that = this
-    if (this.globalData.userInfo) {
-        typeof callback == "function" && callback(this.globalData.userInfo)
-    } else {
-        wx.getUserInfo({
-            success: (res) => {
-                that.globalData.userInfo = res.userInfo
-                typeof callback == "function" && callback(that.globalData.userInfo)
-            }
-        })
-    }
-  },
   globalData: {
-    userInfo: "++++",
+    userInfo: null,
     winHeight: null,
     winHeightX: null,
     nabbootomMap: [

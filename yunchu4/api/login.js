@@ -25,23 +25,18 @@ class Login{
         }));
     }
     static loginServerResolve (res) {
-            console.log("loginServer", res);
-            let statusCode = res.statusCode;
-            if(res.statusCode === 200 && res.data.code === "200"){
-                wx.setStorage({key:'loginUser',data:res.data.data})
-            }else{
-                wx.showToast({
-                    icon: 'loading',
-                    title: res.data.msg | res.errMsg
-                })
-            }
+        let statusCode = res.statusCode;
+        if(res.statusCode === 200 && res.data.code === "200"){
+            wx.setStorage({key:'loginUser',data:res.data.data})
+        }else{
+            wx.showToast({
+                icon: 'loading',
+                title: res.data.msg | res.errMsg
+            })
+        }
     }
     static loginServerReject (res) {
         console.log("errorres", res)
-    }
-    static wxuserInfoResolve(res){
-        console.log("newInfo", res.userInfo)
-        return res.userInfo;
     }
     LoginProcess(ck){
         Login.getSetting().then(d => {
