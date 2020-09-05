@@ -1,19 +1,11 @@
-import {HttpModel} from './api/httpModel';
-let request_ = new HttpModel();
+import {Login} from './api/login';
+let login = new Login();
 App({
   onLaunch: function () {
     this.setWinHeightX();
-    wx.getSetting({
-      success: (res) => {
-        if (res.authSetting['scope.userInfo']) {// 已经授权
-          wx.getUserInfo({
-            success: (res) => {
-              this.globalData.userInfo = res.userInfo;
-              request_.wxlogin(res.userInfo);
-            },
-          });
-        }
-      },
+    login.LoginProcess((res)=>{
+      console.log("登录存储：", res);
+      this.globalData.userInfo = res.userInfo;
     });
     wx.getSystemInfo({
       success: e => {

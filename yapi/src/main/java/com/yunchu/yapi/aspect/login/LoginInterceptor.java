@@ -22,9 +22,10 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 	/**
 	 * 在请求处理之前进行调用（Controller方法调用之前）
+	 * @throws InterruptedException 
 	 */
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws InterruptedException {
 		log.debug("loginInterceptor request uri:" + request.getRequestURI());
 		String sessionKey = request.getHeader("sessionKey");
 		if (WxLoginSession.isExist(sessionKey)){

@@ -1,4 +1,5 @@
 import {HTTP} from './http'
+
 class HttpModel extends HTTP{
   login(userInfo, callBack){
     userInfo.avatar_url = userInfo.avatarUrl;
@@ -29,9 +30,9 @@ class HttpModel extends HTTP{
         });
   }
   wxUploadImg(imgpath, ok, fail){
-    let url = this.getApiurl('/store/upload/img');
+    let url = this.getYApiurl('/store/upload/img');
     wx.uploadFile({
-      url: url,
+      url: this.getYApiurl('/store/upload/img'),
       filePath: imgpath,
       name: 'img',
       header: {
@@ -52,11 +53,10 @@ class HttpModel extends HTTP{
      })
   }
   asyncUploadImages(imgpath, ok, fail){
-    let url = this.getApiurl('/store/upload/img');
+    let url = this.getYApiurl('/store/upload/img');
     return new Promise(function () {
-      //上传主题图片 一次只能上传一张好恶心
         wx.uploadFile({
-          url: url,
+          url: this.getYApiurl('/store/upload/img'),
           filePath: imgpath,
           name: 'img',
           async: false,
