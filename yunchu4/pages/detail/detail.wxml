@@ -7,21 +7,24 @@
     </view>
   </swiper-item>
 </swiper>
-<view class="cu-bar bg-white solid-bottom">
-  <view class="action"><text class="cuIcon-titles text-orange"></text>主料</view>
-</view>
-<view class="cu-bar bg-white solid-bottom">
-  <view class="action"><text class="cuIcon-titles text-orange"></text>辅料</view>
-</view>
-<view class="cu-bar bg-white solid-bottom">
-  <view class="action"><text class="cuIcon-titles text-orange"></text>调料</view>
-</view>
-<view class="cu-bar bg-white solid-bottom">
-  <view class="action"><text class="cuIcon-titles text-orange"></text>做法</view>
-</view>
-<view class="cu-bar bg-white solid-bottom">
-  <view class="action"><text class="cuIcon-titles text-orange"></text>注意</view>
-</view>
-<view class="cu-bar bg-white solid-bottom">
-  <view class="action"><text class="cuIcon-titles text-orange"></text>介绍</view>
-</view>
+<listcard
+      isSlotBody="{{true}}"
+      noMargin="{{true}}"
+      noButtons="{{true}}"
+      selfMoreText="{{true}}">
+        <view slot="body">
+          <wux-cell-group wx:if="{{targetItem.cfood && targetItem.cfood.length != 0}}" title="主料">
+            <wux-cell wx:for="{{targetItem.cfood}}" wx:key="index" title="{{item.cnname}}" extra="{{item.weightval+''+item.ctype}}" />
+          </wux-cell-group>
+          <wux-cell-group wx:if="{{targetItem.cassistfood && targetItem.cassistfood.length != 0}}" title="辅料">
+            <wux-cell wx:for="{{targetItem.cassistfood}}" wx:key="index" title="{{item.cnname}}" extra="{{item.weightval+''+item.ctype}}" />
+          </wux-cell-group>
+          <wux-cell-group wx:if="{{targetItem.cseasoning && targetItem.cseasoning.length != 0}}" title="调料">
+            <wux-cell wx:for="{{targetItem.cseasoning}}" wx:key="index" title="{{item.cnname}}" extra="{{item.weightval+''+item.ctype}}" />
+          </wux-cell-group>
+        </view>
+        <view slot="smt">
+          <wux-media wx:if="{{targetItem.method && targetItem.method.length != 0}}" title="做法" label="{{targetItem.method}}"></wux-media>
+          <wux-media wx:if="{{targetItem.attion && targetItem.attion.length != 0}}" title="心法" label="{{targetItem.attion}}"></wux-media>
+        </view>
+      </listcard>

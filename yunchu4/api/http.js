@@ -5,18 +5,14 @@ let login = new Login();
 class HTTP{
   request(params){
     let sessionKey = this.getSessionKey(params);
-    if(!sessionKey){//重新登录
-      login.LoginProcess();
-    }
     params = this.initParams(params);
     this.wxRequest(params,sessionKey);
   }
   reRequest(params){
-    let sessionKey = this.getSessionKey(params);
-    if(!sessionKey){//重新登录
-      login.LoginProcess();
-    }
-    this.wxRequest(params,sessionKey);
+    login.LoginProcess(res=>{
+      let sessionKey = this.getSessionKey(params);
+      this.wxRequest(params,sessionKey)
+    });
   }
   getSessionKey(params){
     var loginUser = wx.getStorageSync('loginUser')
@@ -50,6 +46,7 @@ class HTTP{
         if(res.statusCode === 200 && res.data.code !== '40201'){
           params.success && params.success(res.data);
         }else if(res.statusCode === 200 && res.data.code === '40201'){
+          console.log("XX")
           this.reRequest(params);
         }else{
           this.show_error(res.errMsg);

@@ -14,7 +14,7 @@
         <view class="cu-item shadow">
           <view class="image">
             <image src="{{item.img}}" mode="widthFix"></image>
-            <view class="cu-tag bg-blue">史诗</view>
+            <view class="cu-tag bg-blue">{{item.tags[0].style_cnname}}</view>
           </view>
           <view class="cu-list menu-avatar">
             <view class="cu-item">
@@ -33,7 +33,7 @@
             </view>
             <view class="padding-sm flex flex-wrap">
               <view style="padding:8rpx" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index">
-                <view class="cu-tag line-blue round">{{tag.style_cnname}}</view>
+                <view class="cu-tag line-{{tag.cstyle_miaoshu.name}}">{{tag.style_cnname}}</view>
               </view>
             </view>
           </view>

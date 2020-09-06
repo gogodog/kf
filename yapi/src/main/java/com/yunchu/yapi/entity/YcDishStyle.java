@@ -3,9 +3,13 @@ package com.yunchu.yapi.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.yunchu.yapi.tools.GsonUtil;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -85,6 +89,12 @@ public class YcDishStyle extends Model<YcDishStyle> {
     @Override
     protected Serializable pkVal() {
         return this.id;
+    }
+    
+    public Map<String, Object> getCmiaoshu(){
+    	if(StringUtils.isBlank(this.miaoshu))
+    		return null;
+    	return GsonUtil.GsonToGsonObject(this.miaoshu);
     }
 
 }

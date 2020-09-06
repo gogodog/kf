@@ -3,7 +3,14 @@ package com.yunchu.yapi.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.yunchu.yapi.tools.GsonUtil;
+
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -74,11 +81,21 @@ public class YcCookbookStyle extends Model<YcCookbookStyle> {
     @TableField("delete_flag")
     @TableLogic
     private Boolean deleteFlag;
+    
+    @ApiModelProperty(value = "标签样式")
+    @TableField(exist = false)
+    private Map<String, Object> cstyleMiaoshu;
 
 
     @Override
     protected Serializable pkVal() {
         return this.id;
+    }
+    
+    public Map<String, Object> getCstyleMiaoshu(){
+    	if(StringUtils.isBlank(this.styleMiaoshu))
+    		return null;
+    	return GsonUtil.GsonToGsonObject(this.styleMiaoshu);
     }
 
 }

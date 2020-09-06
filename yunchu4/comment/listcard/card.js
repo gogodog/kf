@@ -27,6 +27,8 @@ Component({
       type: Boolean,
       observer: function () { this.setData({ isLiked: this.properties.isLiked }); }
     },
+    noMargin: Boolean,
+    noButtons: Boolean,
     likeNumber: Number,
     isShowUnlike: Boolean,
     unlikeNumber: Number,

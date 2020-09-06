@@ -1,5 +1,5 @@
 <!--dist/cards/card/card.wxml-->
-<view class='wx-cards-card'>
+<view class="wx-cards-card {{noMargin?'':'margin24'}}">
   <view class='header'>
     <view wx:if="{{headerImg}}" class='pc'>
       <image mode='aspectFill' src='{{headerImg}}'></image>
@@ -24,7 +24,7 @@
   <view wx:if="{{context}}" class='text'>
     {{context}}
   </view>
-  <view class='buttons'>
+  <view class='buttons' wx:if="{{!noButtons}}">
     <view style='display: flex;'>
       <view class='tag' wx:for='{{tag}}' wx:key='index'><tag class="i-tags" color="{{item.color}}">{{item.title}}</tag></view>
       <view class='tag' bindtap='handleTap1' wx:if='{{tap1}}'><tag class="i-tags" color="{{tap1color}}">{{tap1title}}</tag></view>
@@ -40,7 +40,7 @@
       <icon-button type='explain'></icon-button>
     </view>
   </view>
-  <view class='more-text {{isMoreText ? "explain-text" : ""}}'>
+  <view class='more-text {{noButtons ? "explain-text" : (isMoreText ? "explain-text" : "")}}'>
     <text wx:if="{{!selfMoreText}}" >{{moreText}}</text>
     <block wx:if="{{selfMoreText}}" >
       <slot name="smt"></slot>

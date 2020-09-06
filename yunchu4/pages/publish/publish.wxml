@@ -12,7 +12,7 @@
 </view>
 <view class="padding-sm flex flex-wrap">
   <view class="padding-xs" wx:for="{{choosedTags}}" wx:key="index" data-item="{{item}}" bindtap="cancleTags">
-    <view class="cu-tag bg-red">{{item.cnname}}</view>
+    <view class="cu-tag bg-{{item.cmiaoshu.name}}">{{item.cnname}}</view>
   </view>
 </view>
 
@@ -57,7 +57,7 @@
       </view>
       <view class="padding-sm flex flex-wrap">
         <view class="padding-xs" wx:for="{{item.children}}" wx:key="index" wx:for-item="row" data-parent="{{item}}" data-item="{{row}}" bindtap="clickTag">
-          <view class="cu-tag line-{{row.isChoosed?'red':'black'}}">{{row.cnname}}</view>
+          <view class="cu-tag {{row.isChoosed?'bg':'line'}}-{{row.cmiaoshu.name}}">{{row.cnname}}</view>
         </view>
       </view>
     </block>
