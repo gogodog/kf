@@ -58,6 +58,7 @@ public class YcCookbookServiceImpl extends ServiceImpl<YcCookbookMapper, YcCookb
 	@Transactional
 	public int publiishCookBook(CookBookPublishRequestVo vo, YcAppUser user) {
 		super.baseMapper.updateById(YcCookbookHandler.publishCookBookEntity(vo, user));
+		this.ycCookbookStyleMapper.delete(new QueryWrapper<YcCookbookStyle>().eq("cookbook_id", vo.getCid()));
 		for (YcDishStyle tag : vo.getTags()) {
 			YcCookbookStyle entity = YcDishStyleHandler.transferToYcCookbookStyle(tag, vo.getCid());
 			this.ycCookbookStyleMapper.insert(entity);

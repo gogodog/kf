@@ -46,14 +46,14 @@ class HTTP{
         if(res.statusCode === 200 && res.data.code !== '40201'){
           params.success && params.success(res.data);
         }else if(res.statusCode === 200 && res.data.code === '40201'){
-          console.log("XX")
+          this.show_error("加载中");
           this.reRequest(params);
         }else{
-          this.show_error(res.errMsg);
+          this.show_error("加载中");
         }
       },
       fail:(res) => {
-        this.show_error("异常，请刷新重试");
+        this.show_error("请刷新重试");
       }
     })
   }
@@ -63,7 +63,8 @@ class HTTP{
     }
     wx.showToast({
       icon: 'loading',
-      title: ecode
+      title: ecode,
+      mask: true
     })
   }
 }
