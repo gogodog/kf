@@ -14,7 +14,7 @@
         <view class="cu-item shadow">
           <view class="image">
             <image src="{{item.img}}" mode="widthFix"></image>
-            <view class="cu-tag bg-blue">{{item.tags[0].style_cnname}}</view>
+            <view class="cu-tag bg-{{item.tags[0].cstyle_miaoshu.name ? item.tags[0].cstyle_miaoshu.name : 'blue'}}">{{item.tags[0].style_cnname}}</view>
           </view>
           <view class="cu-list menu-avatar">
             <view class="cu-item">

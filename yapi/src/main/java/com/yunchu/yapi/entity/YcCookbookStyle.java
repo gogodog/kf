@@ -76,11 +76,6 @@ public class YcCookbookStyle extends Model<YcCookbookStyle> {
     @ApiModelProperty(value = "修改时间")
     @TableField("update_time")
     private Date updateTime;
-
-    @ApiModelProperty(value = "是否删除 0 未删除 1删除")
-    @TableField("delete_flag")
-    @TableLogic
-    private Boolean deleteFlag;
     
     @ApiModelProperty(value = "标签样式")
     @TableField(exist = false)
