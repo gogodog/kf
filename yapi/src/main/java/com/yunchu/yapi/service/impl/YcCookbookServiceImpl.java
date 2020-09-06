@@ -45,7 +45,7 @@ public class YcCookbookServiceImpl extends ServiceImpl<YcCookbookMapper, YcCookb
 
 	@Override
 	public List<YcCookbook> listByStatus(Page<YcCookbook> page, int status, YcAppUser user) {
-		super.baseMapper.selectPage(page, new QueryWrapper<YcCookbook>().eq("status", status).eq("user_code", user.getUucode()));
+		super.baseMapper.selectPage(page, new QueryWrapper<YcCookbook>().eq("status", status).eq("user_code", user.getUucode()).orderByDesc("update_time"));
 		return page.getRecords();
 	}
 

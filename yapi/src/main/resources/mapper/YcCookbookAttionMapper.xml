@@ -12,11 +12,10 @@
         <result column="u_openid" property="uOpenid" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
-        <result column="delete_flag" property="deleteFlag" />
     </resultMap>
     
     <select id="getAttionCountByCookBookId" resultType="java.lang.Long">
-        select count(*) from yc_cookbook_attion where cookbook_id = #{cookbookId} and delete_flag = 0
+        select count(*) from yc_cookbook_attion where cookbook_id = #{cookbookId}
     </select>
 
 </mapper>

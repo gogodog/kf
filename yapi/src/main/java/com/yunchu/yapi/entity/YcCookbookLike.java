@@ -66,12 +66,6 @@ public class YcCookbookLike extends Model<YcCookbookLike> {
     @TableField("update_time")
     private Date updateTime;
 
-    @ApiModelProperty(value = "是否删除 0 未删除 1删除")
-    @TableField("delete_flag")
-    @TableLogic
-    private Boolean deleteFlag;
-
-
     @Override
     protected Serializable pkVal() {
         return this.id;

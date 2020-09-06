@@ -61,11 +61,21 @@ const appendArry = (a1, a2) => {
   return a1;
 }
 
+const pushItemToList = (list, item) => {
+  if(!item)
+    return list;
+  if(!list)
+    list = [];
+  list.push(item);
+  return list;
+}
+
 module.exports = {
   formatTime: formatTime,
   isEmptyStr: isEmptyStr,
   isEmptyCollection:  isEmptyCollection,
   removeRow: removeRow,
   removeOne: removeOne,
-  appendArry: appendArry
+  appendArry: appendArry,
+  pushItemToList: pushItemToList
 };

@@ -5,7 +5,8 @@ import {
 import {
   isEmptyStr,
   isEmptyCollection,
-  removeOne
+  removeOne,
+  pushItemToList
 } from '../../utils/util'
 import {
   ServerApi
@@ -181,24 +182,18 @@ Page({
     })
   },
   setContentFood: function (row) {
-    let list = this.data.content_food;
-    list.push(row);
     this.setData({
-      content_food: list,
+      content_food: pushItemToList(this.data.content_food, row),
     });
   },
   setContentAssistFood: function (row) {
-    let list = this.data.content_assistfood;
-    list.push(row);
     this.setData({
-      content_assistfood: list,
+      content_assistfood: pushItemToList(this.data.content_assistfood, row),
     });
   },
   setContentSeasoning: function (row) {
-    let list = this.data.content_seasoning;
-    list.push(row);
     this.setData({
-      content_seasoning: list,
+      content_seasoning: pushItemToList(this.data.content_seasoning, row),
     });
   },
   removeContentFood: function (id, col) {
@@ -227,21 +222,17 @@ Page({
     });
   },
   operateClickTag: function (e) {
-    console.log("tag:", e);
     let s = e.currentTarget.dataset.s;
     let skey = e.currentTarget.dataset.skey;
     s == 1 ? this.setSfoodKey(skey) : s == 2 ? this.setSseasoningKey(skey) : s == 3 ? this.setSassistfoodKey(skey) : '';
   },
   operateDelFood: function (e) {
-    console.log("delFood:", e);
     this.removeContentFood(e.currentTarget.dataset.id, "id")
   },
   operateDelAssistFood: function (e) {
-    console.log("delAssistFood:", e);
     this.removeContentAssistFood(e.currentTarget.dataset.id, "id")
   },
   operateDelSeasoning: function (e) {
-    console.log("delFood:", e);
     this.removeContentSeasoning(e.currentTarget.dataset.id, "id")
   },
   submitPick: function () {
@@ -295,7 +286,6 @@ Page({
       return false;
     } else {
       let erroritem = this.checkWeightval(params.content_food);
-      console.log("error::", erroritem)
       if (erroritem) {
         this.showToptipsWarn("主料【" + erroritem.cnname + "】的重量必须大于0");
         return false;
@@ -306,7 +296,6 @@ Page({
       return false;
     } else {
       let erroritem = this.checkWeightval(params.content_assistfood);
-      console.log("error::", erroritem)
       if (erroritem) {
         this.showToptipsWarn("辅料【" + erroritem.cnname + "】的重量必须大于0");
         return false;
@@ -317,7 +306,6 @@ Page({
       return false;
     } else {
       let erroritem = this.checkWeightval(params.content_seasoning);
-      console.log("error::", erroritem)
       if (erroritem) {
         this.showToptipsWarn("食材【" + erroritem.cnname + "】的重量必须大于0");
         return false;
@@ -347,13 +335,12 @@ Page({
     ck();
   },
   sfoodTap: function (e) {
-    console.log("sfoodTap",e);
     let row = e.currentTarget.dataset.row;
     let list = this.data.content_food;
+    let ii = this.isReapt(row, list);
     return this.isReapt(row, list) ? this.showToptipsWarn("已经添加此食材") : this.setContentFood(row);
   },
   sassistfoodTap: function (e) {
-    console.log("sassistfoodTap",e);
     let row = e.currentTarget.dataset.row;
     let list = this.data.content_assistfood;
     return this.isReapt(row, list) ? this.showToptipsWarn("已经添加此食材") : this.setContentAssistFood(row);
@@ -364,7 +351,6 @@ Page({
     return this.isReapt(row, list) ? this.showToptipsWarn("已经添加此调料") : this.setContentSeasoning(row);
   },
   searchFoodChange: function (e) {
-    console.log("searchFoodChange", e)
     isEmptyStr(e.detail.value) ? 
       this.setData({
         sfood_list: [],
@@ -374,7 +360,6 @@ Page({
     : this.getFoodList(e.detail.value);
   },
   searchAssistFoodChange: function (e) {
-    console.log("searchAssistFoodChange", e)
     isEmptyStr(e.detail.value) ? 
       this.setData({
         sassistfood_list: [],
@@ -459,19 +444,16 @@ Page({
     tips.showTopTip(msg);
   },
   isReapt: function (row, list) {
-    let r = false;
-    if (list.length != 0) {
-      list.map((item) => {
-        if (item.id == row.id) {
-          r = true;
-          return;
+    if (list && list.length != 0) {
+      for(var i = 0 ; i<list.length; i++){
+        if(list[i].id == row.id){
+          return true;
         }
-      });
+      }
     }
-    return r;
+    return false;
   },
   showModal(e) {
-    console.log(e)
     this.setData({
       modalName: e.currentTarget.dataset.target
     })
@@ -487,13 +469,11 @@ Page({
   },
   // 删除控制器1
   ListTouchStart1(e) {
-    console.log("ListTouchStart1",e)
     this.setData({
       ListTouchStart1: e.touches[0].pageX
     })
   },
   ListTouchMove1(e) {
-    console.log("ListTouchMove1",e)
     this.setData({
       ListTouchDirection1: e.touches[0].pageX - this.data.ListTouchStart1 > 0 ? 'right' : 'left'
     })
@@ -506,19 +486,16 @@ Page({
   },
   // 删除控制器2
   ListTouchStart2(e) {
-    console.log("ListTouchStart2",e)
     this.setData({
       ListTouchStart2: e.touches[0].pageX
     })
   },
   ListTouchMove2(e) {
-    console.log("ListTouchMove2",e)
     this.setData({
       ListTouchDirection2: e.touches[0].pageX - this.data.ListTouchStar2 > 0 ? 'right' : 'left'
     })
   },
   ListTouchEnd2(e) {
-    console.log("ListTouchEnd2",e)
     this.setData({
       modalName2:this.data.ListTouchDirection2 =='left'?e.currentTarget.dataset.target:null,
       ListTouchDirection2: null,
@@ -526,19 +503,16 @@ Page({
   },
   // 删除控制器3
   ListTouchStart3(e) {
-    console.log("ListTouchStart3",e)
     this.setData({
       ListTouchStart3: e.touches[0].pageX
     })
   },
   ListTouchMove3(e) {
-    console.log("ListTouchMove3",e)
     this.setData({
       ListTouchDirection3: e.touches[0].pageX - this.data.ListTouchStart3 > 0 ? 'right' : 'left'
     })
   },
   ListTouchEnd3(e) {
-    console.log("ListTouchEnd3",e)
     this.setData({
       modalName3:this.data.ListTouchDirection3 =='left'?e.currentTarget.dataset.target:null,
       ListTouchDirection3: null,
