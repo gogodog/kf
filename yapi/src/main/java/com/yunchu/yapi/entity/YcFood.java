@@ -58,13 +58,13 @@ public class YcFood extends Model<YcFood> {
     @TableField("ctype")
     private String ctype;
 
-    @ApiModelProperty(value = "0:其它，1:蔬菜，2:水果，3:海鲜，4:调料")
+    @ApiModelProperty(value = "0:肉禽类，1:水产品，2:蔬菜，3:果品，4:米面豆乳，5:药食及其它")
     @TableField("type")
-    private Boolean type;
+    private Integer type;
 
     @ApiModelProperty(value = "0:充足，1:多，2:少量，3:无")
     @TableField("status")
-    private Boolean status;
+    private Integer status;
 
     @ApiModelProperty(value = "描述，json字符串")
     @TableField("info")

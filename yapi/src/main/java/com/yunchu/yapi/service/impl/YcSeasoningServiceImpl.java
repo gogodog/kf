@@ -29,7 +29,7 @@ public class YcSeasoningServiceImpl extends ServiceImpl<YcSeasoningMapper, YcSea
 	public List<YcSeasoning> getListByCnName(String cnname, Integer page, Integer size) {
 		if(page == null || size == null){
 			page = 1;
-			size = 5;
+			size = 50;
 		}
 		if(StringUtils.isNotBlank(cnname)){
 			IPage<YcSeasoning> food = new Page<>(page, size);

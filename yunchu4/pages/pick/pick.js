@@ -28,55 +28,116 @@ const swipeBut = [{
   text: '取消',
 }, ];
 const sseasoning_tag = [{
-    key: "海盐",
-    istype: false
-  },
-  {
-    key: "白醋",
-    istype: false
-  },
-  {
-    key: "陈醋",
-    istype: false
-  },
-  {
     key: "盐",
+    istype: false
+  },
+  {
+    key: "醋",
+    istype: false
+  },
+  {
+    key: "辣椒",
+    istype: false
+  },
+  {
+    key: "酱",
+    istype: true
+  },
+  {
+    key: "油",
+    istype: true
+  },
+  {
+    key: "糖",
+    istype: true
+  },
+  {
+    key: "粉",
     istype: true
   }
 ];
 const sfood_tag = [{
-    key: "苹果",
+    key: "虾",
     istype: false
   },
   {
-    key: "青笋",
+    key: "骨",
     istype: false
   },
   {
-    key: "龙虾",
+    key: "瓜",
     istype: false
+  },
+  {
+    key: "果",
+    istype: true
+  },
+  {
+    key: "花",
+    istype: true
+  },
+  {
+    key: "菜",
+    istype: true
+  },
+  {
+    key: "鱼",
+    istype: true
   },
   {
     key: "鸡",
     istype: true
+  },
+  {
+    key: "鸭",
+    istype: true
+  },
+  {
+    key: "猪",
+    istype: true
+  },
+  {
+    key: "牛",
+    istype: true
+  },
+  {
+    key: "羊",
+    istype: true
   }
 ];
 const sassistfood_tag = [{
-  key: "葱",
+  key: "蛋",
   istype: false
 },
 {
-  key: "蒜",
+  key: "肠",
   istype: false
 },
 {
-  key: "辣椒",
+  key: "蜜",
   istype: false
 },
 {
-  key: "菜",
+  key: "果",
+  istype: true
+},
+{
+  key: "花",
+  istype: true
+},
+{
+  key: "仁",
+  istype: true
+},
+{
+  key: "米",
+  istype: true
+},
+{
+  key: "面",
   istype: true
 }
+
 ];
 
 Page({
@@ -427,7 +488,7 @@ Page({
     });
   },
   getAssistFoodList: function (cname) {
-    sapi.assistFoodlistByCnname(cname, (res) => {
+    sapi.foodlistByCnname(cname, (res) => {
       this.setData({
         sassistfood_list: isEmptyCollection(res) ? [] : res,
       });

@@ -36,7 +36,7 @@ public class YcFoodServiceImpl extends ServiceImpl<YcFoodMapper, YcFood> impleme
 	public List<YcFood> getFoodListByCnName(String cnname, Integer page, Integer size) {
 		if(page == null || size == null){
 			page = 1;
-			size = 5;
+			size = 50;
 		}
 		if(StringUtils.isNotBlank(cnname)){
 			IPage<YcFood> food = new Page<>(page, size);

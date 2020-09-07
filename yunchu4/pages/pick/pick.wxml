@@ -19,7 +19,6 @@
   <view class="cu-list menu">
     <block wx:if="{{content_food.length > 0}}">
       <view wx:for="{{content_food}}" wx:key="id" class="cu-item {{modalName1=='move-box-'+ index?'move-cur':''}}" wx:key="index" bindtouchstart="ListTouchStart1" bindtouchmove="ListTouchMove1" bindtouchend="ListTouchEnd1" data-target="move-box-{{index}}">
-        <view class="cu-avatar radius lg" style="margin-top: 10rpx;margin-bottom: 10rpx;margin-right: 20rpx;background-image:url({{item.avatar}});"></view>
         <view class="content">
           <view class="text-grey">{{item.cnname}}</view>
         </view>
@@ -50,7 +49,6 @@
   <view class="cu-list menu">
     <block wx:if="{{content_assistfood.length > 0}}">
       <view wx:for="{{content_assistfood}}" wx:key="id" class="cu-item {{modalName2=='move-box-'+ index?'move-cur':''}}" wx:key="index" bindtouchstart="ListTouchStart2" bindtouchmove="ListTouchMove2" bindtouchend="ListTouchEnd2" data-target="move-box-{{index}}">
-        <view class="cu-avatar radius lg" style="margin-top: 10rpx;margin-bottom: 10rpx;margin-right: 20rpx;background-image:url({{item.avatar}});"></view>
         <view class="content">
           <view class="text-grey">{{item.cnname}}</view>
         </view>
@@ -81,7 +79,6 @@
   <view class="cu-list menu">
     <block wx:if="{{content_seasoning.length > 0}}">
       <view wx:for="{{content_seasoning}}" wx:key="index" class="cu-item {{modalName3=='move-box-'+ index?'move-cur':''}}" wx:key="index" bindtouchstart="ListTouchStart3" bindtouchmove="ListTouchMove3" bindtouchend="ListTouchEnd3" data-target="move-box-{{index}}">
-        <view class="cu-avatar radius lg" style="margin-top: 10rpx;margin-bottom: 10rpx;margin-right: 20rpx;background-image:url({{item.avatar}});"></view>
         <view class="content">
           <view class="text-grey">{{item.cnname}}</view>
         </view>
@@ -147,10 +144,9 @@
       <view class="cu-item">
         <view class="content padding-tb-sm" bindtap="sfoodTap" data-row="{{item}}">
           <view>
-            <view class="cu-avatar radius sm" style="background-image:url({{item.avatar}});"></view>
             <span style="margin-left: 20rpx;">{{item.cnname}}</span>
           </view>
-          <view class="text-gray text-sm">
+          <view wx:if="{{item.infoc.desc && item.infoc.desc.length>0}}" class="text-gray text-sm">
             <text class="cuIcon-infofill margin-right-xs"></text>
             {{item.infoc.desc}}
           </view>
@@ -179,10 +175,9 @@
       <view class="cu-item">
         <view class="content padding-tb-sm" bindtap="sassistfoodTap" data-row="{{item}}">
           <view>
-            <view class="cu-avatar radius sm" style="background-image:url({{item.avatar}});"></view>
             <span style="margin-left: 20rpx;">{{item.cnname}}</span>
           </view>
-          <view class="text-gray text-sm">
+          <view wx:if="{{item.infoc.desc && item.infoc.desc.length>0}}" class="text-gray text-sm">
             <text class="cuIcon-infofill margin-right-xs"></text>
             {{item.infoc.desc}}
           </view>
@@ -211,10 +206,9 @@
       <view class="cu-item">
         <view class="content padding-tb-sm" bindtap="sseasoningTap" data-row="{{item}}">
           <view>
-            <view class="cu-avatar radius sm" style="background-image:url({{item.avatar}});"></view>
             <span style="margin-left: 20rpx;">{{item.cnname}}</span>
           </view>
-          <view class="text-gray text-sm">
+          <view wx:if="{{item.infoc.desc && item.infoc.desc.length>0}}" class="text-gray text-sm">
             <text class="cuIcon-infofill margin-right-xs"></text>
             {{item.infoc.desc}}
           </view>
