@@ -142,4 +142,9 @@
   .DrawerPage .cu-bar.tabbar .action {
     flex: initial;
   }
-  
+  .DrawerWindow.smShow {
+    transform: scale(1, 0.95) translateX(0%);
+    opacity: 1;
+    pointer-events: all;
+    }
+    
