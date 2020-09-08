@@ -17,10 +17,10 @@ Page({
     recommendList:[],
   },
   onReady: function() {
-    this.refreshOnload();
+    this.refreshOnload(0);
+    this.refreshOnload(1);
   },
-  appendList: function(data) {
-    let cur = this.data.TabCur;
+  appendList: function(data, cur) {
     if(cur == 0){
       this.appendAttionList(data);
     }else if(cur == 1){
@@ -72,17 +72,33 @@ Page({
       url: "/pages/detail/detail",
     })
   },
-  tabChange: function(e) {
+  tabChange: function() {
+    let TabCur = this.data.TabCur == 1 ? 0 : 1;
     this.setData({
-      TabCur: this.data.TabCur == 1 ? 0 : 1
+      TabCur:TabCur
     })
+    if((!this.attionList || this.attionList.length == 0) && TabCur == 0){
+      this.refreshOnload(0)
+    }
+    if((!this.recommendList || this.recommendList.length == 0) && TabCur == 1){
+      this.refreshOnload(1)
+    }
   },
-  refreshOnload: function() {
+  swipperChange: function(e){
+    if(e.detail.current == this.data.TabCur){
+      return;
+    }
+    this.tabChange();
+  },
+  lowerOnload: function(e){
+    this.refreshOnload(this.data.TabCur);
+  },
+  refreshOnload: function(TabCur) {
     let that = this;
-    sapi.getStreetList({type: this.data.TabCur},
+    sapi.getStreetList({type: TabCur},
       res=>{
         if(res.code == "200" && res.data.length > 0)
-          that.appendList(res.data);
+          that.appendList(res.data, TabCur);
       }
     )
   },

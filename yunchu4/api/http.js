@@ -43,11 +43,15 @@ class HTTP{
         'sessionKey':sessionKey
       },
       success:(res) => {
-        if(res.statusCode === 200 && res.data.code !== '40201'){
-          params.success && params.success(res.data);
-        }else if(res.statusCode === 200 && res.data.code === '40201'){
-          this.show_error("加载中");
-          this.reRequest(params);
+        if(res.statusCode === 200){
+          if(res.data.code === '40201'){
+            this.show_error("加载中");
+            this.reRequest(params);
+          }else if(res.data.code === '30001'){
+            this.show_error("服务异常");
+          }else{
+            params.success && params.success(res.data);
+          }
         }else{
           this.show_error("加载中");
         }

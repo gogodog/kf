@@ -2,14 +2,17 @@
   <view slot="content">食街</view>
 </cu-custom>
 <scroll-view scroll-x class="bg-white nav text-center bg-red" style="position:fixed;top:{{CustomBar}}px;z-index:2">
-  <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:key="index" wx:for="{{Tabs}}" bindtap="tabChange" data-id="{{index}}">
-    {{item.name}}
+  <view class="cu-item {{0==TabCur?'text-blue cur':''}}" bindtap="tabChange" data-id="{{0}}">
+    关注
+  </view>
+  <view class="cu-item {{1==TabCur?'text-blue cur':''}}" bindtap="tabChange" data-id="{{1}}">
+    推荐
   </view>
 </scroll-view>
 <wux-white-space body-style="height: 90rpx" />
-<swiper current="{{TabCur}}" class="swiper-box" duration="300" style="height:1500rpx" bindchange="refreshOnload">
+<swiper current="{{TabCur}}" class="swiper-box" duration="300" style="height:1500rpx" bindchange="swipperChange">
   <swiper-item>
-    <scroll-view style='height:100%;' scroll-y bindscrolltolower="refreshOnload">
+    <scroll-view style='height:100%;' scroll-y bindscrolltolower="lowerOnload">
       <view wx:for="{{attionList}}" wx:key="index" class="cu-card case}">
         <view class="cu-item shadow">
           <view class="image">
@@ -42,7 +45,7 @@
     </scroll-view>
   </swiper-item>
   <swiper-item>
-    <scroll-view style='height:100%;' scroll-y bindscrolltolower="refreshOnload">
+    <scroll-view style='height:100%;' scroll-y bindscrolltolower="lowerOnload">
       <view wx:for="{{recommendList}}" wx:key="index" class="cu-card case}">
         <view class="cu-item shadow">
           <view class="image">
