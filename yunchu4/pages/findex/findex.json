@@ -1,7 +1,2 @@
 {
-  "usingComponents": {
-    "card":"../../comment/card/card",
-    "wux-white-space": "../../lib/white-space/index",
-    "tagbar":"../../comment/tagbar/tagbar"
-  }
 }
