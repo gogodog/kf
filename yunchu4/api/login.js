@@ -3,8 +3,10 @@ class Login{
     static login() {  
         return new Promise((resolve, reject) => wx.login({ success: resolve, fail: reject }));  
     };
-    static getUserInfo() {  
-        return new Promise((resolve, reject) => wx.getUserInfo({ success:resolve, fail: res=>{
+    static getUserInfo(ck) {  
+        return new Promise((resolve, reject) => wx.getUserInfo({ success:res=>{
+            ck && ck(res);
+        }, fail: res=>{
             return res;
         } }));  
     };

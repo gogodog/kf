@@ -1,12 +1,12 @@
 <view class='UCenter-bg'>
   <image src='/images/logo.png' class='png' mode='widthFix'></image>
-  <view class='text-xl'>ColorUI组件库
-    <text class='text-df'>v2.0</text>
+  <view class='text-xl'>云厨
+    <text class='text-df'>小程序</text>
   </view>
   <view class='margin-top-sm'>
-    <text>By:文晓港1</text>
+    <text>云厨需要获取你的头像，昵称信息</text>
   </view>
 </view>
-<view class='padding-xl'>
-  <button class='cu-btn  bg-green shadow lg block' open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">微信登录</button>
+<view class='btn-padding-180'>
+  <button class='cu-btn  bg-green shadow lg block' open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">授权</button>
 </view>

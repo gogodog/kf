@@ -2,9 +2,7 @@ import {Login} from './api/login';
 let login = new Login();
 App({
   onLaunch: function () {
-    login.LoginProcess((res)=>{
-      this.globalData.userInfo = res.userInfo;
-    });
+    login.LoginProcess()
     wx.getSystemInfo({
       success: e => {
         this.setWinHeight(e)

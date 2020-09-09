@@ -4,7 +4,6 @@ Page({
     StatusBar: appInst.globalData.StatusBar,
     CustomBar: appInst.globalData.CustomBar,
   },
-
   onGetUserInfo: function (e) {
     console.log(e)
     if (!this.logged && e.detail.userInfo) {
@@ -13,13 +12,5 @@ Page({
         url: '/pages/basics/home/home',
       })
     }
-  },
-
-  getsometimescode:function(e){
-    wx.login({
-      timeout: 0,
-    })
   }
-    
-
 })

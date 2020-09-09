@@ -19,6 +19,10 @@ public class WxLoginSession {
 		WxLoginSession.WX_SESSION.put(sessionKey, user);
 		return sessionKey;
 	}
+	
+	public static void put(String sessionKey, YcAppUser user){
+		WxLoginSession.WX_SESSION.put(sessionKey, user);
+	}
 
 	public static boolean isExist(String sessionKey) {
 		if(StringUtils.isNotBlank(sessionKey))

@@ -28,10 +28,19 @@ Page({
       badge: 22,
       name: '待付款',
       url: ''
-    }]
+    }],
+    user:{}
+  },
+  onLoad: function() {
+    let user = this.getLoginUser();
+    return user ? this.setData({user:user}) : wx.navigateTo({url: "/pages/system/system"})
+  },
+  getLoginUser: function(){
+    let loginUser = wx.getStorageSync('loginUser');
+    let user = loginUser ? loginUser.user : null;
+    return (!user || !user.wx_head || user.wx_head.length == 0) ? null : user;
   },
   gotoPage: function(e){
-    console.log("GoTo:", e)
     wx.navigateTo({
       url: e.currentTarget.dataset.goto,
     })

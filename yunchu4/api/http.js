@@ -13,8 +13,6 @@ class HTTP{
       if(res){
         let sessionKey = this.getSessionKey(params);
         this.wxRequest(params,sessionKey)
-      }else{
-        params.NoLogin && params.NoLogin();
       }
     });
   }

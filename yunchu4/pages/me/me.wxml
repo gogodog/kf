@@ -2,10 +2,8 @@
 
 <scroll-view scroll-y class="scrollPage">
   <view class="bg-red UCenter-bg " style="background-image:'url()'!important">
-	<view class="cu-avatar xl round margin-left" style="background-image:url(https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3379848400,1190658504&fm=15&gp=0.jpg);"></view>
-    <view class="text-xl">六孔
-      <text class="text-df">v2.0</text>
-    </view>
+	<view class="cu-avatar xl round" style="background-image:url({{user.wx_head}});"></view>
+    <view class="text-xl">{{user.wx_name}}</view>
     <image src="https://raw.githubusercontent.com/weilanwl/ColorUI/master/demo/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
   </view>
 	<view class="cu-list grid col-4 no-border">

@@ -12,13 +12,13 @@ Page({
     StatusBar: appInst.globalData.StatusBar,
     CustomBar: appInst.globalData.CustomBar,
     Tabs,
-    TabCur:0,
+    TabCur:1,
     attionList:[],
     recommendList:[],
   },
   onReady: function() {
-    this.refreshOnload(0, res=>{
-      this.refreshOnload(1);
+    this.refreshOnload(1, res=>{
+      this.refreshOnload(0);
     });
   },
   appendList: function(data, cur) {

@@ -40,7 +40,7 @@ public class LoginXcxServiceImpl implements LoginXcxService{
 		YcAppUser user = isNewUser ? this.register(wxSession.getOpenid(), vo) : users.get(0);
 		LocalCatch.putWXSession(user.getUucode(), wxSession);
 		String sessionKey = WxLoginSession.put(user);
-		return new WxUserLoginResponseVo(isNewUser, sessionKey);
+		return new WxUserLoginResponseVo(isNewUser, sessionKey, user);
 	}
 
 	private YcAppUser register(String openId, WxUserLoginRequestVo vo) {

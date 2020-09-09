@@ -1,5 +1,7 @@
 package com.yunchu.yapi.vo;
 
+import com.yunchu.yapi.entity.YcAppUser;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,9 +16,12 @@ public class WxUserLoginResponseVo {
 	
 	private String sessionKey;
 	
-	public WxUserLoginResponseVo(boolean newUser, String sessionKey) {
+	private YcAppUser user;
+	
+	public WxUserLoginResponseVo(boolean newUser, String sessionKey, YcAppUser user) {
 		this.isNewUser = newUser;
 		this.sessionKey = sessionKey;
+		this.user = user;
 	}
 
 }

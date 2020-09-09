@@ -91,6 +91,22 @@ class ServerApi extends HTTP{
       }
     });
   }
+  saveUserInfo(param, callBack){
+    param.avatar_url = param.avatarUrl;
+    param.nick_name = param.nickName;
+    this.request({
+      url:"/yapi/user/save/wxinfo",
+      method:"POST",
+      data:param,
+      success:(res)=>{
+        if(res.code === "200"){
+          callBack(res.data);
+        }else{
+          console.log(res)
+        }
+      }
+    });
+  }
   searchCbookListByStatus(param, callBack){
     param.size = 5;
     this.request({
