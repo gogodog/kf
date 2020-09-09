@@ -96,12 +96,8 @@ Page({
   },
   refreshOnload: function(TabCur, ck) {
     let that = this;
-    sapi.getStreetList({type: TabCur, 
-      NoLogin: res=>{
-        console.log("未登录")
-      }},
+    sapi.getStreetList({type: TabCur},
       res=>{
-        console.log("reOnload:", res)
         if(res.code == "200" && res.data.length > 0){
           that.appendList(res.data, TabCur);
           ck && ck();

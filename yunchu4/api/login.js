@@ -40,20 +40,16 @@ class Login{
     }
     LoginUserInfoProcess(ck){
         Login.getSetting().then(d => {
-            console.log("auth", d);
             return d.authSetting['scope.userInfo'] ? true : false;
         }).then(d => {
             return d? Login.login(): null;
         }).then(d => {
-            console.log("code", d);
             wx.setStorageSync("wxcode", d ? d.code : d);
             return Login.getUserInfo();
         }).then(d => {
-            console.log("1111", d);
             Login.loginServer(d);
             return d
         }).then(d => {
-            console.log("----", d);
             ck && ck(d);
         }).catch(e => {
             console.log(e);
@@ -61,11 +57,9 @@ class Login{
     }
     LoginProcess(ck){
         Login.login().then(d => {
-            console.log("code", d);
             wx.setStorageSync("wxcode", d ? d.code : d);
             return d.code;
         }).then(d => {
-            console.log("1111", d);
             Login.loginServer(d);
         }).then(d => {
             ck && ck(d);
