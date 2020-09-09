@@ -1,5 +1,67 @@
-<cu-custom model="nav" bgColor="bg-red" isBack="{{true}}" isCustom="{{false}}">
-  <view slot="backText">返回</view>
-  <text slot="content">FINDEX</text>
+<cu-custom model="nav" isBack="{{true}}" bgColor="bg-red" >
+  <view slot="backText">返回</view><view slot="content">订单列表</view>
 </cu-custom>
-<footnav tabCur="{{1}}"></footnav>
+<scroll-view scroll-x class="bg-white nav text-center bg-red" style="position:fixed;top:{{CustomBar}}px;z-index:2">
+  <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{Tabs}}" wx:key="index" bindtap="tabChange" data-id="{{index}}">
+    {{item.name}}
+  </view>
+</scroll-view>
+
+<scroll-view scroll-x class="bg-white nav text-center bg-red" style="position:fixed;top:{{CustomBar}}px;z-index:2">
+  <view class="cu-item {{index==tabCurrent?'text-blue cur':''}}" wx:key="index" wx:for="{{Tabs}}" bindtap="tagChange" data-id="{{index}}">{{item.name}}</view>
+</scroll-view>
+<wux-white-space body-style="height: 90rpx" />
+<swiper current="{{TabCur}}" class="swiper-box" duration="300" style="height:1500rpx" bindchange="swipperChange">
+  <swiper-item wx:for="{{contentlist[0].rows}}" wx:key="index" wx:for-item="cbook" >
+    <scroll-view style='height:100%;' scroll-y bindscrolltolower="lowerOnload">
+      
+    <wux-wing-blank size="default">
+      <listcard
+      tap1="{{true}}"
+      bind:tap1="modifyCookBook"
+      tap1color="yellow"
+      tap1title="修改"
+      tap2="{{cbook.status==0}}"
+      bind:tap2="publishCookBook"
+      tap2color="green"
+      tap2title="发布"
+      tap3="{{true}}"
+      bind:tap3="predeleteCookBook"
+      tap3color="red" 
+      tap3title="删除"
+      title="{{cbook.name}}"
+      time="{{cbook.cupdate_time}}"
+      data-id="{{cbook.id}}"
+      data-name="{{cbook.name}}"
+      data-item="{{cbook}}"
+      isSlotBody="{{true}}"
+      selfMoreText="{{true}}">
+        <view slot="body">
+          <wux-cell-group wx:if="{{cbook.cfood && cbook.cfood.length != 0}}" title="主料">
+            <wux-cell wx:for="{{cbook.cfood}}" wx:key="index" title="{{item.cnname}}" extra="{{item.weightval+''+item.ctype}}" />
+          </wux-cell-group>
+          <wux-cell-group wx:if="{{cbook.cassistfood && cbook.cassistfood.length != 0}}" title="辅料">
+            <wux-cell wx:for="{{cbook.cassistfood}}" wx:key="index" title="{{item.cnname}}" extra="{{item.weightval+''+item.ctype}}" />
+          </wux-cell-group>
+          <wux-cell-group wx:if="{{cbook.cseasoning && cbook.cseasoning.length != 0}}" title="调料">
+            <wux-cell wx:for="{{cbook.cseasoning}}" wx:key="index" title="{{item.cnname}}" extra="{{item.weightval+''+item.ctype}}" />
+          </wux-cell-group>
+        </view>
+        <view slot="smt">
+          <wux-media wx:if="{{cbook.method && cbook.method.length != 0}}" title="做法" label="{{cbook.method}}"></wux-media>
+          <wux-media wx:if="{{cbook.attion && cbook.attion.length != 0}}" title="心法" label="{{cbook.attion}}"></wux-media>
+        </view>
+      </listcard>
+    </wux-wing-blank>
+    <view wx:if="{{!contentlist[tabCurrent].rows || contentlist[tabCurrent].rows.length == 0}}" class="padding-xs flex align-center" style="margin-top:300rpx">
+        <view class="flex-sub text-center">
+          <view class="text-sl"><text class=" cuIcon-edit text-grey"></text></view>
+          <view class="text-grey">创建菜谱</view>
+        </view>
+    </view>
+
+
+
+    </scroll-view>
+  </swiper-item>
+</swiper>

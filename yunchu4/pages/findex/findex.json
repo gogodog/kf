@@ -1,2 +1,21 @@
 {
+  "usingComponents": {
+    "wux-segmented-control": "../../lib/segmented-control/index",
+    "wux-card": "../../lib/card/index",
+    "wux-wing-blank": "../../lib/wing-blank/index",
+    "wux-tabbar": "../../lib/tabbar/index",
+    "wux-tabbar-item": "../../lib/tabbar-item/index",
+    "wux-white-space": "../../lib/white-space/index",
+    "wux-tabs": "../../lib/tabs/index",
+    "wux-tab": "../../lib/tab/index",
+    "wux-divider": "../../lib/divider/index",
+    "wux-cell-group": "../../lib/cell-group/index",
+    "wux-cell": "../../lib/cell/index",
+    "listcard":"../../comment/listcard/card",
+    "wux-media": "../../lib/media/index",
+    "wux-dialog": "../../lib/dialog/index",
+    "wux-toast": "../../lib/toast/index"
+  },
+  "navigationBarTitleText": "列表",
+  "navigationBarBackgroundColor": "#FFCC00"
 }
