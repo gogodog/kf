@@ -52,6 +52,12 @@ wxapp:
 sglobal: 
   imgpath: classpath:static/imgstore
   imgurl:  http://127.0.0.1/yapi/imgstore/
+aliyun:
+  oss:
+    endpoint: oss-cn-beijing.aliyuncs.com
+    accessKeyId: LTAI4G3CQUDpFwpv3bky9a84
+    accessKeySecret: a87ayTevdQtOOn5S1poOtBsBfktf84
+    bucketName: ychu-cdn
   
   
   

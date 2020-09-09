@@ -17,8 +17,9 @@ Page({
     recommendList:[],
   },
   onReady: function() {
-    this.refreshOnload(0);
-    this.refreshOnload(1);
+    this.refreshOnload(0, res=>{
+      this.refreshOnload(1);
+    });
   },
   appendList: function(data, cur) {
     if(cur == 0){
@@ -93,12 +94,18 @@ Page({
   lowerOnload: function(e){
     this.refreshOnload(this.data.TabCur);
   },
-  refreshOnload: function(TabCur) {
+  refreshOnload: function(TabCur, ck) {
     let that = this;
-    sapi.getStreetList({type: TabCur},
+    sapi.getStreetList({type: TabCur, 
+      NoLogin: res=>{
+        console.log("未登录")
+      }},
       res=>{
-        if(res.code == "200" && res.data.length > 0)
+        console.log("reOnload:", res)
+        if(res.code == "200" && res.data.length > 0){
           that.appendList(res.data, TabCur);
+          ck && ck();
+        }
       }
     )
   },

@@ -1,15 +1,16 @@
 {
-  "pages":[
+  "pages": [
+    "pages/index/index",
     "pages/findex/findex",
     "pages/street/street",
-    "pages/index/index",
     "pages/cookbooklist/cookbooklist",
     "pages/me/me",
     "pages/pick/pick",
     "pages/logs/logs",
     "pages/kefu/kefu",
     "pages/publish/publish",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/system/system"
   ],
   "window": {
     "navigationBarBackgroundColor": "#39b54a",
@@ -19,7 +20,7 @@
   },
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom",
-    "footnav":"/comment/footnav/footnav"
+    "footnav": "/comment/footnav/footnav"
   },
   "sitemapLocation": "sitemap.json"
 }

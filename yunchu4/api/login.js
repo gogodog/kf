@@ -4,19 +4,19 @@ class Login{
         return new Promise((resolve, reject) => wx.login({ success: resolve, fail: reject }));  
     };
     static getUserInfo() {  
-        return new Promise((resolve, reject) => wx.getUserInfo({ success:resolve, fail: reject }));  
+        return new Promise((resolve, reject) => wx.getUserInfo({ success:resolve, fail: res=>{
+            return res;
+        } }));  
     };
     static getSetting() {
         return new Promise((resolve, reject) => wx.getSetting({ success: resolve, fail: reject })); 
-    }
-    static loginServer(userInfo) {
-        userInfo.avatar_url = userInfo.avatarUrl;
-        userInfo.nick_name = userInfo.nickName;
-        userInfo.code = wx.getStorageSync('wxcode');
+    };
+    static loginServer() {
+        let code = wx.getStorageSync('wxcode');
         return new Promise(() => wx.request({
             url: config.api_url + "/yapi/min/proxy/login",
             method: "POST",
-            data:userInfo,
+            data:{code: code},
             header:{
               'content-type':'application/json'
             },
@@ -38,17 +38,35 @@ class Login{
     static loginServerReject (res) {
         console.log("errorres", res)
     }
-    LoginProcess(ck){
+    LoginUserInfoProcess(ck){
         Login.getSetting().then(d => {
+            console.log("auth", d);
             return d.authSetting['scope.userInfo'] ? true : false;
         }).then(d => {
-            return d? Login.login(): null
+            return d? Login.login(): null;
         }).then(d => {
-            wx.setStorageSync("wxcode", d.code);
+            console.log("code", d);
+            wx.setStorageSync("wxcode", d ? d.code : d);
             return Login.getUserInfo();
         }).then(d => {
+            console.log("1111", d);
             Login.loginServer(d);
             return d
+        }).then(d => {
+            console.log("----", d);
+            ck && ck(d);
+        }).catch(e => {
+            console.log(e);
+        })
+    }
+    LoginProcess(ck){
+        Login.login().then(d => {
+            console.log("code", d);
+            wx.setStorageSync("wxcode", d ? d.code : d);
+            return d.code;
+        }).then(d => {
+            console.log("1111", d);
+            Login.loginServer(d);
         }).then(d => {
             ck && ck(d);
         }).catch(e => {

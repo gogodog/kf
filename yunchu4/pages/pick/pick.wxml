@@ -112,9 +112,10 @@
   <view class="cu-form-group">
     <textarea maxlength="-1" autoHeight bindinput="setContentAttion" value="{{content_attion_catch}}" placeholder="输入需要注意的事项"></textarea>
   </view>
-  <view class='cu-btn bg-red lg block shadow radius margin-xl' style="margin-bottom: 200rpx" bindtap="submitPick">
+  <view class='cu-btn bg-red lg block shadow radius margin-xl' bindtap="submitPick">
     {{isEdit ? '保存':'提交'}}
   </view>
+  <wux-white-space body-style="height: 200rpx"/>
 </scroll-view>
 <view class="DrawerClose {{sseasoning_visible || sfood_visible || sassistfood_visible?'show':''}}" style="background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.00));" bindtap="hideModal">
   <text class="cuIcon-pullright"></text>
