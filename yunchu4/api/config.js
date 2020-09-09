@@ -7,7 +7,4 @@ const config={//方便切换部署环境
     // api_key:"key111",
     // socket:"ws://www.cwillow.com/yapi/chat/"
 }
-
-
-
 export {config}
