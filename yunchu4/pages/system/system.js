@@ -9,16 +9,16 @@ Page({
     CustomBar: appInst.globalData.CustomBar,
   },
   onGetUserInfo: function (e) {
-    console.log(e)
     let userInfo = e.detail.userInfo;
     if (userInfo) {
       sapi.saveUserInfo(userInfo, res=>{
-        console.log(res);
         let loginUser = wx.getStorageSync('loginUser');
         loginUser.user = res;
         wx.setStorage({data: loginUser, key: 'loginUser'})
+        wx.navigateBack({delta: 1,})
       })
-      wx.navigateBack({delta: 1,})
+    }else{
+      wx.showToast({title: '系统异常'})
     }
   }
 })

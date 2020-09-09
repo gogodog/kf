@@ -31,9 +31,9 @@ Page({
     }],
     user:{}
   },
-  onLoad: function() {
+  onShow: function() {
     let user = this.getLoginUser();
-    return user ? this.setData({user:user}) : wx.navigateTo({url: "/pages/system/system"})
+    user ? this.setData({user:user}) : wx.navigateTo({url: "/pages/system/system"})
   },
   getLoginUser: function(){
     let loginUser = wx.getStorageSync('loginUser');
@@ -41,8 +41,6 @@ Page({
     return (!user || !user.wx_head || user.wx_head.length == 0) ? null : user;
   },
   gotoPage: function(e){
-    wx.navigateTo({
-      url: e.currentTarget.dataset.goto,
-    })
+    wx.navigateTo({url: e.currentTarget.dataset.goto})
   }
 })
