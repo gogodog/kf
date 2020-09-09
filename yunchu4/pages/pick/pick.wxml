@@ -215,8 +215,6 @@
     </block>
     <view wx:if="{{!sseasoning_list || sseasoning_list.length == 0}}" class="solid-bottom text-xs" style="text-align:center;margin-top: 60rpx;"><text class="text-gray">{{sseasoning_key && sseasoning_key.length>0?'橱柜无此食材':'输入名称搜索素材'}}</text></view>
     </block>
-
-
   </view>
 </scroll-view>
 <tips id='tips'></tips>
@@ -226,15 +224,14 @@
   <view class="cu-dialog">
     <view class="padding-xl">
       <view class="cu-form-group">
-		<view class="title">菜谱名称</view>
-		<input placeholder="输入菜谱名称" value="{{pickname}}" bindinput="setpickname"></input>
+		<view class="title">菜谱名称:</view>
+		<input focus='{{true}}' hidden="{{subDialog?false:'hidden'}}" value="{{pickname}}" bindinput="setpickname"></input>
 	</view>
     </view>
     <view class="cu-bar bg-white justify-end">
       <view class="action">
         <button class="cu-btn line-green text-green" bindtap="hideDialog">取消</button>
         <button class="cu-btn bg-green margin-left" bindtap="subPick">确定</button>
-
       </view>
     </view>
   </view>
