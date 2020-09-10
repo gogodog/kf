@@ -7,7 +7,7 @@
     <image src="https://raw.githubusercontent.com/weilanwl/ColorUI/master/demo/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
   </view>
 	<view class="cu-list grid col-4 no-border">
-    <view class="cu-item" wx:for="{{iconList}}" wx:key="index"  data-goto="{{item.url}}" bind:click="gotoPage">
+    <view class="cu-item" wx:for="{{iconList}}" wx:key="index"  data-goto="{{item.url}}" bindtap="gotoPage">
       <view class="cuIcon-{{item.icon}} text-{{item.color}}">
         <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
           <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>

@@ -3,7 +3,7 @@ import {$wuxDialog, $wuxToast} from '../../lib/index'
 
 let appInst =  getApp();
 let sapi = new ServerApi();
-const Tabs = [{name:"未发布1",index:"0"}, {name:"已发布",index:"1"}, {name:"已删除",index:"2"}];
+const Tabs = [{name:"未发布",index:"0"}, {name:"已发布",index:"1"}, {name:"已删除",index:"2"}];
 
 Page({
   data: {

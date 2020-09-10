@@ -7,6 +7,9 @@ import com.yunchu.yapi.mapper.YcCookbookLikeMapper;
 import com.yunchu.yapi.service.YcCookbookLikeService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -28,7 +31,8 @@ public class YcCookbookLikeServiceImpl extends ServiceImpl<YcCookbookLikeMapper,
 	@Override
 	public boolean like(Long cookbookId, YcAppUser user) {
 		QueryWrapper<YcCookbookLike> query = new QueryWrapper<YcCookbookLike>().eq("cookbook_id", cookbookId).eq("u_uucode", user.getUucode());
-		if(super.baseMapper.selectOne(query) != null){
+		List<YcCookbookLike> likes = super.baseMapper.selectList(query);
+		if(likes != null){//业务逻辑为每人只允许喜欢一次，但是若出现单点高并发不做事务处理，允许部分数据出现多次点击
 			return this.unLike(cookbookId, user);
 		}
 		return this.baseMapper.insert(YcCookbookLikeHandler.like(cookbookId, user)) == 1;
