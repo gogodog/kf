@@ -3,7 +3,7 @@ import {$wuxDialog, $wuxToast} from '../../lib/index'
 
 let appInst =  getApp();
 let sapi = new ServerApi();
-const Tabs = [{name:"未发布",index:"0"}, {name:"已发布",index:"1"}, {name:"已删除",index:"2"}];
+const Tabs = [{name:"未发布1",index:"0"}, {name:"已发布",index:"1"}, {name:"已删除",index:"2"}];
 
 Page({
   data: {
@@ -11,7 +11,6 @@ Page({
     CustomBar: appInst.globalData.CustomBar,
     Tabs,
     tabCurrent:0,
-
     contentlist:[
       {rows:[], page:1},
       {rows:[], page:1},
@@ -19,17 +18,17 @@ Page({
     ]
   },
   onShow: function(){
-    this.refreshList(this);
+    this.refreshListAll();
   },
-  tagChange:function(e){
-    let id = e.currentTarget.dataset.id;
+  setContentList: function(contentlist){
+    this.setData({contentlist})
+  },
+  tabChange: function(e, v){
+    let id = e ? e.currentTarget.dataset.id : v;
     if(id != this.data.tabCurrent){
-      this.setData({
-        tabCurrent: id
-      })
-      let status = id;
-      let page = this.data.contentlist[status].page;
-      this.searchCbookList(status, page);
+      this.setTabCurrent(id);
+      let page = this.data.contentlist[id].page;
+      this.searchCbookList(id, page);
     }
   },
   searchCbookList: function(status, page){
@@ -50,9 +49,7 @@ Page({
         page: page+1
       }
       contentlist[status] = content;
-      this.setData({
-        contentlist: contentlist
-      })
+      this.setContentList(contentlist);
     });
   },
   predeleteCookBook: function(e) {
@@ -68,22 +65,31 @@ Page({
   deleteCookBook: function(id){
     sapi.deleteCookBookById(id, (res)=>{
       if(res.code == 200){
-        this.refreshList(this)
+        this.refreshListAll();
         this.showToastSuccess("已删除")
       }else{
         this.showToastError(res.msg)
       }
     });
   },
-  refreshList: function(that){
-    let contentlist = that.data.contentlist;
-    let status = that.data.tabCurrent;
+  refreshList: function(){
+    let contentlist = this.data.contentlist;
+    let status = this.data.tabCurrent;
     contentlist[status].rows = [];
     contentlist[status].page = 1;
-    that.setData({
-      contentlist:contentlist
-    })
-    that.searchCbookList(status, 1)
+    this.setContentList(contentlist);
+    this.searchCbookList(status, 1)
+  },
+  refreshListAll: function(){
+    let contentlist = this.data.contentlist;
+    for(var i = 0 ; i< contentlist.length ; i++){
+      contentlist[i].rows = [];
+      contentlist[i].page = 1;
+    }
+    this.setContentList(contentlist);
+    for(var i = 0 ; i< contentlist.length ; i++){
+      this.searchCbookList(i, 1)
+    }
   },
   modifyCookBook: function(e){
     this.navigateTo('../pick/pick?operate=edit', e);
@@ -117,4 +123,11 @@ Page({
         success: () => {ck&&ck()}
     })
   },
+  swipperChange: function(e){
+    if(e.detail.current != this.data.tabCurrent)
+      this.tabChange(null, e.detail.current)
+  },
+  setTabCurrent:function(tabCurrent){
+    this.setData({tabCurrent})
+  }
 })
